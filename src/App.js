@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
-import {data} from './data';
-import {treeData} from './treeData';
+import data from './graphData.json';
 import {NodeTooltips, EdgeToolTips, NodeContextMenu} from './component'
 import './App.css';
 import G6 from '@antv/g6';
@@ -18,7 +17,10 @@ function setupG6() {
     'card-node',
     {
       drawShape: function drawShape(cfg, group) {
-        const color = cfg.error ? '#F4664A' : '#3c3f41';
+        const color = '#3c3f41';
+        const coveredColor = '#80b380';
+        const additionallyCoveredColor = '#52e052';
+        const backgroundColor = '#d9d9d9';
         const lineHeight = 20;
         const width = 500;
         const r = 2;
@@ -28,8 +30,8 @@ function setupG6() {
             y: 0,
             width: width,
             height: lineHeight + cfg.lines.length * lineHeight,
-            stroke: '#3c3f41',
-            fill: '#d9d9d9',
+            stroke: color,
+            fill: backgroundColor,
             lineWidth: 2,
             radius: r,
           },
@@ -76,7 +78,7 @@ function setupG6() {
             text: cfg.signature,
             fill: '#bbbbbb',
           },
-          name: 'title',
+          name: 'title-text',
           draggable: true,
           visOnCollapse: true,
         });
@@ -84,7 +86,22 @@ function setupG6() {
 
         // The content list
         cfg.lines.forEach((item, index) => {
-          // name text
+
+          // line background
+          group.addShape('rect', {
+            attrs: {
+              y: 20 + index * lineHeight,
+              x: 1,
+              width: width - 2,
+              height: 20,
+              fill: item.covered ? (item.addCovered ? additionallyCoveredColor : coveredColor) : backgroundColor,
+            },
+            name: `code-line-background-${index}`,
+            draggable: true,
+            visOnCollapse: false,
+          });
+
+          // code line in method
           group.addShape('text', {
             attrs: {
               textBaseline: 'top',
@@ -100,6 +117,7 @@ function setupG6() {
           });
 
           if (item.callsMethod) {
+
             group.addShape('marker', {
               attrs: {
                 x: width - 16,
@@ -111,7 +129,7 @@ function setupG6() {
                 lineWidth: 1,
               },
               name: 'collapse-branch-icon',
-              visOnCollapse: true,
+              visOnCollapse: false,
               draggable: true,
               index: index,
               collapse: false,
@@ -187,14 +205,13 @@ function App() {
         },
         layout: {
           type: 'dagre',
-          direction: 'LR',
-          align: 'UL',
+          direction: 'TB',
         },
         defaultNode: {
           type: 'card-node',
         },
         defaultEdge: {
-          type: 'arc',
+          type: 'polyline',
           style: {
             stroke: '#3c3f41',
             lineWidth: 2,
@@ -220,8 +237,8 @@ function App() {
       setShowNodeTooltip(false);
     });
 
-    // Click to select, cancel by clicking again
-    graph.on('title-box:click', (ev) => {
+    // Click top bar / text of a method to collapse it, click again to show it again
+    graph.on('title-text:click', (ev) => {
       const node = ev.item;
       const value = !node.hasState('selected')
       graph.setItemState(node, 'selected', value); // Switch the selected state
@@ -266,6 +283,7 @@ function App() {
       ev.target.cfg.collapse = !ev.target.cfg.collapse;
     });
 
+    console.log(data);
     graph.data(data);
     graph.render();
   }, []);
