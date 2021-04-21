@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import data from './graphData.json';
 import {NodeTooltips, EdgeToolTips, NodeContextMenu} from './component'
 import './App.css';
-import G6 from '@antv/g6';
+import G6, { Algorithm } from '@antv/g6';
 import {testNode} from './component/testNode'
 import {getAllChildren} from "./util";
 
@@ -22,7 +22,7 @@ function setupG6() {
         const additionallyCoveredColor = '#52e052';
         const backgroundColor = '#d9d9d9';
         const lineHeight = 20;
-        const width = 500;
+        const width = cfg.width ? cfg.width : 500;
         const r = 2;
         const shape = group.addShape('rect', {
           attrs: {
@@ -180,6 +180,45 @@ function setupG6() {
   );
 }
 
+function defaultView(graph) {
+  const { depthFirstSearch } = Algorithm;
+  depthFirstSearch(data, 'MethodSignatureBackedByPsiMethod: booleanAttributesAreEmptyStringValues_assSep10([])_-1', {
+    enter: ({ current, previous }) => {
+      // The callback function for the traversal's beginning
+    },
+    leave: ({ current, previous }) => {
+      // The callback function for the traversal's ending
+      const currentNode = graph.findById(current);
+      const previousNode = graph.findById(previous);
+      if (currentNode && previousNode) {
+        if (currentNode.get('model').addCovered) {
+          previousNode.get('model').addCovered = true;
+        }
+      }
+    }
+  });
+
+  const shape = graph.findAll('node', function (item) {
+    return !item.get('model').addCovered;
+  });
+  shape.forEach((shape) => {
+    // TODO set all outgoing markers to be collapsed
+    const shapeChildren = shape.get('group').get('children');
+    shapeChildren.forEach( function (marker, index) {
+      if (marker.get('type') === "marker") {
+        marker.collapse = true;
+        marker.attrs.symbol = G6.Marker.expand;
+      }
+    });
+    graph.hideItem(shape);
+  });
+
+
+  const visible = graph.findAll('node', function (item) {
+    return item.isVisible();
+  });
+  graph.updateLayout({});
+}
 
 function App() {
   setupG6();
@@ -205,7 +244,8 @@ function App() {
         },
         layout: {
           type: 'dagre',
-          direction: 'TB',
+          //rankdir: 'TB',
+          align: 'UL'
         },
         defaultNode: {
           type: 'card-node',
@@ -221,21 +261,21 @@ function App() {
     }
 
     // Listen to the mouse event on node
-    graph.on('node:mouseenter', (evt) => {
-      const {item} = evt;
-      const model = item.getModel();
-      const {x, y} = model;
-      const point = graph.getCanvasByPoint(x, y);
-
-      setNodeToolTipX(point.x - 75);
-      setNodeToolTipY(point.y + 15);
-      setShowNodeTooltip(true);
-    });
-
-    // Hide the tooltip and the contextMenu when the mouseleave event is activated on the node
-    graph.on('node:mouseleave', () => {
-      setShowNodeTooltip(false);
-    });
+    // graph.on('node:mouseenter', (evt) => {
+    //   const {item} = evt;
+    //   const model = item.getModel();
+    //   const {x, y} = model;
+    //   const point = graph.getCanvasByPoint(x, y);
+    //
+    //   setNodeToolTipX(point.x - 75);
+    //   setNodeToolTipY(point.y + 15);
+    //   setShowNodeTooltip(true);
+    // });
+    //
+    // // Hide the tooltip and the contextMenu when the mouseleave event is activated on the node
+    // graph.on('node:mouseleave', () => {
+    //   setShowNodeTooltip(false);
+    // });
 
     // Click top bar / text of a method to collapse it, click again to show it again
     graph.on('title-text:click', (ev) => {
@@ -253,39 +293,34 @@ function App() {
     // Click to expand / collapse branch
     graph.on('collapse-branch-icon:click', (ev) => {
       const node = ev.item;
-      console.log(node)
-      const outgoingEdge = graph.find('edge', (edge) => {
+
+      const outgoingEdge = graph.findAll('edge', (edge) => {
         return edge.get('model').source === node.get('id') && edge.get('model').sourceAnchor === ev.target.cfg.index + 1
       });
-      console.log(outgoingEdge)
-      const nextNode = graph.find('node', (node) => {
-        return node.get('id') === outgoingEdge.get('model').target
-      })
-      console.log(nextNode)
-      const children = getAllChildren(graph, nextNode);
+
+      const nextNodes = outgoingEdge.flatMap((edge) => {
+        return graph.findAll('node', (node) => {
+          return node.get('id') === edge.get('model').target
+        })
+      });
+
+      const children = getAllChildren(graph, nextNodes);
       if (ev.target.cfg.collapse) {
-        graph.showItem(nextNode);
+        nextNodes.forEach((node) => graph.showItem(node));
         children.forEach((c) => graph.showItem(c));
-        // graph.updateItem(ev.target, {
-        //   attrs: {
-        //     symbol: G6.Marker.collapse
-        //   }
-        // });
+        ev.target.attrs.symbol = G6.Marker.collapse;
       } else {
-        graph.hideItem(nextNode);
+        nextNodes.forEach((node) => graph.hideItem(node));
         children.forEach((c) => graph.hideItem(c));
-        // graph.updateItem(ev.target, {
-        //   attrs: {
-        //     symbol: G6.Marker.expand
-        //   }
-        // });
+        ev.target.attrs.symbol = G6.Marker.expand;
       }
       ev.target.cfg.collapse = !ev.target.cfg.collapse;
+      graph.updateLayout({});
     });
 
-    console.log(data);
     graph.data(data);
     graph.render();
+    defaultView(graph);
   }, []);
 
 

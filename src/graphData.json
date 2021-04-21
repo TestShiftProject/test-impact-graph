@@ -1,111 +1,149 @@
 {
   "nodes": [
     {
-      "signature": "MethodSignatureBackedByPsiMethod: testSizeWhenHasInternal_assSep6([])",
-      "id": "MethodSignatureBackedByPsiMethod: testSizeWhenHasInternal_assSep6([])_-1",
+      "signature": "    public void booleanAttributesAreEmptyStringValues_assSep10() throws Exception {",
+      "id": "MethodSignatureBackedByPsiMethod: booleanAttributesAreEmptyStringValues_assSep10([])_-1",
       "lines": [
         {
-          "code": "        Attributes a \u003d new Attributes();",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        a.put(\"One\", \"One\");",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        a.put(\"Two\", \"Two\");",
+          "code": "        Document doc \u003d Jsoup.parse(\"\u003cdiv hidden\u003e\");",
           "callsMethod": true,
           "covered": false,
           "addCovered": false
         },
         {
-          "code": "        a.put(Attributes.internalKey(\"baseUri\"), \"example.com\");",
+          "code": "        Attributes attributes \u003d doc.body().child(0).attributes();",
           "callsMethod": true,
           "covered": false,
           "addCovered": false
         },
         {
-          "code": "        a.put(Attributes.internalKey(\"another\"), \"example.com\");",
+          "code": "        attributes.get(\"hidden\");",
           "callsMethod": true,
           "covered": false,
           "addCovered": false
         },
         {
-          "code": "        a.size();",
+          "code": "        Attribute first \u003d attributes.iterator().next();",
           "callsMethod": true,
           "covered": false,
           "addCovered": false
         },
         {
-          "code": "        Assertions.assertEquals(1117389020, ((int) (((Attributes) (a)).hashCode())));",
+          "code": "        first.getKey();",
           "callsMethod": true,
           "covered": false,
           "addCovered": false
         },
         {
-          "code": "    }",
+          "code": "        first.getValue();",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        first.hasDeclaredValue();",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        Attribute.isBooleanAttribute(first.getKey());",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        Assertions.assertEquals(\" hidden\", ((Attributes) (attributes)).toString());",
           "callsMethod": true,
           "covered": false,
           "addCovered": false
         }
       ],
-      "addCovered": false,
+      "addCovered": true,
       "nodeLevel": 0
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])",
-      "id": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_-1874589962",
+      "signature": "    public static Document parse(String html) {",
+      "id": "MethodSignatureBackedByPsiMethod: parse([PsiType:String])_-231897933",
       "lines": [
         {
-          "code": "        Validate.notNull(key);",
-          "callsMethod": false,
+          "code": "        return Parser.parse(html, \"\");",
+          "callsMethod": true,
           "covered": false,
           "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "    public Attributes attributes() {",
+      "id": "MethodSignatureBackedByPsiMethod: attributes([])_-2006610272",
+      "lines": [
+        {
+          "code": "        if (!hasAttributes())",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
         },
+        {
+          "code": "            attributes \u003d new Attributes();",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "        return attributes;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "    public Element child(int index) {",
+      "id": "MethodSignatureBackedByPsiMethod: child([PsiType:int])_1126942842",
+      "lines": [
+        {
+          "code": "        return childElementsList().get(index);",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "    public Element body() {",
+      "id": "MethodSignatureBackedByPsiMethod: body([])_-1119410782",
+      "lines": [
+        {
+          "code": "        return findFirstElementByTagName(\"body\", this);",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "    public String get(String key) {",
+      "id": "MethodSignatureBackedByPsiMethod: get([PsiType:String])_1497391226",
+      "lines": [
         {
           "code": "        int i \u003d indexOfKey(key);",
           "callsMethod": true,
-          "covered": false,
+          "covered": true,
           "addCovered": false
         },
         {
-          "code": "        if (i !\u003d NotFound)",
+          "code": "        return i \u003d\u003d NotFound ? EmptyString : checkNotNull(vals[i]);",
           "callsMethod": true,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "            vals[i] \u003d value;",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        else",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "            add(key, value);",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        return this;",
-          "callsMethod": true,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": false,
-          "covered": false,
+          "covered": true,
           "addCovered": false
         }
       ],
@@ -113,300 +151,173 @@
       "nodeLevel": 1
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])",
-      "id": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_1836357",
-      "lines": [
-        {
-          "code": "        Validate.notNull(key);",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        int i \u003d indexOfKey(key);",
-          "callsMethod": true,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        if (i !\u003d NotFound)",
-          "callsMethod": true,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "            vals[i] \u003d value;",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        else",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "            add(key, value);",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        return this;",
-          "callsMethod": true,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        }
-      ],
-      "addCovered": false,
-      "nodeLevel": 1
-    },
-    {
-      "signature": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])",
-      "id": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_103297590",
-      "lines": [
-        {
-          "code": "        Validate.notNull(key);",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        int i \u003d indexOfKey(key);",
-          "callsMethod": true,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        if (i !\u003d NotFound)",
-          "callsMethod": true,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "            vals[i] \u003d value;",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        else",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "            add(key, value);",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        return this;",
-          "callsMethod": true,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        }
-      ],
-      "addCovered": false,
-      "nodeLevel": 1
-    },
-    {
-      "signature": "MethodSignatureBackedByPsiMethod: internalKey([PsiType:String])",
-      "id": "MethodSignatureBackedByPsiMethod: internalKey([PsiType:String])_-1450076348",
-      "lines": [
-        {
-          "code": "        return InternalPrefix + key;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        }
-      ],
-      "addCovered": false,
-      "nodeLevel": 1
-    },
-    {
-      "signature": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])",
-      "id": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_245491579",
-      "lines": [
-        {
-          "code": "        Validate.notNull(key);",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        int i \u003d indexOfKey(key);",
-          "callsMethod": true,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        if (i !\u003d NotFound)",
-          "callsMethod": true,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "            vals[i] \u003d value;",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        else",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "            add(key, value);",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        return this;",
-          "callsMethod": true,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        }
-      ],
-      "addCovered": false,
-      "nodeLevel": 1
-    },
-    {
-      "signature": "MethodSignatureBackedByPsiMethod: internalKey([PsiType:String])",
-      "id": "MethodSignatureBackedByPsiMethod: internalKey([PsiType:String])_-189666701",
-      "lines": [
-        {
-          "code": "        return InternalPrefix + key;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        }
-      ],
-      "addCovered": false,
-      "nodeLevel": 1
-    },
-    {
-      "signature": "MethodSignatureBackedByPsiMethod: size([])",
-      "id": "MethodSignatureBackedByPsiMethod: size([])_220377205",
-      "lines": [
-        {
-          "code": "        int s \u003d 0;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        for (int i \u003d 0; i \u003c size; i++) {",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "            if (!isInternalKey(keys[i]))",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "                s++;",
-          "callsMethod": true,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        }",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        return s;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        }
-      ],
-      "addCovered": false,
-      "nodeLevel": 1
-    },
-    {
-      "signature": "MethodSignatureBackedByPsiMethod: assertEquals([PsiType:int, PsiType:int])",
-      "id": "MethodSignatureBackedByPsiMethod: assertEquals([PsiType:int, PsiType:int])_1248171425",
+      "id": "MethodSignatureBackedByPsiMethod: next([])_227052712",
       "lines": [],
       "addCovered": false,
       "nodeLevel": 1
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: hashCode([])",
-      "id": "MethodSignatureBackedByPsiMethod: hashCode([])_923835986",
+      "signature": "    public Iterator\u003cAttribute\u003e iterator() {",
+      "id": "MethodSignatureBackedByPsiMethod: iterator([])_1175847239",
       "lines": [
         {
-          "code": "        int result \u003d size;",
+          "code": "        return new Iterator\u003cAttribute\u003e() {",
           "callsMethod": false,
           "covered": true,
-          "addCovered": true
+          "addCovered": false
         },
         {
-          "code": "        result \u003d 31 * result + Arrays.hashCode(keys);",
+          "code": "            int i \u003d 0;",
           "callsMethod": false,
-          "covered": true,
-          "addCovered": true
+          "covered": false,
+          "addCovered": false
         },
         {
-          "code": "        result \u003d 31 * result + Arrays.hashCode(vals);",
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            @Override",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            public boolean hasNext() {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "                while (i \u003c size) {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "                    if (isInternalKey(keys[i])) // skip over internal keys",
           "callsMethod": true,
-          "covered": true,
-          "addCovered": true
+          "covered": false,
+          "addCovered": false
         },
         {
-          "code": "        return result;",
+          "code": "                        i++;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "                    else",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "                        break;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "                }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "                return i \u003c size;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            @Override",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            public Attribute next() {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "                final Attribute attr \u003d new Attribute(keys[i], vals[i], Attributes.this);",
           "callsMethod": true,
-          "covered": true,
-          "addCovered": true
+          "covered": false,
+          "addCovered": false
         },
         {
-          "code": "    }",
+          "code": "                i++;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "                return attr;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            @Override",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            public void remove() {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "                Attributes.this.remove(--i); // next() advanced, so rewind",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        };",
           "callsMethod": false,
           "covered": false,
           "addCovered": false
@@ -416,24 +327,214 @@
       "nodeLevel": 1
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])",
-      "id": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_1968731707",
+      "signature": "    public String getKey() {",
+      "id": "MethodSignatureBackedByPsiMethod: getKey([])_-130363509",
       "lines": [
         {
-          "code": "        if (obj \u003d\u003d null)",
+          "code": "        return key;",
           "callsMethod": false,
-          "covered": false,
+          "covered": true,
           "addCovered": false
-        },
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "    public String getValue() {",
+      "id": "MethodSignatureBackedByPsiMethod: getValue([])_-906777569",
+      "lines": [
         {
-          "code": "            throw new IllegalArgumentException(\"Object must not be null\");",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
+          "code": "        return Attributes.checkNotNull(val);",
           "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "    public boolean hasDeclaredValue() {",
+      "id": "MethodSignatureBackedByPsiMethod: hasDeclaredValue([])_-2087210258",
+      "lines": [
+        {
+          "code": "        return val !\u003d null;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "    protected static boolean isBooleanAttribute(final String key) {",
+      "id": "MethodSignatureBackedByPsiMethod: isBooleanAttribute([PsiType:String])_2008415409",
+      "lines": [
+        {
+          "code": "        return Arrays.binarySearch(booleanAttributes, key) \u003e\u003d 0;",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "    public String getKey() {",
+      "id": "MethodSignatureBackedByPsiMethod: getKey([])_-1957021494",
+      "lines": [
+        {
+          "code": "        return key;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "id": "MethodSignatureBackedByPsiMethod: assertEquals([PsiType:Object, PsiType:Object])_1615189769",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "    public String toString() {",
+      "id": "MethodSignatureBackedByPsiMethod: toString([])_469127862",
+      "lines": [
+        {
+          "code": "        return html();",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": true
+        }
+      ],
+      "addCovered": true,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "    public static Document parse(String html, String baseUri) {",
+      "id": "MethodSignatureBackedByPsiMethod: parse([PsiType:String, PsiType:String])_1209857708",
+      "lines": [
+        {
+          "code": "        TreeBuilder treeBuilder \u003d new HtmlTreeBuilder();",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "        return treeBuilder.parse(new StringReader(html), baseUri, new Parser(treeBuilder));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "    protected boolean hasAttributes() {",
+      "id": "MethodSignatureBackedByPsiMethod: hasAttributes([])_-1450974634",
+      "lines": [
+        {
+          "code": "        return attributes !\u003d null;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "id": "MethodSignatureBackedByPsiMethod: get([PsiType:int])_472357667",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "    private List\u003cElement\u003e childElementsList() {",
+      "id": "MethodSignatureBackedByPsiMethod: childElementsList([])_-2019401050",
+      "lines": [
+        {
+          "code": "        List\u003cElement\u003e children;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "        if (shadowChildrenRef \u003d\u003d null || (children \u003d shadowChildrenRef.get()) \u003d\u003d null) {",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "            final int size \u003d childNodes.size();",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "            children \u003d new ArrayList\u003c\u003e(size);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            //noinspection ForLoopReplaceableByForEach (beacause it allocates an Iterator which is wasteful here)",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "            for (int i \u003d 0; i \u003c size; i++) {",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "                final Node node \u003d childNodes.get(i);",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "                if (node instanceof Element)",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "                    children.add((Element) node);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            }",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "            shadowChildrenRef \u003d new WeakReference\u003c\u003e(children);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        }",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "        return children;",
+          "callsMethod": false,
           "covered": false,
           "addCovered": false
         }
@@ -442,31 +543,105 @@
       "nodeLevel": 2
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])",
-      "id": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_-2142784327",
+      "signature": "    private Element findFirstElementByTagName(String tag, Node node) {",
+      "id": "MethodSignatureBackedByPsiMethod: findFirstElementByTagName([PsiType:String, PsiType:Node])_1457380230",
+      "lines": [
+        {
+          "code": "        if (node.nodeName().equals(tag))",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "            return (Element) node;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "        else {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            int size \u003d node.childNodeSize();",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "            for (int i \u003d 0; i \u003c size; i++) {",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "                Element found \u003d findFirstElementByTagName(tag, node.childNode(i));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "                if (found !\u003d null)",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "                    return found;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "            }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        return null;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "    int indexOfKey(String key) {",
+      "id": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_5372143",
       "lines": [
         {
           "code": "        Validate.notNull(key);",
-          "callsMethod": false,
+          "callsMethod": true,
           "covered": true,
           "addCovered": false
         },
         {
           "code": "        for (int i \u003d 0; i \u003c size; i++) {",
-          "callsMethod": true,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "            if (key.equals(keys[i]))",
           "callsMethod": false,
           "covered": true,
           "addCovered": false
         },
         {
-          "code": "                return i;",
+          "code": "            if (key.equals(keys[i]))",
           "callsMethod": true,
-          "covered": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "                return i;",
+          "callsMethod": false,
+          "covered": true,
           "addCovered": false
         },
         {
@@ -480,55 +655,19 @@
           "callsMethod": false,
           "covered": true,
           "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
         }
       ],
       "addCovered": false,
       "nodeLevel": 2
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: add([PsiType:String, PsiType:String])",
-      "id": "MethodSignatureBackedByPsiMethod: add([PsiType:String, PsiType:String])_1027215168",
+      "signature": "    static String checkNotNull(String val) {",
+      "id": "MethodSignatureBackedByPsiMethod: checkNotNull([PsiType:String])_-1684645425",
       "lines": [
         {
-          "code": "        checkCapacity(size + 1);",
+          "code": "        return val \u003d\u003d null ? EmptyString : val;",
           "callsMethod": false,
           "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        keys[size] \u003d key;",
-          "callsMethod": true,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        vals[size] \u003d value;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        size++;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        return this;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": false,
-          "covered": false,
           "addCovered": false
         }
       ],
@@ -536,378 +675,56 @@
       "nodeLevel": 2
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])",
-      "id": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_2015934794",
-      "lines": [
-        {
-          "code": "        if (obj \u003d\u003d null)",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "            throw new IllegalArgumentException(\"Object must not be null\");",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": true,
-          "covered": false,
-          "addCovered": false
-        }
-      ],
-      "addCovered": false,
-      "nodeLevel": 2
-    },
-    {
-      "signature": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])",
-      "id": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_2142633837",
-      "lines": [
-        {
-          "code": "        Validate.notNull(key);",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        for (int i \u003d 0; i \u003c size; i++) {",
-          "callsMethod": true,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "            if (key.equals(keys[i]))",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "                return i;",
-          "callsMethod": true,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        }",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        return NotFound;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        }
-      ],
-      "addCovered": false,
-      "nodeLevel": 2
-    },
-    {
-      "signature": "MethodSignatureBackedByPsiMethod: add([PsiType:String, PsiType:String])",
-      "id": "MethodSignatureBackedByPsiMethod: add([PsiType:String, PsiType:String])_-378332070",
-      "lines": [
-        {
-          "code": "        checkCapacity(size + 1);",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        keys[size] \u003d key;",
-          "callsMethod": true,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        vals[size] \u003d value;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        size++;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        return this;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        }
-      ],
-      "addCovered": false,
-      "nodeLevel": 2
-    },
-    {
-      "signature": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])",
-      "id": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-734644275",
-      "lines": [
-        {
-          "code": "        if (obj \u003d\u003d null)",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "            throw new IllegalArgumentException(\"Object must not be null\");",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": true,
-          "covered": false,
-          "addCovered": false
-        }
-      ],
-      "addCovered": false,
-      "nodeLevel": 2
-    },
-    {
-      "signature": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])",
-      "id": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_1279848705",
-      "lines": [
-        {
-          "code": "        Validate.notNull(key);",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        for (int i \u003d 0; i \u003c size; i++) {",
-          "callsMethod": true,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "            if (key.equals(keys[i]))",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "                return i;",
-          "callsMethod": true,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        }",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        return NotFound;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        }
-      ],
-      "addCovered": false,
-      "nodeLevel": 2
-    },
-    {
-      "signature": "MethodSignatureBackedByPsiMethod: add([PsiType:String, PsiType:String])",
-      "id": "MethodSignatureBackedByPsiMethod: add([PsiType:String, PsiType:String])_1447617546",
-      "lines": [
-        {
-          "code": "        checkCapacity(size + 1);",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        keys[size] \u003d key;",
-          "callsMethod": true,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        vals[size] \u003d value;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        size++;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        return this;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        }
-      ],
-      "addCovered": false,
-      "nodeLevel": 2
-    },
-    {
-      "signature": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])",
-      "id": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-252957252",
-      "lines": [
-        {
-          "code": "        if (obj \u003d\u003d null)",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "            throw new IllegalArgumentException(\"Object must not be null\");",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": true,
-          "covered": false,
-          "addCovered": false
-        }
-      ],
-      "addCovered": false,
-      "nodeLevel": 2
-    },
-    {
-      "signature": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])",
-      "id": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_-1384376261",
-      "lines": [
-        {
-          "code": "        Validate.notNull(key);",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        for (int i \u003d 0; i \u003c size; i++) {",
-          "callsMethod": true,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "            if (key.equals(keys[i]))",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "                return i;",
-          "callsMethod": true,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        }",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        return NotFound;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        }
-      ],
-      "addCovered": false,
-      "nodeLevel": 2
-    },
-    {
-      "signature": "MethodSignatureBackedByPsiMethod: add([PsiType:String, PsiType:String])",
-      "id": "MethodSignatureBackedByPsiMethod: add([PsiType:String, PsiType:String])_657490989",
-      "lines": [
-        {
-          "code": "        checkCapacity(size + 1);",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        keys[size] \u003d key;",
-          "callsMethod": true,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        vals[size] \u003d value;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        size++;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        return this;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        }
-      ],
-      "addCovered": false,
-      "nodeLevel": 2
-    },
-    {
-      "signature": "MethodSignatureBackedByPsiMethod: isInternalKey([PsiType:String])",
-      "id": "MethodSignatureBackedByPsiMethod: isInternalKey([PsiType:String])_1654514691",
+      "signature": "    private boolean isInternalKey(String key) {",
+      "id": "MethodSignatureBackedByPsiMethod: isInternalKey([PsiType:String])_752962219",
       "lines": [
         {
           "code": "        return key !\u003d null \u0026\u0026 key.length() \u003e 1 \u0026\u0026 key.charAt(0) \u003d\u003d InternalPrefix;",
-          "callsMethod": false,
+          "callsMethod": true,
           "covered": true,
+          "addCovered": true
+        }
+      ],
+      "addCovered": true,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "    public Attribute(String key, String val, Attributes parent) {",
+      "id": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String, PsiType:Attributes])_989786099",
+      "lines": [
+        {
+          "code": "        Validate.notNull(key);",
+          "callsMethod": true,
+          "covered": false,
           "addCovered": false
         },
         {
-          "code": "    }",
+          "code": "        key \u003d key.trim();",
           "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        Validate.notEmpty(key); // trimming could potentially make empty, so validate here",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        this.key \u003d key;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        this.val \u003d val;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        this.parent \u003d parent;",
+          "callsMethod": false,
           "covered": false,
           "addCovered": false
         }
@@ -916,44 +733,391 @@
       "nodeLevel": 2
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: hashCode([PsiType:Object[]])",
-      "id": "MethodSignatureBackedByPsiMethod: hashCode([PsiType:Object[]])_684086720",
+      "signature": "    private void remove(int index) {",
+      "id": "MethodSignatureBackedByPsiMethod: remove([PsiType:int])_1097915815",
+      "lines": [
+        {
+          "code": "        Validate.isFalse(index \u003e\u003d size);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        int shifted \u003d size - index - 1;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        if (shifted \u003e 0) {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            System.arraycopy(keys, index + 1, keys, index, shifted);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            System.arraycopy(vals, index + 1, vals, index, shifted);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        size--;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        keys[size] \u003d null; // release hold",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        vals[size] \u003d null;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "    static String checkNotNull(String val) {",
+      "id": "MethodSignatureBackedByPsiMethod: checkNotNull([PsiType:String])_-1530211303",
+      "lines": [
+        {
+          "code": "        return val \u003d\u003d null ? EmptyString : val;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "id": "MethodSignatureBackedByPsiMethod: binarySearch([PsiType:Object[], PsiType:Object])_-560788963",
       "lines": [],
       "addCovered": false,
       "nodeLevel": 2
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: hashCode([PsiType:Object[]])",
-      "id": "MethodSignatureBackedByPsiMethod: hashCode([PsiType:Object[]])_1954509104",
-      "lines": [],
-      "addCovered": false,
+      "signature": "    public String html() {",
+      "id": "MethodSignatureBackedByPsiMethod: html([])_-1495964058",
+      "lines": [
+        {
+          "code": "        StringBuilder sb \u003d StringUtil.borrowBuilder();",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": true
+        },
+        {
+          "code": "        try {",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": true
+        },
+        {
+          "code": "            html(sb, (new Document(\"\")).outputSettings()); // output settings a bit funky, but this html() seldom used",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": true
+        },
+        {
+          "code": "        } catch (IOException e) { // ought never happen",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            throw new SerializationException(e);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        return StringUtil.releaseBuilder(sb);",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": true
+        }
+      ],
+      "addCovered": true,
       "nodeLevel": 2
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])",
-      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1133737017",
+      "signature": "    Document parse(Reader input, String baseUri, Parser parser) {",
+      "id": "MethodSignatureBackedByPsiMethod: parse([PsiType:Reader, PsiType:String, PsiType:Parser])_817312419",
+      "lines": [
+        {
+          "code": "        initialiseParse(input, baseUri, parser);",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "        runParser();",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        // tidy up - as the Parser and Treebuilder are retained in document for settings / fragments",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        reader.close();",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "        reader \u003d null;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "        tokeniser \u003d null;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "        stack \u003d null;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        return doc;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "id": "MethodSignatureBackedByPsiMethod: StringReader([PsiType:String])_2124329519",
       "lines": [],
       "addCovered": false,
       "nodeLevel": 3
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])",
-      "id": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_474670151",
+      "signature": "    public Parser(TreeBuilder treeBuilder) {",
+      "id": "MethodSignatureBackedByPsiMethod: Parser([PsiType:TreeBuilder])_772742176",
+      "lines": [
+        {
+          "code": "        this.treeBuilder \u003d treeBuilder;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        settings \u003d treeBuilder.defaultSettings();",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        errors \u003d ParseErrorList.noTracking();",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "id": "MethodSignatureBackedByPsiMethod: get([])_-59476575",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "id": "MethodSignatureBackedByPsiMethod: size([])_-836014045",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "id": "MethodSignatureBackedByPsiMethod: ArrayList([PsiType:int])_-1333883375",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "id": "MethodSignatureBackedByPsiMethod: get([PsiType:int])_-1866416562",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "id": "MethodSignatureBackedByPsiMethod: add([PsiType:E])_266257551",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "id": "MethodSignatureBackedByPsiMethod: WeakReference([PsiType:T])_-1419819585",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "id": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_375747972",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "id": "MethodSignatureBackedByPsiMethod: nodeName([])_1039039890",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "id": "MethodSignatureBackedByPsiMethod: childNodeSize([])_2009218897",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "    private Element findFirstElementByTagName(String tag, Node node) {",
+      "id": "MethodSignatureBackedByPsiMethod: findFirstElementByTagName([PsiType:String, PsiType:Node])_-750171150",
+      "lines": [
+        {
+          "code": "        if (node.nodeName().equals(tag))",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "            return (Element) node;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "        else {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            int size \u003d node.childNodeSize();",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "            for (int i \u003d 0; i \u003c size; i++) {",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "                Element found \u003d findFirstElementByTagName(tag, node.childNode(i));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "                if (found !\u003d null)",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "                    return found;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "            }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        return null;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "    public Node childNode(int index) {",
+      "id": "MethodSignatureBackedByPsiMethod: childNode([PsiType:int])_1270486860",
+      "lines": [
+        {
+          "code": "        return ensureChildNodes().get(index);",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "    public static void notNull(Object obj) {",
+      "id": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_695414102",
       "lines": [
         {
           "code": "        if (obj \u003d\u003d null)",
           "callsMethod": false,
-          "covered": false,
+          "covered": true,
           "addCovered": false
         },
         {
           "code": "            throw new IllegalArgumentException(\"Object must not be null\");",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
           "callsMethod": true,
           "covered": false,
           "addCovered": false
@@ -963,117 +1127,35 @@
       "nodeLevel": 3
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])",
-      "id": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_-259274627",
+      "id": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_-1988908650",
       "lines": [],
       "addCovered": false,
       "nodeLevel": 3
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])",
-      "id": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_1543364512",
-      "lines": [
-        {
-          "code": "        Validate.isTrue(minNewSize \u003e\u003d size);",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        int curSize \u003d keys.length;",
-          "callsMethod": true,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        if (curSize \u003e\u003d minNewSize)",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "            return;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        int newSize \u003d curSize \u003e\u003d InitialCapacity ? size * GrowthFactor : InitialCapacity;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        if (minNewSize \u003e newSize)",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "            newSize \u003d minNewSize;",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        keys \u003d Arrays.copyOf(keys, newSize);",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        vals \u003d Arrays.copyOf(vals, newSize);",
-          "callsMethod": true,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": true,
-          "covered": true,
-          "addCovered": false
-        }
-      ],
-      "addCovered": false,
-      "nodeLevel": 3
-    },
-    {
-      "signature": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])",
-      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-2116192493",
+      "id": "MethodSignatureBackedByPsiMethod: length([])_-683030052",
       "lines": [],
       "addCovered": false,
       "nodeLevel": 3
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])",
-      "id": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-828088836",
+      "id": "MethodSignatureBackedByPsiMethod: charAt([PsiType:int])_-927658087",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "    public static void notNull(Object obj) {",
+      "id": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-2081641248",
       "lines": [
         {
           "code": "        if (obj \u003d\u003d null)",
           "callsMethod": false,
-          "covered": false,
+          "covered": true,
           "addCovered": false
         },
         {
           "code": "            throw new IllegalArgumentException(\"Object must not be null\");",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
           "callsMethod": true,
           "covered": false,
           "addCovered": false
@@ -1083,86 +1165,25 @@
       "nodeLevel": 3
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])",
-      "id": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_807729455",
+      "id": "MethodSignatureBackedByPsiMethod: trim([])_-1570733521",
       "lines": [],
       "addCovered": false,
       "nodeLevel": 3
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])",
-      "id": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_-717084745",
+      "signature": "    public static void notEmpty(String string) {",
+      "id": "MethodSignatureBackedByPsiMethod: notEmpty([PsiType:String])_-1953524925",
       "lines": [
         {
-          "code": "        Validate.isTrue(minNewSize \u003e\u003d size);",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        int curSize \u003d keys.length;",
+          "code": "        if (string \u003d\u003d null || string.length() \u003d\u003d 0)",
           "callsMethod": true,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        if (curSize \u003e\u003d minNewSize)",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "            return;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "",
-          "callsMethod": false,
           "covered": false,
           "addCovered": false
         },
         {
-          "code": "        int newSize \u003d curSize \u003e\u003d InitialCapacity ? size * GrowthFactor : InitialCapacity;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        if (minNewSize \u003e newSize)",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "            newSize \u003d minNewSize;",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        keys \u003d Arrays.copyOf(keys, newSize);",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        vals \u003d Arrays.copyOf(vals, newSize);",
+          "code": "            throw new IllegalArgumentException(\"String must not be empty\");",
           "callsMethod": true,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": true,
-          "covered": true,
+          "covered": false,
           "addCovered": false
         }
       ],
@@ -1170,30 +1191,17 @@
       "nodeLevel": 3
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])",
-      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-1487818172",
-      "lines": [],
-      "addCovered": false,
-      "nodeLevel": 3
-    },
-    {
-      "signature": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])",
-      "id": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-909902325",
+      "signature": "    public static void isFalse(boolean val) {",
+      "id": "MethodSignatureBackedByPsiMethod: isFalse([PsiType:boolean])_-595916863",
       "lines": [
         {
-          "code": "        if (obj \u003d\u003d null)",
+          "code": "        if (val)",
           "callsMethod": false,
           "covered": false,
           "addCovered": false
         },
         {
-          "code": "            throw new IllegalArgumentException(\"Object must not be null\");",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
+          "code": "            throw new IllegalArgumentException(\"Must be false\");",
           "callsMethod": true,
           "covered": false,
           "addCovered": false
@@ -1203,86 +1211,49 @@
       "nodeLevel": 3
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])",
-      "id": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_-1330963089",
+      "id": "MethodSignatureBackedByPsiMethod: arraycopy([PsiType:Object, PsiType:int, PsiType:Object, PsiType:int, PsiType:int])_38215417",
       "lines": [],
       "addCovered": false,
       "nodeLevel": 3
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])",
-      "id": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_-1885943300",
+      "id": "MethodSignatureBackedByPsiMethod: arraycopy([PsiType:Object, PsiType:int, PsiType:Object, PsiType:int, PsiType:int])_897780706",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "    public static StringBuilder borrowBuilder() {",
+      "id": "MethodSignatureBackedByPsiMethod: borrowBuilder([])_-52542758",
       "lines": [
         {
-          "code": "        Validate.isTrue(minNewSize \u003e\u003d size);",
+          "code": "        synchronized (builders) {",
           "callsMethod": false,
           "covered": true,
           "addCovered": false
         },
         {
-          "code": "        int curSize \u003d keys.length;",
+          "code": "            return builders.empty() ?",
           "callsMethod": true,
           "covered": true,
           "addCovered": false
         },
         {
-          "code": "        if (curSize \u003e\u003d minNewSize)",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "            return;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "",
-          "callsMethod": false,
+          "code": "                new StringBuilder(MaxCachedBuilderSize) :",
+          "callsMethod": true,
           "covered": false,
           "addCovered": false
         },
         {
-          "code": "        int newSize \u003d curSize \u003e\u003d InitialCapacity ? size * GrowthFactor : InitialCapacity;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        if (minNewSize \u003e newSize)",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "            newSize \u003d minNewSize;",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        keys \u003d Arrays.copyOf(keys, newSize);",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        vals \u003d Arrays.copyOf(vals, newSize);",
+          "code": "                builders.pop();",
           "callsMethod": true,
           "covered": true,
           "addCovered": false
         },
         {
-          "code": "    }",
-          "callsMethod": true,
-          "covered": true,
+          "code": "        }",
+          "callsMethod": false,
+          "covered": false,
           "addCovered": false
         }
       ],
@@ -1290,119 +1261,123 @@
       "nodeLevel": 3
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])",
-      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-922578112",
-      "lines": [],
-      "addCovered": false,
-      "nodeLevel": 3
-    },
-    {
-      "signature": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])",
-      "id": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-539281182",
+      "signature": "    final void html(final Appendable accum, final Document.OutputSettings out) throws IOException {",
+      "id": "MethodSignatureBackedByPsiMethod: html([PsiType:Appendable, PsiType:OutputSettings])_428645679",
       "lines": [
         {
-          "code": "        if (obj \u003d\u003d null)",
+          "code": "        final int sz \u003d size;",
           "callsMethod": false,
-          "covered": false,
-          "addCovered": false
+          "covered": true,
+          "addCovered": true
         },
         {
-          "code": "            throw new IllegalArgumentException(\"Object must not be null\");",
+          "code": "        for (int i \u003d 0; i \u003c sz; i++) {",
           "callsMethod": false,
-          "covered": false,
-          "addCovered": false
+          "covered": true,
+          "addCovered": true
         },
         {
-          "code": "    }",
+          "code": "            if (isInternalKey(keys[i]))",
           "callsMethod": true,
+          "covered": true,
+          "addCovered": true
+        },
+        {
+          "code": "                continue;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            // inlined from Attribute.html()",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            final String key \u003d keys[i];",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": true
+        },
+        {
+          "code": "            final String val \u003d vals[i];",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": true
+        },
+        {
+          "code": "            accum.append(\u0027 \u0027).append(key);",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": true
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            // collapse checked\u003dnull, checked\u003d\"\", checked\u003dchecked; write out others",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            if (!Attribute.shouldCollapseAttribute(key, val, out)) {",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": true
+        },
+        {
+          "code": "                accum.append(\"\u003d\\\"\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "                Entities.escape(accum, val \u003d\u003d null ? EmptyString : val, out, true, false, false);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "                accum.append(\u0027\"\u0027);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        }",
+          "callsMethod": false,
           "covered": false,
           "addCovered": false
         }
       ],
-      "addCovered": false,
+      "addCovered": true,
       "nodeLevel": 3
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])",
-      "id": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_-637325404",
-      "lines": [],
-      "addCovered": false,
-      "nodeLevel": 3
-    },
-    {
-      "signature": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])",
-      "id": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_1382696627",
+      "signature": "    public OutputSettings outputSettings() {",
+      "id": "MethodSignatureBackedByPsiMethod: outputSettings([])_332494799",
       "lines": [
         {
-          "code": "        Validate.isTrue(minNewSize \u003e\u003d size);",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        int curSize \u003d keys.length;",
-          "callsMethod": true,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        if (curSize \u003e\u003d minNewSize)",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "            return;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "",
+          "code": "        return outputSettings;",
           "callsMethod": false,
           "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        int newSize \u003d curSize \u003e\u003d InitialCapacity ? size * GrowthFactor : InitialCapacity;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        if (minNewSize \u003e newSize)",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "            newSize \u003d minNewSize;",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "",
-          "callsMethod": false,
-          "covered": false,
-          "addCovered": false
-        },
-        {
-          "code": "        keys \u003d Arrays.copyOf(keys, newSize);",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "        vals \u003d Arrays.copyOf(vals, newSize);",
-          "callsMethod": true,
-          "covered": true,
-          "addCovered": false
-        },
-        {
-          "code": "    }",
-          "callsMethod": true,
-          "covered": true,
           "addCovered": false
         }
       ],
@@ -1410,367 +1385,719 @@
       "nodeLevel": 3
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: length([])",
-      "id": "MethodSignatureBackedByPsiMethod: length([])_-1711384321",
-      "lines": [],
+      "signature": "    public Document(String baseUri) {",
+      "id": "MethodSignatureBackedByPsiMethod: Document([PsiType:String])_-808611971",
+      "lines": [
+        {
+          "code": "        super(Tag.valueOf(\"#root\", ParseSettings.htmlDefault), baseUri);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        this.location \u003d baseUri;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
       "addCovered": false,
       "nodeLevel": 3
     },
     {
-      "signature": "MethodSignatureBackedByPsiMethod: charAt([PsiType:int])",
-      "id": "MethodSignatureBackedByPsiMethod: charAt([PsiType:int])_-566962572",
-      "lines": [],
+      "signature": "\tpublic SerializationException(Throwable cause) {",
+      "id": "MethodSignatureBackedByPsiMethod: SerializationException([PsiType:Throwable])_-234400570",
+      "lines": [
+        {
+          "code": "\t\tsuper(cause);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "    public static String releaseBuilder(StringBuilder sb) {",
+      "id": "MethodSignatureBackedByPsiMethod: releaseBuilder([PsiType:StringBuilder])_769213339",
+      "lines": [
+        {
+          "code": "        Validate.notNull(sb);",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "        String string \u003d sb.toString();",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        if (sb.length() \u003e MaxCachedBuilderSize)",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "            sb \u003d new StringBuilder(MaxCachedBuilderSize); // make sure it hasn\u0027t grown too big",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        else",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            sb.delete(0, sb.length()); // make sure it\u0027s emptied on release",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        synchronized (builders) {",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "            builders.push(sb);",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            while (builders.size() \u003e MaxIdleBuilders) {",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "                builders.pop();",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        }",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "        return string;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
       "addCovered": false,
       "nodeLevel": 3
     }
   ],
   "edges": [
     {
-      "source": "MethodSignatureBackedByPsiMethod: testSizeWhenHasInternal_assSep6([])_-1",
-      "target": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_-1874589962",
+      "source": "MethodSignatureBackedByPsiMethod: booleanAttributesAreEmptyStringValues_assSep10([])_-1",
+      "target": "MethodSignatureBackedByPsiMethod: parse([PsiType:String])_-231897933",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: booleanAttributesAreEmptyStringValues_assSep10([])_-1",
+      "target": "MethodSignatureBackedByPsiMethod: attributes([])_-2006610272",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: booleanAttributesAreEmptyStringValues_assSep10([])_-1",
+      "target": "MethodSignatureBackedByPsiMethod: child([PsiType:int])_1126942842",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: booleanAttributesAreEmptyStringValues_assSep10([])_-1",
+      "target": "MethodSignatureBackedByPsiMethod: body([])_-1119410782",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: booleanAttributesAreEmptyStringValues_assSep10([])_-1",
+      "target": "MethodSignatureBackedByPsiMethod: get([PsiType:String])_1497391226",
       "sourceAnchor": 3,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: testSizeWhenHasInternal_assSep6([])_-1",
-      "target": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_1836357",
+      "source": "MethodSignatureBackedByPsiMethod: booleanAttributesAreEmptyStringValues_assSep10([])_-1",
+      "target": "MethodSignatureBackedByPsiMethod: next([])_227052712",
       "sourceAnchor": 4,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: testSizeWhenHasInternal_assSep6([])_-1",
-      "target": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_103297590",
+      "source": "MethodSignatureBackedByPsiMethod: booleanAttributesAreEmptyStringValues_assSep10([])_-1",
+      "target": "MethodSignatureBackedByPsiMethod: iterator([])_1175847239",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: booleanAttributesAreEmptyStringValues_assSep10([])_-1",
+      "target": "MethodSignatureBackedByPsiMethod: getKey([])_-130363509",
       "sourceAnchor": 5,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: testSizeWhenHasInternal_assSep6([])_-1",
-      "target": "MethodSignatureBackedByPsiMethod: internalKey([PsiType:String])_-1450076348",
+      "source": "MethodSignatureBackedByPsiMethod: booleanAttributesAreEmptyStringValues_assSep10([])_-1",
+      "target": "MethodSignatureBackedByPsiMethod: getValue([])_-906777569",
+      "sourceAnchor": 6,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: booleanAttributesAreEmptyStringValues_assSep10([])_-1",
+      "target": "MethodSignatureBackedByPsiMethod: hasDeclaredValue([])_-2087210258",
+      "sourceAnchor": 7,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: booleanAttributesAreEmptyStringValues_assSep10([])_-1",
+      "target": "MethodSignatureBackedByPsiMethod: isBooleanAttribute([PsiType:String])_2008415409",
+      "sourceAnchor": 8,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: booleanAttributesAreEmptyStringValues_assSep10([])_-1",
+      "target": "MethodSignatureBackedByPsiMethod: getKey([])_-1957021494",
+      "sourceAnchor": 8,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: booleanAttributesAreEmptyStringValues_assSep10([])_-1",
+      "target": "MethodSignatureBackedByPsiMethod: assertEquals([PsiType:Object, PsiType:Object])_1615189769",
+      "sourceAnchor": 9,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: booleanAttributesAreEmptyStringValues_assSep10([])_-1",
+      "target": "MethodSignatureBackedByPsiMethod: toString([])_469127862",
+      "sourceAnchor": 9,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: parse([PsiType:String])_-231897933",
+      "target": "MethodSignatureBackedByPsiMethod: parse([PsiType:String, PsiType:String])_1209857708",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: attributes([])_-2006610272",
+      "target": "MethodSignatureBackedByPsiMethod: hasAttributes([])_-1450974634",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: child([PsiType:int])_1126942842",
+      "target": "MethodSignatureBackedByPsiMethod: get([PsiType:int])_472357667",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: child([PsiType:int])_1126942842",
+      "target": "MethodSignatureBackedByPsiMethod: childElementsList([])_-2019401050",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: body([])_-1119410782",
+      "target": "MethodSignatureBackedByPsiMethod: findFirstElementByTagName([PsiType:String, PsiType:Node])_1457380230",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:String])_1497391226",
+      "target": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_5372143",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:String])_1497391226",
+      "target": "MethodSignatureBackedByPsiMethod: checkNotNull([PsiType:String])_-1684645425",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: iterator([])_1175847239",
+      "target": "MethodSignatureBackedByPsiMethod: isInternalKey([PsiType:String])_752962219",
+      "sourceAnchor": 7,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: iterator([])_1175847239",
+      "target": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String, PsiType:Attributes])_989786099",
+      "sourceAnchor": 18,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: iterator([])_1175847239",
+      "target": "MethodSignatureBackedByPsiMethod: remove([PsiType:int])_1097915815",
+      "sourceAnchor": 25,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: getValue([])_-906777569",
+      "target": "MethodSignatureBackedByPsiMethod: checkNotNull([PsiType:String])_-1530211303",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: isBooleanAttribute([PsiType:String])_2008415409",
+      "target": "MethodSignatureBackedByPsiMethod: binarySearch([PsiType:Object[], PsiType:Object])_-560788963",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: toString([])_469127862",
+      "target": "MethodSignatureBackedByPsiMethod: html([])_-1495964058",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: parse([PsiType:String, PsiType:String])_1209857708",
+      "target": "MethodSignatureBackedByPsiMethod: parse([PsiType:Reader, PsiType:String, PsiType:Parser])_817312419",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: parse([PsiType:String, PsiType:String])_1209857708",
+      "target": "MethodSignatureBackedByPsiMethod: StringReader([PsiType:String])_2124329519",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: parse([PsiType:String, PsiType:String])_1209857708",
+      "target": "MethodSignatureBackedByPsiMethod: Parser([PsiType:TreeBuilder])_772742176",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: childElementsList([])_-2019401050",
+      "target": "MethodSignatureBackedByPsiMethod: get([])_-59476575",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: childElementsList([])_-2019401050",
+      "target": "MethodSignatureBackedByPsiMethod: size([])_-836014045",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: childElementsList([])_-2019401050",
+      "target": "MethodSignatureBackedByPsiMethod: ArrayList([PsiType:int])_-1333883375",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: childElementsList([])_-2019401050",
+      "target": "MethodSignatureBackedByPsiMethod: get([PsiType:int])_-1866416562",
+      "sourceAnchor": 7,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: childElementsList([])_-2019401050",
+      "target": "MethodSignatureBackedByPsiMethod: add([PsiType:E])_266257551",
+      "sourceAnchor": 9,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: childElementsList([])_-2019401050",
+      "target": "MethodSignatureBackedByPsiMethod: WeakReference([PsiType:T])_-1419819585",
+      "sourceAnchor": 11,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: findFirstElementByTagName([PsiType:String, PsiType:Node])_1457380230",
+      "target": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_375747972",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: findFirstElementByTagName([PsiType:String, PsiType:Node])_1457380230",
+      "target": "MethodSignatureBackedByPsiMethod: nodeName([])_1039039890",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: findFirstElementByTagName([PsiType:String, PsiType:Node])_1457380230",
+      "target": "MethodSignatureBackedByPsiMethod: childNodeSize([])_2009218897",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: findFirstElementByTagName([PsiType:String, PsiType:Node])_1457380230",
+      "target": "MethodSignatureBackedByPsiMethod: findFirstElementByTagName([PsiType:String, PsiType:Node])_-750171150",
+      "sourceAnchor": 6,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: findFirstElementByTagName([PsiType:String, PsiType:Node])_1457380230",
+      "target": "MethodSignatureBackedByPsiMethod: childNode([PsiType:int])_1270486860",
+      "sourceAnchor": 6,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_5372143",
+      "target": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_695414102",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_5372143",
+      "target": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_-1988908650",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: isInternalKey([PsiType:String])_752962219",
+      "target": "MethodSignatureBackedByPsiMethod: length([])_-683030052",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: isInternalKey([PsiType:String])_752962219",
+      "target": "MethodSignatureBackedByPsiMethod: charAt([PsiType:int])_-927658087",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String, PsiType:Attributes])_989786099",
+      "target": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-2081641248",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String, PsiType:Attributes])_989786099",
+      "target": "MethodSignatureBackedByPsiMethod: trim([])_-1570733521",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String, PsiType:Attributes])_989786099",
+      "target": "MethodSignatureBackedByPsiMethod: notEmpty([PsiType:String])_-1953524925",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: remove([PsiType:int])_1097915815",
+      "target": "MethodSignatureBackedByPsiMethod: isFalse([PsiType:boolean])_-595916863",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: remove([PsiType:int])_1097915815",
+      "target": "MethodSignatureBackedByPsiMethod: arraycopy([PsiType:Object, PsiType:int, PsiType:Object, PsiType:int, PsiType:int])_38215417",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: remove([PsiType:int])_1097915815",
+      "target": "MethodSignatureBackedByPsiMethod: arraycopy([PsiType:Object, PsiType:int, PsiType:Object, PsiType:int, PsiType:int])_897780706",
       "sourceAnchor": 5,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: testSizeWhenHasInternal_assSep6([])_-1",
-      "target": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_245491579",
+      "source": "MethodSignatureBackedByPsiMethod: html([])_-1495964058",
+      "target": "MethodSignatureBackedByPsiMethod: borrowBuilder([])_-52542758",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: html([])_-1495964058",
+      "target": "MethodSignatureBackedByPsiMethod: html([PsiType:Appendable, PsiType:OutputSettings])_428645679",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: html([])_-1495964058",
+      "target": "MethodSignatureBackedByPsiMethod: outputSettings([])_332494799",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: html([])_-1495964058",
+      "target": "MethodSignatureBackedByPsiMethod: Document([PsiType:String])_-808611971",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: html([])_-1495964058",
+      "target": "MethodSignatureBackedByPsiMethod: SerializationException([PsiType:Throwable])_-234400570",
+      "sourceAnchor": 5,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: html([])_-1495964058",
+      "target": "MethodSignatureBackedByPsiMethod: releaseBuilder([PsiType:StringBuilder])_769213339",
+      "sourceAnchor": 7,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: parse([PsiType:Reader, PsiType:String, PsiType:Parser])_817312419",
+      "target": "MethodSignatureBackedByPsiMethod: initialiseParse([PsiType:Reader, PsiType:String, PsiType:Parser])_2037548316",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: parse([PsiType:Reader, PsiType:String, PsiType:Parser])_817312419",
+      "target": "MethodSignatureBackedByPsiMethod: runParser([])_-666948818",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: parse([PsiType:Reader, PsiType:String, PsiType:Parser])_817312419",
+      "target": "MethodSignatureBackedByPsiMethod: close([])_1618732381",
+      "sourceAnchor": 5,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: Parser([PsiType:TreeBuilder])_772742176",
+      "target": "MethodSignatureBackedByPsiMethod: defaultSettings([])_1256298107",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: Parser([PsiType:TreeBuilder])_772742176",
+      "target": "MethodSignatureBackedByPsiMethod: noTracking([])_543413382",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: findFirstElementByTagName([PsiType:String, PsiType:Node])_-750171150",
+      "target": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_-1197096174",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: findFirstElementByTagName([PsiType:String, PsiType:Node])_-750171150",
+      "target": "MethodSignatureBackedByPsiMethod: nodeName([])_628430896",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: findFirstElementByTagName([PsiType:String, PsiType:Node])_-750171150",
+      "target": "MethodSignatureBackedByPsiMethod: childNodeSize([])_-1205285448",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: findFirstElementByTagName([PsiType:String, PsiType:Node])_-750171150",
+      "target": "MethodSignatureBackedByPsiMethod: findFirstElementByTagName([PsiType:String, PsiType:Node])_424287304",
       "sourceAnchor": 6,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: testSizeWhenHasInternal_assSep6([])_-1",
-      "target": "MethodSignatureBackedByPsiMethod: internalKey([PsiType:String])_-189666701",
+      "source": "MethodSignatureBackedByPsiMethod: findFirstElementByTagName([PsiType:String, PsiType:Node])_-750171150",
+      "target": "MethodSignatureBackedByPsiMethod: childNode([PsiType:int])_-1338644725",
       "sourceAnchor": 6,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: testSizeWhenHasInternal_assSep6([])_-1",
-      "target": "MethodSignatureBackedByPsiMethod: size([])_220377205",
-      "sourceAnchor": 7,
+      "source": "MethodSignatureBackedByPsiMethod: childNode([PsiType:int])_1270486860",
+      "target": "MethodSignatureBackedByPsiMethod: get([PsiType:int])_-527602869",
+      "sourceAnchor": 1,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: testSizeWhenHasInternal_assSep6([])_-1",
-      "target": "MethodSignatureBackedByPsiMethod: assertEquals([PsiType:int, PsiType:int])_1248171425",
-      "sourceAnchor": 8,
+      "source": "MethodSignatureBackedByPsiMethod: childNode([PsiType:int])_1270486860",
+      "target": "MethodSignatureBackedByPsiMethod: ensureChildNodes([])_1643923876",
+      "sourceAnchor": 1,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: testSizeWhenHasInternal_assSep6([])_-1",
-      "target": "MethodSignatureBackedByPsiMethod: hashCode([])_923835986",
-      "sourceAnchor": 8,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_-1874589962",
-      "target": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_1968731707",
+      "source": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_695414102",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1205406226",
       "sourceAnchor": 2,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_-1874589962",
-      "target": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_-2142784327",
-      "sourceAnchor": 3,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_-1874589962",
-      "target": "MethodSignatureBackedByPsiMethod: add([PsiType:String, PsiType:String])_1027215168",
-      "sourceAnchor": 7,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_1836357",
-      "target": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_2015934794",
+      "source": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-2081641248",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_979026389",
       "sourceAnchor": 2,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_1836357",
-      "target": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_2142633837",
-      "sourceAnchor": 3,
+      "source": "MethodSignatureBackedByPsiMethod: notEmpty([PsiType:String])_-1953524925",
+      "target": "MethodSignatureBackedByPsiMethod: length([])_1233484474",
+      "sourceAnchor": 1,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_1836357",
-      "target": "MethodSignatureBackedByPsiMethod: add([PsiType:String, PsiType:String])_-378332070",
-      "sourceAnchor": 7,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_103297590",
-      "target": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-734644275",
+      "source": "MethodSignatureBackedByPsiMethod: notEmpty([PsiType:String])_-1953524925",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-611096020",
       "sourceAnchor": 2,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_103297590",
-      "target": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_1279848705",
-      "sourceAnchor": 3,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_103297590",
-      "target": "MethodSignatureBackedByPsiMethod: add([PsiType:String, PsiType:String])_1447617546",
-      "sourceAnchor": 7,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_245491579",
-      "target": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-252957252",
+      "source": "MethodSignatureBackedByPsiMethod: isFalse([PsiType:boolean])_-595916863",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1638571054",
       "sourceAnchor": 2,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_245491579",
-      "target": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_-1384376261",
+      "source": "MethodSignatureBackedByPsiMethod: borrowBuilder([])_-52542758",
+      "target": "MethodSignatureBackedByPsiMethod: empty([])_1873634651",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: borrowBuilder([])_-52542758",
+      "target": "MethodSignatureBackedByPsiMethod: StringBuilder([PsiType:int])_-577570737",
       "sourceAnchor": 3,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: put([PsiType:String, PsiType:String])_245491579",
-      "target": "MethodSignatureBackedByPsiMethod: add([PsiType:String, PsiType:String])_657490989",
-      "sourceAnchor": 7,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: size([])_220377205",
-      "target": "MethodSignatureBackedByPsiMethod: isInternalKey([PsiType:String])_1654514691",
+      "source": "MethodSignatureBackedByPsiMethod: borrowBuilder([])_-52542758",
+      "target": "MethodSignatureBackedByPsiMethod: pop([])_2096702793",
       "sourceAnchor": 4,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: hashCode([])_923835986",
-      "target": "MethodSignatureBackedByPsiMethod: hashCode([PsiType:Object[]])_684086720",
+      "source": "MethodSignatureBackedByPsiMethod: html([PsiType:Appendable, PsiType:OutputSettings])_428645679",
+      "target": "MethodSignatureBackedByPsiMethod: isInternalKey([PsiType:String])_-758093597",
       "sourceAnchor": 3,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: hashCode([])_923835986",
-      "target": "MethodSignatureBackedByPsiMethod: hashCode([PsiType:Object[]])_1954509104",
-      "sourceAnchor": 4,
+      "source": "MethodSignatureBackedByPsiMethod: html([PsiType:Appendable, PsiType:OutputSettings])_428645679",
+      "target": "MethodSignatureBackedByPsiMethod: append([PsiType:CharSequence])_1713637447",
+      "sourceAnchor": 9,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_1968731707",
-      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1133737017",
-      "sourceAnchor": 3,
+      "source": "MethodSignatureBackedByPsiMethod: html([PsiType:Appendable, PsiType:OutputSettings])_428645679",
+      "target": "MethodSignatureBackedByPsiMethod: append([PsiType:char])_1631640483",
+      "sourceAnchor": 9,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_-2142784327",
-      "target": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_474670151",
-      "sourceAnchor": 2,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_-2142784327",
-      "target": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_-259274627",
-      "sourceAnchor": 4,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: add([PsiType:String, PsiType:String])_1027215168",
-      "target": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_1543364512",
-      "sourceAnchor": 2,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_2015934794",
-      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-2116192493",
-      "sourceAnchor": 3,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_2142633837",
-      "target": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-828088836",
-      "sourceAnchor": 2,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_2142633837",
-      "target": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_807729455",
-      "sourceAnchor": 4,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: add([PsiType:String, PsiType:String])_-378332070",
-      "target": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_-717084745",
-      "sourceAnchor": 2,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-734644275",
-      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-1487818172",
-      "sourceAnchor": 3,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_1279848705",
-      "target": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-909902325",
-      "sourceAnchor": 2,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_1279848705",
-      "target": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_-1330963089",
-      "sourceAnchor": 4,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: add([PsiType:String, PsiType:String])_1447617546",
-      "target": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_-1885943300",
-      "sourceAnchor": 2,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-252957252",
-      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-922578112",
-      "sourceAnchor": 3,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_-1384376261",
-      "target": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-539281182",
-      "sourceAnchor": 2,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_-1384376261",
-      "target": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_-637325404",
-      "sourceAnchor": 4,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: add([PsiType:String, PsiType:String])_657490989",
-      "target": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_1382696627",
-      "sourceAnchor": 2,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: isInternalKey([PsiType:String])_1654514691",
-      "target": "MethodSignatureBackedByPsiMethod: length([])_-1711384321",
-      "sourceAnchor": 2,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: isInternalKey([PsiType:String])_1654514691",
-      "target": "MethodSignatureBackedByPsiMethod: charAt([PsiType:int])_-566962572",
-      "sourceAnchor": 2,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_474670151",
-      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_671229113",
-      "sourceAnchor": 3,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_1543364512",
-      "target": "MethodSignatureBackedByPsiMethod: isTrue([PsiType:boolean])_-1461374",
-      "sourceAnchor": 2,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_1543364512",
-      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003ecopyOf([PsiType:T[], PsiType:int])_-1799216437",
-      "sourceAnchor": 11,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_1543364512",
-      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003ecopyOf([PsiType:T[], PsiType:int])_368360068",
+      "source": "MethodSignatureBackedByPsiMethod: html([PsiType:Appendable, PsiType:OutputSettings])_428645679",
+      "target": "MethodSignatureBackedByPsiMethod: shouldCollapseAttribute([PsiType:String, PsiType:String, PsiType:OutputSettings])_-699133764",
       "sourceAnchor": 12,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-828088836",
-      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1219643663",
-      "sourceAnchor": 3,
+      "source": "MethodSignatureBackedByPsiMethod: html([PsiType:Appendable, PsiType:OutputSettings])_428645679",
+      "target": "MethodSignatureBackedByPsiMethod: append([PsiType:CharSequence])_-1775798242",
+      "sourceAnchor": 13,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_-717084745",
-      "target": "MethodSignatureBackedByPsiMethod: isTrue([PsiType:boolean])_318539606",
+      "source": "MethodSignatureBackedByPsiMethod: html([PsiType:Appendable, PsiType:OutputSettings])_428645679",
+      "target": "MethodSignatureBackedByPsiMethod: escape([PsiType:Appendable, PsiType:String, PsiType:OutputSettings, PsiType:boolean, PsiType:boolean, PsiType:boolean])_2105477335",
+      "sourceAnchor": 14,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: html([PsiType:Appendable, PsiType:OutputSettings])_428645679",
+      "target": "MethodSignatureBackedByPsiMethod: append([PsiType:char])_-824963495",
+      "sourceAnchor": 15,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: Document([PsiType:String])_-808611971",
+      "target": "MethodSignatureBackedByPsiMethod: Element([PsiType:Tag, PsiType:String])_1782108922",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: Document([PsiType:String])_-808611971",
+      "target": "MethodSignatureBackedByPsiMethod: valueOf([PsiType:String, PsiType:ParseSettings])_1423807309",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: SerializationException([PsiType:Throwable])_-234400570",
+      "target": "MethodSignatureBackedByPsiMethod: RuntimeException([PsiType:Throwable])_-285030153",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: releaseBuilder([PsiType:StringBuilder])_769213339",
+      "target": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-1097328471",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: releaseBuilder([PsiType:StringBuilder])_769213339",
+      "target": "MethodSignatureBackedByPsiMethod: toString([])_2063478628",
       "sourceAnchor": 2,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_-717084745",
-      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003ecopyOf([PsiType:T[], PsiType:int])_-2033280933",
-      "sourceAnchor": 11,
+      "source": "MethodSignatureBackedByPsiMethod: releaseBuilder([PsiType:StringBuilder])_769213339",
+      "target": "MethodSignatureBackedByPsiMethod: length([])_-1373556850",
+      "sourceAnchor": 4,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_-717084745",
-      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003ecopyOf([PsiType:T[], PsiType:int])_-1546293981",
+      "source": "MethodSignatureBackedByPsiMethod: releaseBuilder([PsiType:StringBuilder])_769213339",
+      "target": "MethodSignatureBackedByPsiMethod: StringBuilder([PsiType:int])_1894430603",
+      "sourceAnchor": 5,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: releaseBuilder([PsiType:StringBuilder])_769213339",
+      "target": "MethodSignatureBackedByPsiMethod: delete([PsiType:int, PsiType:int])_-894725604",
+      "sourceAnchor": 7,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: releaseBuilder([PsiType:StringBuilder])_769213339",
+      "target": "MethodSignatureBackedByPsiMethod: length([])_583606714",
+      "sourceAnchor": 7,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: releaseBuilder([PsiType:StringBuilder])_769213339",
+      "target": "MethodSignatureBackedByPsiMethod: push([PsiType:E])_1004754441",
+      "sourceAnchor": 10,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: releaseBuilder([PsiType:StringBuilder])_769213339",
+      "target": "MethodSignatureBackedByPsiMethod: size([])_1743985419",
       "sourceAnchor": 12,
       "targetAnchor": 0
     },
     {
-      "source": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-909902325",
-      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1113389237",
-      "sourceAnchor": 3,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_-1885943300",
-      "target": "MethodSignatureBackedByPsiMethod: isTrue([PsiType:boolean])_1960231047",
-      "sourceAnchor": 2,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_-1885943300",
-      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003ecopyOf([PsiType:T[], PsiType:int])_794197793",
-      "sourceAnchor": 11,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_-1885943300",
-      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003ecopyOf([PsiType:T[], PsiType:int])_1545021303",
-      "sourceAnchor": 12,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-539281182",
-      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1786455766",
-      "sourceAnchor": 3,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_1382696627",
-      "target": "MethodSignatureBackedByPsiMethod: isTrue([PsiType:boolean])_839174457",
-      "sourceAnchor": 2,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_1382696627",
-      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003ecopyOf([PsiType:T[], PsiType:int])_1219547360",
-      "sourceAnchor": 11,
-      "targetAnchor": 0
-    },
-    {
-      "source": "MethodSignatureBackedByPsiMethod: checkCapacity([PsiType:int])_1382696627",
-      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003ecopyOf([PsiType:T[], PsiType:int])_2026662077",
-      "sourceAnchor": 12,
+      "source": "MethodSignatureBackedByPsiMethod: releaseBuilder([PsiType:StringBuilder])_769213339",
+      "target": "MethodSignatureBackedByPsiMethod: pop([])_-1961076076",
+      "sourceAnchor": 13,
       "targetAnchor": 0
     }
   ]
