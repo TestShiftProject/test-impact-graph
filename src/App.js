@@ -19,18 +19,10 @@ const EXPAND_PARTIAL_ICON = function EXPAND_PARTIAL_ICON(x, y, r) {
     ['a', r, r, 0, 1, 0, r * 2, 0],
     ['a', r, r, 0, 1, 0, -r * 2, 0],
     ['M', x - r + 4, y],
-    //['L', x - r + 2 * r - 4, y],
     ['a', r/4, r/4, 0, 0, 0, r + 2, 0],
     ['a', r/4, r/4, 0, 0, 0, -r + 2, 0],
-    //['a', r/2, r/2, 0, 1, 0, r, 0],
-    // ['M', x - r + r, y - r + 4],
-    // ['L', x, y + r - 4],
   ];
 };
-
-function nodeHeight(node) {
-  return lineHeight + node.lines.length * lineHeight;
-}
 
 function collapseIcon(openBranches, connectedBranches) {
   if (openBranches === 0) {
@@ -42,6 +34,10 @@ function collapseIcon(openBranches, connectedBranches) {
       return EXPAND_PARTIAL_ICON;
     }
   }
+}
+
+function nodeHeight(node) {
+  return lineHeight + node.lines.length * lineHeight;
 }
 
 function setupG6() {
@@ -80,20 +76,6 @@ function setupG6() {
           visOnCollapse: true,
         });
 
-        // // left icon
-        // group.addShape('image', {
-        //   attrs: {
-        //     x: 4,
-        //     y: 2,
-        //     height: 16,
-        //     width: 16,
-        //     cursor: 'pointer',
-        //     img: ICON_MAP[cfg.nodeType || 'app'],
-        //   },
-        //   name: 'node-icon',
-        //   visOnCollapse: true,
-        // });
-
         // title text
         group.addShape('text', {
           attrs: {
@@ -109,8 +91,7 @@ function setupG6() {
           visOnCollapse: true,
         });
 
-
-        // The content list
+        // the method code
         cfg.lines.forEach((item, index) => {
 
           // line background
@@ -143,7 +124,6 @@ function setupG6() {
           });
 
           if (item.callsMethod) {
-
             group.addShape('marker', {
               attrs: {
                 x: width - 16,
@@ -161,21 +141,8 @@ function setupG6() {
               collapse: false,
             });
           }
-
-
-          // // value text
-          // group.addShape('text', {
-          //   attrs: {
-          //     textBaseline: 'top',
-          //     y: 42 + index * 60,
-          //     x: 24,
-          //     lineHeight: 20,
-          //     text: item.value,
-          //     fill: '#3c3f41',
-          //   },
-          //   name: `index-title-${index}`,
-          // });
         });
+
         return shape;
       },
       getAnchorPoints(cfg) {
@@ -246,9 +213,7 @@ function defaultView(graph) {
 }
 
 function collapseNodeInParent(node, graph) {
-  const incomingEdge = graph.find('edge', (edge) => {
-    return edge.get('model').target === node.get('id');
-  });
+  const incomingEdge = node.getInEdges();
 
   const sourceNode = graph.findById(incomingEdge.get('model').source);
 
@@ -344,23 +309,6 @@ function App() {
         },
       });
     }
-
-    // Listen to the mouse event on node
-    // graph.on('node:mouseenter', (evt) => {
-    //   const {item} = evt;
-    //   const model = item.getModel();
-    //   const {x, y} = model;
-    //   const point = graph.getCanvasByPoint(x, y);
-    //
-    //   setNodeToolTipX(point.x - 75);
-    //   setNodeToolTipY(point.y + 15);
-    //   setShowNodeTooltip(true);
-    // });
-    //
-    // // Hide the tooltip and the contextMenu when the mouseleave event is activated on the node
-    // graph.on('node:mouseleave', () => {
-    //   setShowNodeTooltip(false);
-    // });
 
     // Click top bar / text of a method to collapse it, click again to show it again
     graph.on('title-text:click', (ev) => {
