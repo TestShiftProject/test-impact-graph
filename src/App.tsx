@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
 import data from './data/graphData.json';
 import './App.css';
-import G6, { Algorithm, ModelConfig, Graph, INode, Marker, Item, Shape, ShapeOptions} from '@antv/g6';
+import G6, { Algorithm, ModelConfig, Graph, INode, Marker, Item, Shape, ShapeOptions, IEdge} from '@antv/g6';
 import {getAllChildren} from "./util";
 import {Line, TestGraphNode} from "./data/graphData";
 
@@ -137,7 +137,7 @@ function setupG6() {
                 y: 30 + index * lineHeight,
                 r: 6,
                 cursor: 'pointer',
-                symbol:  EXPAND_PARTIAL_ICON, //G6.Marker.collapse,  //cfg.collapse ? G6.Marker.expand : G6.Marker.collapse,
+                symbol:  G6.Marker.collapse,  //cfg.collapse ? G6.Marker.expand : G6.Marker.collapse,
                 stroke: '#666',
                 lineWidth: 1,
               },
@@ -219,16 +219,30 @@ function defaultView(graph: Graph) {
   });
 
 
-  // const visible = graph.findAll('node', function (item) {
-  //   return item.isVisible();
-  // });
+  const visible = graph.findAll('node', function (item) {
+    return item.isVisible();
+  });
+  // set markers correctly
+  visible.forEach((nodei) => {
+    let node = nodei as TestGraphNode;
+    // TODO set icons for all outgoing markers
+    const nodeChildren = node.get('group').get('children');
+    nodeChildren.forEach(function (marker: ShapeOptions, index: number) {
+      if (marker.get('type') === 'marker') {
+        // determine number of outgoing edges
+        const outgoing = node.getOutEdges()
+            .filter((edge: IEdge) => edge.get('model').sourceAnchor - 1 == marker.get('index'));
+        marker.attrs.symbol = collapseIcon(outgoing.filter((edge:IEdge) => edge.isVisible()).length, outgoing.length);
+      }
+    });
+  });
   graph.updateLayout({});
 }
 
 function collapseNodeInParent(node: TestGraphNode, graph: Graph) {
   const incomingEdge = node.getInEdges()[0];
 
-  const sourceNode = graph.findById(incomingEdge.get('model').source);
+  const sourceNode = graph.findById(incomingEdge.get('model').source) as TestGraphNode;
 
   // find the marker corresponding too the edge
   const markers = sourceNode.get('group').get('children')
@@ -236,6 +250,7 @@ function collapseNodeInParent(node: TestGraphNode, graph: Graph) {
   //console.log(markers);
   const fittingMarkers = markers.filter((child: Item) => (child.get('index') === incomingEdge.get('model').sourceAnchor - 1));
   //console.log(fittingMarkers);
+
   if (fittingMarkers.length !== 1) {
     console.log("more or less than one source marker found!");
   } else {
