@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
 import data from './data/graphData.json';
 import './App.css';
-import G6, { Algorithm } from '@antv/g6';
-import {testNode} from './component/testNode'
+import G6, { Algorithm, ModelConfig, Graph, INode, Marker, Item, Shape, ShapeOptions} from '@antv/g6';
 import {getAllChildren} from "./util";
+import {Line, TestGraphNode} from "./data/graphData";
 
 const color = '#3c3f41';
 const coveredColor = '#80b380';
@@ -13,7 +13,7 @@ const backgroundColor = '#d9d9d9';
 const lineHeight = 20;
 const r = 2;
 
-const EXPAND_PARTIAL_ICON = function EXPAND_PARTIAL_ICON(x, y, r) {
+const EXPAND_PARTIAL_ICON = function EXPAND_PARTIAL_ICON(x: number, y: number, r: number) {
   return [
     ['M', x - r, y],
     ['a', r, r, 0, 1, 0, r * 2, 0],
@@ -24,7 +24,7 @@ const EXPAND_PARTIAL_ICON = function EXPAND_PARTIAL_ICON(x, y, r) {
   ];
 };
 
-function collapseIcon(openBranches, connectedBranches) {
+function collapseIcon(openBranches: number, connectedBranches: number) {
   if (openBranches === 0) {
     return G6.Marker.expand;
   } else {
@@ -36,7 +36,7 @@ function collapseIcon(openBranches, connectedBranches) {
   }
 }
 
-function nodeHeight(node) {
+function nodeHeight(node: TestGraphNode) {
   return lineHeight + node.lines.length * lineHeight;
 }
 
@@ -44,7 +44,14 @@ function setupG6() {
   G6.registerNode(
     'card-node',
     {
-      drawShape: function drawShape(cfg, group) {
+      drawShape: function drawShape(cfgM, group) {
+        let cfg = cfgM as TestGraphNode;
+        if (!cfg) {
+          throw new Error("cfg is undefined in drawShape");
+        }
+        if (!group) {
+          throw new Error("group is undefined in drawShape");
+        }
         const width = cfg.width ? cfg.width : 500;
         const shape = group.addShape('rect', {
           attrs: {
@@ -145,7 +152,8 @@ function setupG6() {
 
         return shape;
       },
-      getAnchorPoints(cfg) {
+      getAnchorPoints(cfgM) {
+        let cfg = cfgM as TestGraphNode;
         let points = [[0.5, 0]]; // The center of the top border
         cfg.lines.forEach((item, index) => {
           const lineHeight = (1 / (cfg.lines.length + 1))
@@ -155,6 +163,9 @@ function setupG6() {
       },
       // Respond to states
       setState(name, value, item) {
+        if (!item) {
+          throw new Error("");
+        }
         if (name === 'selected') {
           const group = item.getContainer();
           //const shape = group.get('children')[0]; // Find the first graphics shape of the node. It is determined by the order of being added
@@ -173,7 +184,7 @@ function setupG6() {
   );
 }
 
-function defaultView(graph) {
+function defaultView(graph: Graph) {
   const { depthFirstSearch } = Algorithm;
   depthFirstSearch(data, 'MethodSignatureBackedByPsiMethod: booleanAttributesAreEmptyStringValues_assSep10([])_-1', {
     enter: ({ current, previous }) => {
@@ -182,10 +193,12 @@ function defaultView(graph) {
     leave: ({ current, previous }) => {
       // The callback function for the traversal's ending
       const currentNode = graph.findById(current);
-      const previousNode = graph.findById(previous);
-      if (currentNode && previousNode) {
-        if (currentNode.get('model').addCovered) {
-          previousNode.get('model').addCovered = true;
+      if (previous != null) {
+        const previousNode = graph.findById(previous);
+        if (currentNode && previousNode) {
+          if (currentNode.get('model').addCovered) {
+            previousNode.get('model').addCovered = true;
+          }
         }
       }
     }
@@ -202,7 +215,7 @@ function defaultView(graph) {
     //     collapseMarker(node, marker, graph);
     //   }
     // });
-    collapseNodeInParent(node, graph);
+    collapseNodeInParent(node as TestGraphNode, graph);
   });
 
 
@@ -212,17 +225,17 @@ function defaultView(graph) {
   graph.updateLayout({});
 }
 
-function collapseNodeInParent(node, graph) {
-  const incomingEdge = node.getInEdges();
+function collapseNodeInParent(node: TestGraphNode, graph: Graph) {
+  const incomingEdge = node.getInEdges()[0];
 
   const sourceNode = graph.findById(incomingEdge.get('model').source);
 
   // find the marker corresponding too the edge
   const markers = sourceNode.get('group').get('children')
-  .filter(child => (child.get('type') === 'marker'));
-  console.log(markers);
-  const fittingMarkers = markers.filter(child => (child.get('index') === incomingEdge.get('model').sourceAnchor - 1));
-  console.log(fittingMarkers);
+  .filter((child: Item) => (child.get('type') === 'marker'));
+  //console.log(markers);
+  const fittingMarkers = markers.filter((child: Item) => (child.get('index') === incomingEdge.get('model').sourceAnchor - 1));
+  //console.log(fittingMarkers);
   if (fittingMarkers.length !== 1) {
     console.log("more or less than one source marker found!");
   } else {
@@ -232,7 +245,7 @@ function collapseNodeInParent(node, graph) {
   }
 }
 
-function collapseMarker(node, marker, graph) {
+function collapseMarker(node: TestGraphNode, marker: ShapeOptions, graph: Graph) {
   const outgoingEdge = graph.findAll('edge', (edge) => {
     return edge.get('model').source === node.get('id') && edge.get('model').sourceAnchor === marker.cfg.index + 1;
   });
@@ -243,7 +256,7 @@ function collapseMarker(node, marker, graph) {
     });
   });
 
-  if (marker.cfg.collapse) {
+  if (marker.get('collapse')) {
     // expand branch
     nextNodes.forEach((node) => graph.showItem(node));
     // only expand one layer
@@ -268,11 +281,13 @@ function App() {
   setupG6();
 
   const ref = React.useRef(null);
-  let graph = null;
+  // @ts-ignore
+  let graph: Graph = null;
 
   useEffect(() => {
     if (!graph) {
       graph = new G6.Graph({
+        // @ts-ignore
         container: ReactDOM.findDOMNode(ref.current),
         width: 1400,
         height: 1000,
@@ -285,10 +300,10 @@ function App() {
           type: 'dagre',
           rankdir: 'LR',
           //align: 'UL',
-          nodesepFunc: node => {
+          nodesepFunc: (node: TestGraphNode) => {
             return nodeHeight(node)/2;
           },
-          ranksepFunc: node => {
+          ranksepFunc: (node: TestGraphNode) => {
             return 250;
           },
           //direction: 'LR',
@@ -313,6 +328,7 @@ function App() {
     // Click top bar / text of a method to collapse it, click again to show it again
     graph.on('title-text:click', (ev) => {
       const node = ev.item;
+      if (!node) { throw new Error();}
       const value = !node.hasState('selected')
       graph.setItemState(node, 'selected', value); // Switch the selected state
       const children = getAllChildren(graph, node);
@@ -325,7 +341,7 @@ function App() {
 
     // Click to expand / collapse branch
     graph.on('collapse-branch-icon:click', (ev) => {
-      collapseMarker(ev.item, ev.target,  graph);
+      collapseMarker(ev.item as TestGraphNode, ev.target,  graph);
       graph.layout();
     });
 
@@ -337,7 +353,7 @@ function App() {
   }, []);
 
 
-  return <div ref={ref}/>;
+  return <div ref={ref}> </div>;
 }
 
 
