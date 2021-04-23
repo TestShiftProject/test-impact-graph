@@ -3,6 +3,8 @@
     {
       "signature": "    public void booleanAttributesAreEmptyStringValues_assSep10() throws Exception {",
       "id": "MethodSignatureBackedByPsiMethod: booleanAttributesAreEmptyStringValues_assSep10([])_-1",
+      "x": 0,
+      "y": 0,
       "lines": [
         {
           "code": "        Document doc \u003d Jsoup.parse(\"\u003cdiv hidden\u003e\");",

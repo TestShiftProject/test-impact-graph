@@ -1,35 +1,61 @@
 import React, {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
-import data from './graphData.json';
-import {NodeTooltips, EdgeToolTips, NodeContextMenu} from './component'
+import data from './data/graphData.json';
 import './App.css';
 import G6, { Algorithm } from '@antv/g6';
 import {testNode} from './component/testNode'
 import {getAllChildren} from "./util";
 
-const ICON_MAP = {
-  a: 'https://gw.alipayobjects.com/mdn/rms_8fd2eb/afts/img/A*0HC-SawWYUoAAAAAAAAAAABkARQnAQ',
-  b: 'https://gw.alipayobjects.com/mdn/rms_8fd2eb/afts/img/A*sxK0RJ1UhNkAAAAAAAAAAABkARQnAQ',
+const color = '#3c3f41';
+const coveredColor = '#80b380';
+const additionallyCoveredColor = '#52e052';
+const backgroundColor = '#d9d9d9';
+const lineHeight = 20;
+const r = 2;
+
+const EXPAND_PARTIAL_ICON = function EXPAND_PARTIAL_ICON(x, y, r) {
+  return [
+    ['M', x - r, y],
+    ['a', r, r, 0, 1, 0, r * 2, 0],
+    ['a', r, r, 0, 1, 0, -r * 2, 0],
+    ['M', x - r + 4, y],
+    //['L', x - r + 2 * r - 4, y],
+    ['a', r/4, r/4, 0, 0, 0, r + 2, 0],
+    ['a', r/4, r/4, 0, 0, 0, -r + 2, 0],
+    //['a', r/2, r/2, 0, 1, 0, r, 0],
+    // ['M', x - r + r, y - r + 4],
+    // ['L', x, y + r - 4],
+  ];
 };
+
+function nodeHeight(node) {
+  return lineHeight + node.lines.length * lineHeight;
+}
+
+function collapseIcon(openBranches, connectedBranches) {
+  if (openBranches === 0) {
+    return G6.Marker.expand;
+  } else {
+    if (openBranches === connectedBranches) {
+      return G6.Marker.collapse;
+    } else {
+      return EXPAND_PARTIAL_ICON;
+    }
+  }
+}
 
 function setupG6() {
   G6.registerNode(
     'card-node',
     {
       drawShape: function drawShape(cfg, group) {
-        const color = '#3c3f41';
-        const coveredColor = '#80b380';
-        const additionallyCoveredColor = '#52e052';
-        const backgroundColor = '#d9d9d9';
-        const lineHeight = 20;
         const width = cfg.width ? cfg.width : 500;
-        const r = 2;
         const shape = group.addShape('rect', {
           attrs: {
             x: 0,
             y: 0,
             width: width,
-            height: lineHeight + cfg.lines.length * lineHeight,
+            height: nodeHeight(cfg),
             stroke: color,
             fill: backgroundColor,
             lineWidth: 2,
@@ -124,7 +150,7 @@ function setupG6() {
                 y: 30 + index * lineHeight,
                 r: 6,
                 cursor: 'pointer',
-                symbol: G6.Marker.expand,  //cfg.collapse ? G6.Marker.expand : G6.Marker.collapse,
+                symbol:  EXPAND_PARTIAL_ICON, //G6.Marker.collapse,  //cfg.collapse ? G6.Marker.expand : G6.Marker.collapse,
                 stroke: '#666',
                 lineWidth: 1,
               },
@@ -198,26 +224,79 @@ function defaultView(graph) {
     }
   });
 
-  const shape = graph.findAll('node', function (item) {
+  const nodes = graph.findAll('node', function (item) {
     return !item.get('model').addCovered;
   });
-  shape.forEach((shape) => {
+  nodes.forEach((node) => {
     // TODO set all outgoing markers to be collapsed
-    const shapeChildren = shape.get('group').get('children');
-    shapeChildren.forEach( function (marker, index) {
-      if (marker.get('type') === "marker") {
-        marker.collapse = true;
-        marker.attrs.symbol = G6.Marker.expand;
-      }
-    });
-    graph.hideItem(shape);
+    // const nodeChildren = node.get('group').get('children');
+    // nodeChildren.forEach( function (marker, index) {
+    //   if (marker.get('type') === 'marker') {
+    //     collapseMarker(node, marker, graph);
+    //   }
+    // });
+    collapseNodeInParent(node, graph);
   });
 
 
-  const visible = graph.findAll('node', function (item) {
-    return item.isVisible();
-  });
+  // const visible = graph.findAll('node', function (item) {
+  //   return item.isVisible();
+  // });
   graph.updateLayout({});
+}
+
+function collapseNodeInParent(node, graph) {
+  const incomingEdge = graph.find('edge', (edge) => {
+    return edge.get('model').target === node.get('id');
+  });
+
+  const sourceNode = graph.findById(incomingEdge.get('model').source);
+
+  // find the marker corresponding too the edge
+  const markers = sourceNode.get('group').get('children')
+  .filter(child => (child.get('type') === 'marker'));
+  console.log(markers);
+  const fittingMarkers = markers.filter(child => (child.get('index') === incomingEdge.get('model').sourceAnchor - 1));
+  console.log(fittingMarkers);
+  if (fittingMarkers.length !== 1) {
+    console.log("more or less than one source marker found!");
+  } else {
+    fittingMarkers[0].attrs.symbol = G6.Marker.expand;
+    fittingMarkers[0].cfg.collapse = true;
+    graph.hideItem(node);
+  }
+}
+
+function collapseMarker(node, marker, graph) {
+  const outgoingEdge = graph.findAll('edge', (edge) => {
+    return edge.get('model').source === node.get('id') && edge.get('model').sourceAnchor === marker.cfg.index + 1;
+  });
+
+  const nextNodes = outgoingEdge.flatMap((edge) => {
+    return graph.findAll('node', (node) => {
+      return node.get('id') === edge.get('model').target;
+    });
+  });
+
+  if (marker.cfg.collapse) {
+    // expand branch
+    nextNodes.forEach((node) => graph.showItem(node));
+    // only expand one layer
+    //children.forEach((c) => graph.showItem(c));
+    marker.attrs.symbol = G6.Marker.collapse;
+  } else {
+    // collapse branch
+    nextNodes.forEach((node) => graph.hideItem(node));
+
+    // collapse all children
+    const children = getAllChildren(graph, nextNodes);
+    children.forEach((c) => graph.hideItem(c));
+
+    marker.attrs.symbol = G6.Marker.expand;
+  }
+  marker.cfg.collapse = !marker.cfg.collapse;
+  graph.updateLayout({});
+  graph.refresh();
 }
 
 function App() {
@@ -225,11 +304,6 @@ function App() {
 
   const ref = React.useRef(null);
   let graph = null;
-
-  // The coordinate of node tooltip
-  const [showNodeTooltip, setShowNodeTooltip] = useState(false);
-  const [nodeTooltipX, setNodeToolTipX] = useState(0);
-  const [nodeTooltipY, setNodeToolTipY] = useState(0);
 
   useEffect(() => {
     if (!graph) {
@@ -244,8 +318,19 @@ function App() {
         },
         layout: {
           type: 'dagre',
-          //rankdir: 'TB',
-          align: 'UL'
+          rankdir: 'LR',
+          //align: 'UL',
+          nodesepFunc: node => {
+            return nodeHeight(node)/2;
+          },
+          ranksepFunc: node => {
+            return 250;
+          },
+          //direction: 'LR',
+          //indent: 600,
+          // getHeight: (node) => {
+          //   return nodeHeight(node);
+          // }
         },
         defaultNode: {
           type: 'card-node',
@@ -292,39 +377,19 @@ function App() {
 
     // Click to expand / collapse branch
     graph.on('collapse-branch-icon:click', (ev) => {
-      const node = ev.item;
-
-      const outgoingEdge = graph.findAll('edge', (edge) => {
-        return edge.get('model').source === node.get('id') && edge.get('model').sourceAnchor === ev.target.cfg.index + 1
-      });
-
-      const nextNodes = outgoingEdge.flatMap((edge) => {
-        return graph.findAll('node', (node) => {
-          return node.get('id') === edge.get('model').target
-        })
-      });
-
-      const children = getAllChildren(graph, nextNodes);
-      if (ev.target.cfg.collapse) {
-        nextNodes.forEach((node) => graph.showItem(node));
-        children.forEach((c) => graph.showItem(c));
-        ev.target.attrs.symbol = G6.Marker.collapse;
-      } else {
-        nextNodes.forEach((node) => graph.hideItem(node));
-        children.forEach((c) => graph.hideItem(c));
-        ev.target.attrs.symbol = G6.Marker.expand;
-      }
-      ev.target.cfg.collapse = !ev.target.cfg.collapse;
-      graph.updateLayout({});
+      collapseMarker(ev.item, ev.target,  graph);
+      graph.layout();
     });
 
     graph.data(data);
     graph.render();
     defaultView(graph);
+    graph.fitView(20);
+    console.log(graph.get('layout'));
   }, []);
 
 
-  return <div ref={ref}>{showNodeTooltip && <NodeTooltips x={nodeTooltipX} y={nodeTooltipY}/>}</div>;
+  return <div ref={ref}/>;
 }
 
 
