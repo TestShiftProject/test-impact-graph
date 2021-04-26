@@ -5,6 +5,7 @@ export interface TestGraphNode extends ModelConfig, INode {
     width: number;
     lines: Line[];
     signature: string;
+    className: string;
 }
 
 export interface Line {

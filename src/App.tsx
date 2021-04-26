@@ -37,7 +37,7 @@ function collapseIcon(openBranches: number, connectedBranches: number) {
 }
 
 function nodeHeight(node: TestGraphNode) {
-  return lineHeight + node.lines.length * lineHeight;
+  return 2 * lineHeight + node.lines.length * lineHeight;
 }
 
 function setupG6() {
@@ -78,7 +78,7 @@ function setupG6() {
             fill: color,
             radius: [r, r, 0, 0],
           },
-          name: 'title-box',
+          name: 'title-box-class',
           draggable: true,
           visOnCollapse: true,
         });
@@ -87,13 +87,42 @@ function setupG6() {
         group.addShape('text', {
           attrs: {
             textBaseline: 'top',
-            y: 4,
             x: 4,
+            y: 4,
+            lineHeight: lineHeight,
+            text: cfg.className,
+            fill: '#bbbbbb',
+          },
+          name: 'title-text-class',
+          draggable: true,
+          visOnCollapse: true,
+        });
+
+        group.addShape('rect', {
+          attrs: {
+            x: 0,
+            y: lineHeight,
+            width: width,
+            height: lineHeight,
+            fill: color,
+            radius: [r, r, 0, 0],
+          },
+          name: 'title-box-signature',
+          draggable: true,
+          visOnCollapse: true,
+        });
+
+        // title text
+        group.addShape('text', {
+          attrs: {
+            textBaseline: 'top',
+            x: 4,
+            y: 4 + lineHeight,
             lineHeight: lineHeight,
             text: cfg.signature,
             fill: '#bbbbbb',
           },
-          name: 'title-text',
+          name: 'title-text-signature',
           draggable: true,
           visOnCollapse: true,
         });
@@ -104,8 +133,8 @@ function setupG6() {
           // line background
           group.addShape('rect', {
             attrs: {
-              y: 20 + index * lineHeight,
               x: 1,
+              y: (index + 2) * lineHeight,
               width: width - 2,
               height: 20,
               fill: item.covered ? (item.addCovered ? additionallyCoveredColor : coveredColor) : backgroundColor,
@@ -119,8 +148,8 @@ function setupG6() {
           group.addShape('text', {
             attrs: {
               textBaseline: 'top',
-              y: 25 + index * lineHeight,
               x: 4,
+              y: 5 + (index + 2) * lineHeight,
               lineHeight: 20,
               text: item.code,
               fill: '#3c3f41',
@@ -134,7 +163,7 @@ function setupG6() {
             group.addShape('marker', {
               attrs: {
                 x: width - 16,
-                y: 30 + index * lineHeight,
+                y: 10 + (index + 2) * lineHeight,
                 r: 6,
                 cursor: 'pointer',
                 symbol:  G6.Marker.collapse,  //cfg.collapse ? G6.Marker.expand : G6.Marker.collapse,
@@ -156,8 +185,8 @@ function setupG6() {
         let cfg = cfgM as TestGraphNode;
         let points = [[0.5, 0]]; // The center of the top border
         cfg.lines.forEach((item, index) => {
-          const lineHeight = (1 / (cfg.lines.length + 1))
-          points.push([1, lineHeight * (index + 1.5)]);
+          const lineHeight = (1 / (cfg.lines.length + 2))
+          points.push([1, lineHeight * (index + 2.5)]);
         });
         return points;
       },
@@ -186,7 +215,7 @@ function setupG6() {
 
 function defaultView(graph: Graph) {
   const { depthFirstSearch } = Algorithm;
-  depthFirstSearch(data, 'MethodSignatureBackedByPsiMethod: booleanAttributesAreEmptyStringValues_assSep10([])_-1', {
+  depthFirstSearch(data, 'root', {
     enter: ({ current, previous }) => {
       // The callback function for the traversal's beginning
     },
@@ -314,9 +343,11 @@ function App() {
         layout: {
           type: 'dagre',
           rankdir: 'LR',
+          sortByCombo: true,
           //align: 'UL',
           nodesepFunc: (node: TestGraphNode) => {
             return nodeHeight(node)/2;
+            //node.getInEdges().map(e => e.getTarget().get)
           },
           ranksepFunc: (node: TestGraphNode) => {
             return 250;
