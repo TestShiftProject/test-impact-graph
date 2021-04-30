@@ -1,0 +1,1 @@
+Amplified test case 'modifyAnnotations_mg25_assSep97'  Input modifications: 1 Assert statements added: 1  This test case improves the coverage in these classes/methods/lines: (Click on the green links to see these lines within the class) com.squareup.javapoet.CodeWriter: emitAnnotations L. 165 +4 instr. L. 166 +4 instr. L. 167 +7 instr. L. 168 +1 instr. 

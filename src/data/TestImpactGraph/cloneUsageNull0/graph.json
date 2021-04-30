@@ -1,0 +1,917 @@
+{
+  "nodes": [
+    {
+      "signature": "    public void cloneUsagenull33_failAssert0() throws Exception {",
+      "className": "com.squareup.javapoet.NameAllocatorTest",
+      "id": "root",
+      "lines": [
+        {
+          "code": "        try {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            NameAllocator outterAllocator \u003d new NameAllocator();",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            outterAllocator.newName(null, 1);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            NameAllocator innerAllocator1 \u003d outterAllocator.clone();",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            NameAllocator innerAllocator2 \u003d outterAllocator.clone();",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            Assert.fail(\"cloneUsagenull33 should have thrown NullPointerException\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        } catch (NullPointerException expected) {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            Assert.assertEquals(\"suggestion\", expected.getMessage());",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": true,
+      "nodeLevel": 0
+    },
+    {
+      "signature": "  public NameAllocator() {",
+      "className": "com.squareup.javapoet.NameAllocator",
+      "id": "MethodSignatureBackedByPsiMethod: NameAllocator([])_-571987281",
+      "lines": [
+        {
+          "code": "    this(new LinkedHashSet\u003c\u003e(), new LinkedHashMap\u003c\u003e());",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "  public String newName(String suggestion, Object tag) {",
+      "className": "com.squareup.javapoet.NameAllocator",
+      "id": "MethodSignatureBackedByPsiMethod: newName([PsiType:String, PsiType:Object])_1067399881",
+      "lines": [
+        {
+          "code": "    checkNotNull(suggestion, \"suggestion\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    checkNotNull(tag, \"tag\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    suggestion \u003d toJavaIdentifier(suggestion);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    while (SourceVersion.isKeyword(suggestion) || !allocatedNames.add(suggestion)) {",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      suggestion \u003d suggestion + \"_\";",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    String replaced \u003d tagToName.put(tag, suggestion);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    if (replaced !\u003d null) {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      tagToName.put(tag, replaced); // Put things back as they were!",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      throw new IllegalArgumentException(\"tag \" + tag + \" cannot be used for both \u0027\" + replaced",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "          + \"\u0027 and \u0027\" + suggestion + \"\u0027\");",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    return suggestion;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "  public NameAllocator clone() {",
+      "className": "com.squareup.javapoet.NameAllocator",
+      "id": "MethodSignatureBackedByPsiMethod: clone([])_-1431687206",
+      "lines": [
+        {
+          "code": "    return new NameAllocator(",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        new LinkedHashSet\u003c\u003e(this.allocatedNames),",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        new LinkedHashMap\u003c\u003e(this.tagToName));",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "  public NameAllocator clone() {",
+      "className": "com.squareup.javapoet.NameAllocator",
+      "id": "MethodSignatureBackedByPsiMethod: clone([])_692872393",
+      "lines": [
+        {
+          "code": "    return new NameAllocator(",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        new LinkedHashSet\u003c\u003e(this.allocatedNames),",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        new LinkedHashMap\u003c\u003e(this.tagToName));",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "fail",
+      "className": "org.junit.Assert",
+      "id": "MethodSignatureBackedByPsiMethod: fail([PsiType:String])_299508218",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "assertEquals",
+      "className": "org.junit.Assert",
+      "id": "MethodSignatureBackedByPsiMethod: assertEquals([PsiType:Object, PsiType:Object])_-200947041",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "getMessage",
+      "className": "java.lang.Throwable",
+      "id": "MethodSignatureBackedByPsiMethod: getMessage([])_-690528911",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "  private NameAllocator(LinkedHashSet\u003cString\u003e allocatedNames,",
+      "className": "com.squareup.javapoet.NameAllocator",
+      "id": "MethodSignatureBackedByPsiMethod: NameAllocator([PsiType:LinkedHashSet\u003cString\u003e, PsiType:LinkedHashMap\u003cObject, String\u003e])_1156510496",
+      "lines": [
+        {
+          "code": "                        LinkedHashMap\u003cObject, String\u003e tagToName) {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.allocatedNames \u003d allocatedNames;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.tagToName \u003d tagToName;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "LinkedHashSet",
+      "className": "java.util.LinkedHashSet",
+      "id": "MethodSignatureBackedByPsiMethod: LinkedHashSet([])_-721706337",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "LinkedHashMap",
+      "className": "java.util.LinkedHashMap",
+      "id": "MethodSignatureBackedByPsiMethod: LinkedHashMap([])_-368789146",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "  static \u003cT\u003e T checkNotNull(T reference, String format, Object... args) {",
+      "className": "com.squareup.javapoet.Util",
+      "id": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_-1476592438",
+      "lines": [
+        {
+          "code": "    if (reference \u003d\u003d null) throw new NullPointerException(String.format(format, args));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": true
+        },
+        {
+          "code": "    return reference;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": true,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "  static \u003cT\u003e T checkNotNull(T reference, String format, Object... args) {",
+      "className": "com.squareup.javapoet.Util",
+      "id": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_-1793745480",
+      "lines": [
+        {
+          "code": "    if (reference \u003d\u003d null) throw new NullPointerException(String.format(format, args));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": true
+        },
+        {
+          "code": "    return reference;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": true,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "  public static String toJavaIdentifier(String suggestion) {",
+      "className": "com.squareup.javapoet.NameAllocator",
+      "id": "MethodSignatureBackedByPsiMethod: toJavaIdentifier([PsiType:String])_1018610137",
+      "lines": [
+        {
+          "code": "    StringBuilder result \u003d new StringBuilder();",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    for (int i \u003d 0; i \u003c suggestion.length(); ) {",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      int codePoint \u003d suggestion.codePointAt(i);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      if (i \u003d\u003d 0",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "          \u0026\u0026 !Character.isJavaIdentifierStart(codePoint)",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "          \u0026\u0026 Character.isJavaIdentifierPart(codePoint)) {",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        result.append(\"_\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      int validCodePoint \u003d Character.isJavaIdentifierPart(codePoint) ? codePoint : \u0027_\u0027;",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      result.appendCodePoint(validCodePoint);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      i +\u003d Character.charCount(codePoint);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    return result.toString();",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "isKeyword",
+      "className": "javax.lang.model.SourceVersion",
+      "id": "MethodSignatureBackedByPsiMethod: isKeyword([PsiType:CharSequence])_1378892303",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "add",
+      "className": "java.util.Set",
+      "id": "MethodSignatureBackedByPsiMethod: add([PsiType:E])_1519621752",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "put",
+      "className": "java.util.Map",
+      "id": "MethodSignatureBackedByPsiMethod: put([PsiType:K, PsiType:V])_-1698029387",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "put",
+      "className": "java.util.Map",
+      "id": "MethodSignatureBackedByPsiMethod: put([PsiType:K, PsiType:V])_-1886474599",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "IllegalArgumentException",
+      "className": "java.lang.IllegalArgumentException",
+      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_328164040",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "  private NameAllocator(LinkedHashSet\u003cString\u003e allocatedNames,",
+      "className": "com.squareup.javapoet.NameAllocator",
+      "id": "MethodSignatureBackedByPsiMethod: NameAllocator([PsiType:LinkedHashSet\u003cString\u003e, PsiType:LinkedHashMap\u003cObject, String\u003e])_-1443346311",
+      "lines": [
+        {
+          "code": "                        LinkedHashMap\u003cObject, String\u003e tagToName) {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.allocatedNames \u003d allocatedNames;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.tagToName \u003d tagToName;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "LinkedHashSet",
+      "className": "java.util.LinkedHashSet",
+      "id": "MethodSignatureBackedByPsiMethod: LinkedHashSet([PsiType:Collection\u003c? extends E\u003e])_-640817748",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "LinkedHashMap",
+      "className": "java.util.LinkedHashMap",
+      "id": "MethodSignatureBackedByPsiMethod: LinkedHashMap([PsiType:Map\u003c? extends K, ? extends V\u003e])_-1678364538",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "  private NameAllocator(LinkedHashSet\u003cString\u003e allocatedNames,",
+      "className": "com.squareup.javapoet.NameAllocator",
+      "id": "MethodSignatureBackedByPsiMethod: NameAllocator([PsiType:LinkedHashSet\u003cString\u003e, PsiType:LinkedHashMap\u003cObject, String\u003e])_180214194",
+      "lines": [
+        {
+          "code": "                        LinkedHashMap\u003cObject, String\u003e tagToName) {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.allocatedNames \u003d allocatedNames;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.tagToName \u003d tagToName;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "LinkedHashSet",
+      "className": "java.util.LinkedHashSet",
+      "id": "MethodSignatureBackedByPsiMethod: LinkedHashSet([PsiType:Collection\u003c? extends E\u003e])_1088227039",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "LinkedHashMap",
+      "className": "java.util.LinkedHashMap",
+      "id": "MethodSignatureBackedByPsiMethod: LinkedHashMap([PsiType:Map\u003c? extends K, ? extends V\u003e])_1638457720",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "NullPointerException",
+      "className": "java.lang.NullPointerException",
+      "id": "MethodSignatureBackedByPsiMethod: NullPointerException([PsiType:String])_-966749371",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "format",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_355408086",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "NullPointerException",
+      "className": "java.lang.NullPointerException",
+      "id": "MethodSignatureBackedByPsiMethod: NullPointerException([PsiType:String])_820626098",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "format",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_409467726",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "StringBuilder",
+      "className": "java.lang.StringBuilder",
+      "id": "MethodSignatureBackedByPsiMethod: StringBuilder([])_1264550393",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "length",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: length([])_-523403944",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "codePointAt",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: codePointAt([PsiType:int])_1561238292",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "isJavaIdentifierStart",
+      "className": "java.lang.Character",
+      "id": "MethodSignatureBackedByPsiMethod: isJavaIdentifierStart([PsiType:int])_1559384333",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "isJavaIdentifierPart",
+      "className": "java.lang.Character",
+      "id": "MethodSignatureBackedByPsiMethod: isJavaIdentifierPart([PsiType:int])_-825977075",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "append",
+      "className": "java.lang.StringBuilder",
+      "id": "MethodSignatureBackedByPsiMethod: append([PsiType:String])_-2061593107",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "isJavaIdentifierPart",
+      "className": "java.lang.Character",
+      "id": "MethodSignatureBackedByPsiMethod: isJavaIdentifierPart([PsiType:int])_929397926",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "appendCodePoint",
+      "className": "java.lang.StringBuilder",
+      "id": "MethodSignatureBackedByPsiMethod: appendCodePoint([PsiType:int])_1031662810",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "charCount",
+      "className": "java.lang.Character",
+      "id": "MethodSignatureBackedByPsiMethod: charCount([PsiType:int])_585475120",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "toString",
+      "className": "java.lang.StringBuilder",
+      "id": "MethodSignatureBackedByPsiMethod: toString([])_-1883675510",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    }
+  ],
+  "edges": [
+    {
+      "source": "root",
+      "target": "MethodSignatureBackedByPsiMethod: NameAllocator([])_-571987281",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "root",
+      "target": "MethodSignatureBackedByPsiMethod: newName([PsiType:String, PsiType:Object])_1067399881",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "root",
+      "target": "MethodSignatureBackedByPsiMethod: clone([])_-1431687206",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "root",
+      "target": "MethodSignatureBackedByPsiMethod: clone([])_692872393",
+      "sourceAnchor": 5,
+      "targetAnchor": 0
+    },
+    {
+      "source": "root",
+      "target": "MethodSignatureBackedByPsiMethod: fail([PsiType:String])_299508218",
+      "sourceAnchor": 6,
+      "targetAnchor": 0
+    },
+    {
+      "source": "root",
+      "target": "MethodSignatureBackedByPsiMethod: assertEquals([PsiType:Object, PsiType:Object])_-200947041",
+      "sourceAnchor": 8,
+      "targetAnchor": 0
+    },
+    {
+      "source": "root",
+      "target": "MethodSignatureBackedByPsiMethod: getMessage([])_-690528911",
+      "sourceAnchor": 8,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: NameAllocator([])_-571987281",
+      "target": "MethodSignatureBackedByPsiMethod: NameAllocator([PsiType:LinkedHashSet\u003cString\u003e, PsiType:LinkedHashMap\u003cObject, String\u003e])_1156510496",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: NameAllocator([])_-571987281",
+      "target": "MethodSignatureBackedByPsiMethod: LinkedHashSet([])_-721706337",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: NameAllocator([])_-571987281",
+      "target": "MethodSignatureBackedByPsiMethod: LinkedHashMap([])_-368789146",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: newName([PsiType:String, PsiType:Object])_1067399881",
+      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_-1476592438",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: newName([PsiType:String, PsiType:Object])_1067399881",
+      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_-1793745480",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: newName([PsiType:String, PsiType:Object])_1067399881",
+      "target": "MethodSignatureBackedByPsiMethod: toJavaIdentifier([PsiType:String])_1018610137",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: newName([PsiType:String, PsiType:Object])_1067399881",
+      "target": "MethodSignatureBackedByPsiMethod: isKeyword([PsiType:CharSequence])_1378892303",
+      "sourceAnchor": 6,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: newName([PsiType:String, PsiType:Object])_1067399881",
+      "target": "MethodSignatureBackedByPsiMethod: add([PsiType:E])_1519621752",
+      "sourceAnchor": 6,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: newName([PsiType:String, PsiType:Object])_1067399881",
+      "target": "MethodSignatureBackedByPsiMethod: put([PsiType:K, PsiType:V])_-1698029387",
+      "sourceAnchor": 10,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: newName([PsiType:String, PsiType:Object])_1067399881",
+      "target": "MethodSignatureBackedByPsiMethod: put([PsiType:K, PsiType:V])_-1886474599",
+      "sourceAnchor": 12,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: newName([PsiType:String, PsiType:Object])_1067399881",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_328164040",
+      "sourceAnchor": 13,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: clone([])_-1431687206",
+      "target": "MethodSignatureBackedByPsiMethod: NameAllocator([PsiType:LinkedHashSet\u003cString\u003e, PsiType:LinkedHashMap\u003cObject, String\u003e])_-1443346311",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: clone([])_-1431687206",
+      "target": "MethodSignatureBackedByPsiMethod: LinkedHashSet([PsiType:Collection\u003c? extends E\u003e])_-640817748",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: clone([])_-1431687206",
+      "target": "MethodSignatureBackedByPsiMethod: LinkedHashMap([PsiType:Map\u003c? extends K, ? extends V\u003e])_-1678364538",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: clone([])_692872393",
+      "target": "MethodSignatureBackedByPsiMethod: NameAllocator([PsiType:LinkedHashSet\u003cString\u003e, PsiType:LinkedHashMap\u003cObject, String\u003e])_180214194",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: clone([])_692872393",
+      "target": "MethodSignatureBackedByPsiMethod: LinkedHashSet([PsiType:Collection\u003c? extends E\u003e])_1088227039",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: clone([])_692872393",
+      "target": "MethodSignatureBackedByPsiMethod: LinkedHashMap([PsiType:Map\u003c? extends K, ? extends V\u003e])_1638457720",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_-1476592438",
+      "target": "MethodSignatureBackedByPsiMethod: NullPointerException([PsiType:String])_-966749371",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_-1476592438",
+      "target": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_355408086",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_-1793745480",
+      "target": "MethodSignatureBackedByPsiMethod: NullPointerException([PsiType:String])_820626098",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_-1793745480",
+      "target": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_409467726",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: toJavaIdentifier([PsiType:String])_1018610137",
+      "target": "MethodSignatureBackedByPsiMethod: StringBuilder([])_1264550393",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: toJavaIdentifier([PsiType:String])_1018610137",
+      "target": "MethodSignatureBackedByPsiMethod: length([])_-523403944",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: toJavaIdentifier([PsiType:String])_1018610137",
+      "target": "MethodSignatureBackedByPsiMethod: codePointAt([PsiType:int])_1561238292",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: toJavaIdentifier([PsiType:String])_1018610137",
+      "target": "MethodSignatureBackedByPsiMethod: isJavaIdentifierStart([PsiType:int])_1559384333",
+      "sourceAnchor": 5,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: toJavaIdentifier([PsiType:String])_1018610137",
+      "target": "MethodSignatureBackedByPsiMethod: isJavaIdentifierPart([PsiType:int])_-825977075",
+      "sourceAnchor": 6,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: toJavaIdentifier([PsiType:String])_1018610137",
+      "target": "MethodSignatureBackedByPsiMethod: append([PsiType:String])_-2061593107",
+      "sourceAnchor": 7,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: toJavaIdentifier([PsiType:String])_1018610137",
+      "target": "MethodSignatureBackedByPsiMethod: isJavaIdentifierPart([PsiType:int])_929397926",
+      "sourceAnchor": 10,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: toJavaIdentifier([PsiType:String])_1018610137",
+      "target": "MethodSignatureBackedByPsiMethod: appendCodePoint([PsiType:int])_1031662810",
+      "sourceAnchor": 11,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: toJavaIdentifier([PsiType:String])_1018610137",
+      "target": "MethodSignatureBackedByPsiMethod: charCount([PsiType:int])_585475120",
+      "sourceAnchor": 12,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: toJavaIdentifier([PsiType:String])_1018610137",
+      "target": "MethodSignatureBackedByPsiMethod: toString([])_-1883675510",
+      "sourceAnchor": 14,
+      "targetAnchor": 0
+    }
+  ]
+}

@@ -6,7 +6,20 @@ import G6, { Algorithm, ModelConfig, Graph, INode, Marker, Item, Shape, ShapeOpt
 import {getAllChildren} from "./util";
 import {Line, TestGraphNode} from "./data/graphData";
 
+import data0 from './data/TestImpactGraph/annotatedFailAssert/graph.json';
+import data1 from './data/TestImpactGraph/cloneUsageNull0/graph.json';
+import data2 from './data/TestImpactGraph/modifyAnnotationsSep4/graph.json';
+import data3 from './data/TestImpactGraph/modifyAnnotationsSep5/graph.json';
+import data4 from './data/TestImpactGraph/modifyAnnotationsSep97/graph.json';
+import data5 from './data/TestImpactGraph/modifyAnnotationsSep102/graph.json';
+import data6 from './data/TestImpactGraph/shouldSupportClassInDefaultPackage5/graph.json';
+import data7 from './data/TestImpactGraph/shouldSupportClassInDefaultPackage58/graph.json';
+import { GraphData } from '@antv/algorithm/lib/types';
+import {findAllInRenderedTree} from "react-dom/test-utils";
+
 const color = '#3c3f41';
+const colorBlack = '#000000';
+const colorWhite = '#FFFFFF';
 const coveredColor = '#80b380';
 const additionallyCoveredColor = '#52e052';
 const backgroundColor = '#d9d9d9';
@@ -19,10 +32,51 @@ const EXPAND_PARTIAL_ICON = function EXPAND_PARTIAL_ICON(x: number, y: number, r
     ['a', r, r, 0, 1, 0, r * 2, 0],
     ['a', r, r, 0, 1, 0, -r * 2, 0],
     ['M', x - r + 4, y],
-    ['a', r/4, r/4, 0, 0, 0, r + 2, 0],
-    ['a', r/4, r/4, 0, 0, 0, -r + 2, 0],
+    ['a', r / 4, r / 4, 0, 0, 0, r + 2, 0],
+    ['a', r / 4, r / 4, 0, 0, 0, -r + 2, 0],
   ];
 };
+
+function addSelector(container: Element | Text) {
+  // Add a selector to DOM
+  const selector = document.createElement('select');
+  selector.id = 'selector';
+  const selection1 = document.createElement('option');
+  selection1.value = 'data0';
+  selection1.innerHTML = 'annotatedFailAssert';
+  const selection2 = document.createElement('option');
+  selection2.value = 'data1';
+  selection2.innerHTML = 'cloneUsageNull0';
+  const selection3 = document.createElement('option');
+  selection3.value = 'data2';
+  selection3.innerHTML = 'modifyAnnotationsSep4';
+  const selection4 = document.createElement('option');
+  selection4.value = 'data3';
+  selection4.innerHTML = 'modifyAnnotationsSep5';
+  const selection5 = document.createElement('option');
+  selection5.value = 'data4';
+  selection5.innerHTML = 'modifyAnnotationsSep97';
+  const selection6 = document.createElement('option');
+  selection6.value = 'data5';
+  selection6.innerHTML = 'modifyAnnotationsSe102';
+  const selection7 = document.createElement('option');
+  selection7.value = 'data6';
+  selection7.innerHTML = 'shouldSupportClassInDefaultPackage5';
+  const selection8 = document.createElement('option');
+  selection8.value = 'data7';
+  selection8.innerHTML = 'shouldSupportClassInDefaultPackage58';
+  selector.appendChild(selection1);
+  selector.appendChild(selection2);
+  selector.appendChild(selection3);
+  selector.appendChild(selection4);
+  selector.appendChild(selection5);
+  selector.appendChild(selection6);
+  selector.appendChild(selection7);
+  selector.appendChild(selection8);
+  container.appendChild(selector);
+  return selector;
+}
+
 
 function collapseIcon(openBranches: number, connectedBranches: number) {
   if (openBranches === 0) {
@@ -40,180 +94,197 @@ function nodeHeight(node: TestGraphNode) {
   return 2 * lineHeight + node.lines.length * lineHeight;
 }
 
+function determineWidth(node: TestGraphNode) {
+  const lines = [node.className, node.signature].concat(node.lines.map(line => line.code));
+  const maxLength = lines.map(line => line.length)
+      .reduce((previousValue, currentValue) => Math.max(previousValue, currentValue));
+  return maxLength * 8;
+}
+
 function setupG6() {
   G6.registerNode(
-    'card-node',
-    {
-      drawShape: function drawShape(cfgM, group) {
-        let cfg = cfgM as TestGraphNode;
-        if (!cfg) {
-          throw new Error("cfg is undefined in drawShape");
-        }
-        if (!group) {
-          throw new Error("group is undefined in drawShape");
-        }
-        const width = cfg.width ? cfg.width : 500;
-        const shape = group.addShape('rect', {
-          attrs: {
-            x: 0,
-            y: 0,
-            width: width,
-            height: nodeHeight(cfg),
-            stroke: color,
-            fill: backgroundColor,
-            lineWidth: 2,
-            radius: r,
-          },
-          name: 'main-box',
-          draggable: true,
-          visOnCollapse: false,
-        });
+      'card-node',
+      {
+        drawShape: function drawShape(cfgM, group) {
+          let cfg = cfgM as TestGraphNode;
+          if (!cfg) {
+            throw new Error("cfg is undefined in drawShape");
+          }
+          if (!group) {
+            throw new Error("group is undefined in drawShape");
+          }
 
-        group.addShape('rect', {
-          attrs: {
-            x: 0,
-            y: 0,
-            width: width,
-            height: lineHeight,
-            fill: color,
-            radius: [r, r, 0, 0],
-          },
-          name: 'title-box-class',
-          draggable: true,
-          visOnCollapse: true,
-        });
+          const width = cfg.width ? cfg.width : determineWidth(cfg);
 
-        // title text
-        group.addShape('text', {
-          attrs: {
-            textBaseline: 'top',
-            x: 4,
-            y: 4,
-            lineHeight: lineHeight,
-            text: cfg.className,
-            fill: '#bbbbbb',
-          },
-          name: 'title-text-class',
-          draggable: true,
-          visOnCollapse: true,
-        });
+          cfg.size = [determineWidth(cfg), nodeHeight(cfg)]
 
-        group.addShape('rect', {
-          attrs: {
-            x: 0,
-            y: lineHeight,
-            width: width,
-            height: lineHeight,
-            fill: color,
-            radius: [r, r, 0, 0],
-          },
-          name: 'title-box-signature',
-          draggable: true,
-          visOnCollapse: true,
-        });
-
-        // title text
-        group.addShape('text', {
-          attrs: {
-            textBaseline: 'top',
-            x: 4,
-            y: 4 + lineHeight,
-            lineHeight: lineHeight,
-            text: cfg.signature,
-            fill: '#bbbbbb',
-          },
-          name: 'title-text-signature',
-          draggable: true,
-          visOnCollapse: true,
-        });
-
-        // the method code
-        cfg.lines.forEach((item, index) => {
-
-          // line background
-          group.addShape('rect', {
+          const shape = group.addShape('rect', {
             attrs: {
-              x: 1,
-              y: (index + 2) * lineHeight,
-              width: width - 2,
-              height: 20,
-              fill: item.covered ? (item.addCovered ? additionallyCoveredColor : coveredColor) : backgroundColor,
+              x: 0,
+              y: 0,
+              width: width,
+              height: nodeHeight(cfg),
+              stroke: color,
+              fill: backgroundColor,
+              lineWidth: 2,
+              radius: r,
             },
-            name: `code-line-background-${index}`,
+            name: 'main-box',
             draggable: true,
             visOnCollapse: false,
           });
 
-          // code line in method
+          group.addShape('rect', {
+            attrs: {
+              x: 0,
+              y: 0,
+              width: width,
+              height: lineHeight,
+              fill: color,
+              radius: [r, r, 0, 0],
+            },
+            name: 'title-box-class',
+            draggable: true,
+            visOnCollapse: true,
+          });
+
+          // title text
           group.addShape('text', {
             attrs: {
               textBaseline: 'top',
               x: 4,
-              y: 5 + (index + 2) * lineHeight,
-              lineHeight: 20,
-              text: item.code,
-              fill: '#3c3f41',
+              y: 4,
+              lineHeight: lineHeight,
+              text: cfg.className,
+              fill: colorWhite,
+              fontFamily: 'monospace',
             },
-            name: `index-title-${index}`,
+            name: 'title-text-class',
             draggable: true,
-            visOnCollapse: false,
+            visOnCollapse: true,
           });
 
-          if (item.callsMethod) {
-            group.addShape('marker', {
+          group.addShape('rect', {
+            attrs: {
+              x: 0,
+              y: lineHeight,
+              width: width,
+              height: lineHeight,
+              fill: color,
+              radius: [r, r, 0, 0],
+            },
+            name: 'title-box-signature',
+            draggable: true,
+            visOnCollapse: true,
+          });
+
+          // title text
+          group.addShape('text', {
+            attrs: {
+              textBaseline: 'top',
+              x: 4,
+              y: 4 + lineHeight,
+              lineHeight: lineHeight,
+              text: cfg.signature,
+              fill: colorWhite,
+              fontFamily: 'monospace',
+            },
+            name: 'title-text-signature',
+            draggable: true,
+            visOnCollapse: true,
+          });
+
+          // the method code
+          cfg.lines.forEach((item, index) => {
+
+            // line background
+            group.addShape('rect', {
               attrs: {
-                x: width - 16,
-                y: 10 + (index + 2) * lineHeight,
-                r: 6,
-                cursor: 'pointer',
-                symbol:  G6.Marker.collapse,  //cfg.collapse ? G6.Marker.expand : G6.Marker.collapse,
-                stroke: '#666',
-                lineWidth: 1,
+                x: 1,
+                y: (index + 2) * lineHeight,
+                width: width - 2,
+                height: 20,
+                fill: item.covered ? (item.addCovered ? additionallyCoveredColor : coveredColor) : backgroundColor,
               },
-              name: 'collapse-branch-icon',
-              visOnCollapse: false,
+              name: `code-line-background-${index}`,
               draggable: true,
-              index: index,
-              collapse: false,
+              visOnCollapse: false,
             });
-          }
-        });
 
-        return shape;
-      },
-      getAnchorPoints(cfgM) {
-        let cfg = cfgM as TestGraphNode;
-        let points = [[0.5, 0]]; // The center of the top border
-        cfg.lines.forEach((item, index) => {
-          const lineHeight = (1 / (cfg.lines.length + 2))
-          points.push([1, lineHeight * (index + 2.5)]);
-        });
-        return points;
-      },
-      // Respond to states
-      setState(name, value, item) {
-        if (!item) {
-          throw new Error("");
-        }
-        if (name === 'selected') {
-          const group = item.getContainer();
-          //const shape = group.get('children')[0]; // Find the first graphics shape of the node. It is determined by the order of being added
-          const shape = group.findAll(function (item) {
-            return !item.get('visOnCollapse');
+            // code line in method
+            group.addShape('text', {
+              attrs: {
+                textBaseline: 'top',
+                x: 4,
+                y: 5 + (index + 2) * lineHeight,
+                lineHeight: 20,
+                text: item.code,
+                fill: colorBlack,
+                fontFamily: 'monospace',
+              },
+              name: `index-title-${index}`,
+              draggable: true,
+              visOnCollapse: false,
+            });
+
+            if (item.callsMethod) {
+              group.addShape('marker', {
+                attrs: {
+                  x: width - 16,
+                  y: 10 + (index + 2) * lineHeight,
+                  r: 6,
+                  cursor: 'pointer',
+                  symbol: G6.Marker.collapse,  //cfg.collapse ? G6.Marker.expand : G6.Marker.collapse,
+                  stroke: '#666',
+                  lineWidth: 1,
+                },
+                name: 'collapse-branch-icon',
+                visOnCollapse: false,
+                draggable: true,
+                index: index,
+                collapse: false,
+              });
+            }
           });
-          if (value) {
-            shape.forEach((s) => s.hide())
-          } else {
-            shape.forEach((s) => s.show())
+
+          return shape;
+        },
+        getAnchorPoints(cfgM) {
+          let cfg = cfgM as TestGraphNode;
+          let points = [[0.5, 0]]; // The center of the top border
+          cfg.lines.forEach((item, index) => {
+            const lineHeight = (1 / (cfg.lines.length + 2))
+            points.push([1, lineHeight * (index + 2.5)]);
+          });
+          return points;
+        },
+        // Respond to states
+        setState(name, value, item) {
+          if (!item) {
+            throw new Error("");
           }
-        }
+          if (name === 'selected') {
+            const group = item.getContainer();
+            //const shape = group.get('children')[0]; // Find the first graphics shape of the node. It is determined by the order of being added
+            const shape = group.findAll(function (item) {
+              return !item.get('visOnCollapse');
+            });
+            if (value) {
+              shape.forEach((s) => s.hide())
+            } else {
+              shape.forEach((s) => s.show())
+            }
+          }
+        },
       },
-    },
-    'single-node',
+      'single-node',
   );
 }
 
-function defaultView(graph: Graph) {
+function defaultView(graph: Graph, data: GraphData | undefined) {
+  if (!data) {
+    throw new Error();
+  }
   const { depthFirstSearch } = Algorithm;
   depthFirstSearch(data, 'root', {
     enter: ({ current, previous }) => {
@@ -222,6 +293,11 @@ function defaultView(graph: Graph) {
     leave: ({ current, previous }) => {
       // The callback function for the traversal's ending
       const currentNode = graph.findById(current);
+      if (currentNode && currentNode.get('model').addCovered) {
+        console.log('current covers!');
+      } else {
+        const i = 5;
+      }
       if (previous != null) {
         const previousNode = graph.findById(previous);
         if (currentNode && previousNode) {
@@ -233,10 +309,16 @@ function defaultView(graph: Graph) {
     }
   });
 
-  const nodes = graph.findAll('node', function (item) {
+  // collapse all non-added-coverage-nodes
+  const nodesNotAddingCoverage = graph.findAll('node', function (item) {
     return !item.get('model').addCovered;
   });
-  nodes.forEach((node) => {
+
+  const nodesLeadingToAddedCoverage = graph.findAll('node', function (item) {
+    return item.get('model').addCovered;
+  });
+
+  nodesNotAddingCoverage.forEach((node) => {
     // TODO set all outgoing markers to be collapsed
     // const nodeChildren = node.get('group').get('children');
     // nodeChildren.forEach( function (marker, index) {
@@ -247,25 +329,28 @@ function defaultView(graph: Graph) {
     collapseNodeInParent(node as TestGraphNode, graph);
   });
 
-
   const visible = graph.findAll('node', function (item) {
     return item.isVisible();
   });
-  // set markers correctly
-  visible.forEach((nodei) => {
-    let node = nodei as TestGraphNode;
-    // TODO set icons for all outgoing markers
-    const nodeChildren = node.get('group').get('children');
-    nodeChildren.forEach(function (marker: ShapeOptions, index: number) {
-      if (marker.get('type') === 'marker') {
-        // determine number of outgoing edges
-        const outgoing = node.getOutEdges()
-            .filter((edge: IEdge) => edge.get('model').sourceAnchor - 1 == marker.get('index'));
-        marker.attrs.symbol = collapseIcon(outgoing.filter((edge:IEdge) => edge.isVisible()).length, outgoing.length);
-      }
-    });
-  });
+  // // set markers correctly
+  // visible.forEach((nodei) => {
+  //   let node = nodei as TestGraphNode;
+  //   // TODO set icons for all outgoing markers
+  //   const nodeChildren = node.get('group').get('children');
+  //   nodeChildren.forEach(function (marker: ShapeOptions, index: number) {
+  //     if (marker.get('type') === 'marker') {
+  //       // determine number of outgoing edges
+  //       setMarkerCorrectly(node, marker);
+  //     }
+  //   });
+  // });
   graph.updateLayout({});
+}
+
+function setMarkerCorrectly(node: TestGraphNode, marker: ShapeOptions) {
+  const outgoing = node.getOutEdges()
+      .filter((edge: IEdge) => edge.get('model').sourceAnchor - 1 == marker.get('index'));
+  marker.attrs.symbol = collapseIcon(outgoing.filter((edge:IEdge) => edge.isVisible()).length, outgoing.length);
 }
 
 function collapseNodeInParent(node: TestGraphNode, graph: Graph) {
@@ -283,9 +368,10 @@ function collapseNodeInParent(node: TestGraphNode, graph: Graph) {
   if (fittingMarkers.length !== 1) {
     console.log("more or less than one source marker found!");
   } else {
-    fittingMarkers[0].attrs.symbol = G6.Marker.expand;
-    fittingMarkers[0].cfg.collapse = true;
     graph.hideItem(node);
+
+    setMarkerCorrectly(sourceNode, fittingMarkers[0]);
+    fittingMarkers[0].cfg.collapse = true;
   }
 }
 
@@ -306,17 +392,17 @@ function collapseMarker(node: TestGraphNode, marker: ShapeOptions, graph: Graph)
     // only expand one layer
     //children.forEach((c) => graph.showItem(c));
     marker.attrs.symbol = G6.Marker.collapse;
+    marker.cfg.collapse = false;
   } else {
-    // collapse branch
-    nextNodes.forEach((node) => graph.hideItem(node));
-
     // collapse all children
     const children = getAllChildren(graph, nextNodes);
-    children.forEach((c) => graph.hideItem(c));
+    children.forEach((child) => collapseNodeInParent(child, graph));
+
+    // collapse branch
+    nextNodes.forEach((node) => collapseNodeInParent(node as TestGraphNode, graph));
 
     marker.attrs.symbol = G6.Marker.expand;
   }
-  marker.cfg.collapse = !marker.cfg.collapse;
   graph.updateLayout({});
   graph.refresh();
 }
@@ -328,7 +414,14 @@ function App() {
   // @ts-ignore
   let graph: Graph = null;
 
+
+
   useEffect(() => {
+
+    const container = ReactDOM.findDOMNode(ref.current)!;
+
+    const selector = addSelector(container);
+
     if (!graph) {
       graph = new G6.Graph({
         // @ts-ignore
@@ -346,12 +439,13 @@ function App() {
           sortByCombo: true,
           //align: 'UL',
           nodesepFunc: (node: TestGraphNode) => {
-            return nodeHeight(node)/2;
+            return 10; //nodeHeight(node)/2;
             //node.getInEdges().map(e => e.getTarget().get)
           },
           ranksepFunc: (node: TestGraphNode) => {
-            return 250;
+            return 30;
           },
+          workerEnabled: true,
           //direction: 'LR',
           //indent: 600,
           // getHeight: (node) => {
@@ -391,11 +485,60 @@ function App() {
       graph.layout();
     });
 
-    graph.data(data);
+    // Listen to the selector, change the mode when the selector is changed
+    selector.addEventListener('change', (e) => {
+      // @ts-ignore
+      const value = e.target.value;
+
+      let dataToUse;
+      // change the behavior mode
+      switch (value) {
+        case 'data0':
+          dataToUse = data0;
+          break;
+        case 'data1':
+          dataToUse = data1;
+          break;
+        case 'data2':
+          dataToUse = data2;
+          break;
+        case 'data3':
+          dataToUse = data3;
+          break;
+        case 'data4':
+          dataToUse = data4;
+          break;
+        case 'data5':
+          dataToUse = data5;
+          break;
+        case 'data6':
+          dataToUse = data6;
+          break;
+        case 'data7':
+          dataToUse = data7;
+          break;
+        default:
+          console.log("no data for selection " + value + " found");
+          dataToUse = data;
+      }
+
+      graph.data(dataToUse);
+      graph.render();
+      defaultView(graph, dataToUse);
+      graph.fitView(20);
+    });
+
+    // if (typeof window !== 'undefined')
+    //   window.onresize = () => {
+    //     if (!graph || graph.get('destroyed')) return;
+    //     if (!container || !container.scrollWidth || !container.scrollHeight) return;
+    //     graph.changeSize(container.scrollWidth, container.scrollHeight - 30);
+    // };
+
+    graph.data(data0);
     graph.render();
-    defaultView(graph);
+    defaultView(graph, data0);
     graph.fitView(20);
-    console.log(graph.get('layout'));
   }, []);
 
 

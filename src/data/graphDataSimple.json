@@ -1,0 +1,1165 @@
+{
+  "nodes": [
+    {
+      "signature": "    public void settersOnOrphanAttribute_mg39_assSep117() throws Exception {",
+      "className": "org.jsoup.nodes.AttributeTest",
+      "id": "root",
+      "lines": [
+        {
+          "code": "    Attribute __DSPOT_o_0 \u003d new Attribute(\"5:Wz2[|+mr6#-VtX(r!F\", \"s2l\u003eUgIvC\u003dTU\u0026zgYc TM\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    Attribute attr \u003d new Attribute(\"one\", \"two\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    attr.setKey(\"three\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    String oldVal \u003d attr.setValue(\"four\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    boolean o_settersOnOrphanAttribute_mg39__8 \u003d attr.equals(__DSPOT_o_0);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    Assertions.assertFalse(o_settersOnOrphanAttribute_mg39__8);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": true,
+      "nodeLevel": 0
+    },
+    {
+      "signature": "    public Attribute(String key, @Nullable String value) {",
+      "className": "org.jsoup.nodes.Attribute",
+      "id": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String])_1189332830",
+      "lines": [
+        {
+          "code": "    this(key, value, null);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "    public Attribute(String key, @Nullable String value) {",
+      "className": "org.jsoup.nodes.Attribute",
+      "id": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String])_942440457",
+      "lines": [
+        {
+          "code": "    this(key, value, null);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "    public void setKey(String key) {",
+      "className": "org.jsoup.nodes.Attribute",
+      "id": "MethodSignatureBackedByPsiMethod: setKey([PsiType:String])_-2054696033",
+      "lines": [
+        {
+          "code": "    Validate.notNull(key);",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "    key \u003d key.trim();",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "    Validate.notEmpty(key); // trimming could potentially make empty, so validate here",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "    if (parent !\u003d null) {",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "        int i \u003d parent.indexOfKey(this.key);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        if (i !\u003d Attributes.NotFound)",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            parent.keys[i] \u003d key;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.key \u003d key;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "    public String setValue(String val) {",
+      "className": "org.jsoup.nodes.Attribute",
+      "id": "MethodSignatureBackedByPsiMethod: setValue([PsiType:String])_1148079579",
+      "lines": [
+        {
+          "code": "    String oldVal \u003d this.val;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "    if (parent !\u003d null) {",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "        oldVal \u003d parent.get(this.key); // trust the container more",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        int i \u003d parent.indexOfKey(this.key);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        if (i !\u003d Attributes.NotFound)",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            parent.vals[i] \u003d val;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.val \u003d val;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "    return Attributes.checkNotNull(oldVal);",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "    public boolean equals(Object o) { // note parent not considered",
+      "className": "org.jsoup.nodes.Attribute",
+      "id": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_243100176",
+      "lines": [
+        {
+          "code": "    if (this \u003d\u003d o) return true;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": true
+        },
+        {
+          "code": "    if (o \u003d\u003d null || getClass() !\u003d o.getClass()) return false;",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": true
+        },
+        {
+          "code": "    Attribute attribute \u003d (Attribute) o;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": true
+        },
+        {
+          "code": "    if (key !\u003d null ? !key.equals(attribute.key) : attribute.key !\u003d null) return false;",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": true
+        },
+        {
+          "code": "    return val !\u003d null ? val.equals(attribute.val) : attribute.val \u003d\u003d null;",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": true,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "assertFalse",
+      "className": "org.junit.jupiter.api.Assertions",
+      "id": "MethodSignatureBackedByPsiMethod: assertFalse([PsiType:boolean])_-1163910194",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "    public Attribute(String key, @Nullable String val, @Nullable Attributes parent) {",
+      "className": "org.jsoup.nodes.Attribute",
+      "id": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String, PsiType:Attributes])_-1426743138",
+      "lines": [
+        {
+          "code": "    Validate.notNull(key);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    key \u003d key.trim();",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    Validate.notEmpty(key); // trimming could potentially make empty, so validate here",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.key \u003d key;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.val \u003d val;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.parent \u003d parent;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "    public Attribute(String key, @Nullable String val, @Nullable Attributes parent) {",
+      "className": "org.jsoup.nodes.Attribute",
+      "id": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String, PsiType:Attributes])_738169197",
+      "lines": [
+        {
+          "code": "    Validate.notNull(key);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    key \u003d key.trim();",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    Validate.notEmpty(key); // trimming could potentially make empty, so validate here",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.key \u003d key;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.val \u003d val;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.parent \u003d parent;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "    public static void notNull(@Nullable Object obj) {",
+      "className": "org.jsoup.helper.Validate",
+      "id": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_1056399492",
+      "lines": [
+        {
+          "code": "    if (obj \u003d\u003d null)",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        throw new IllegalArgumentException(\"Object must not be null\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "trim",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: trim([])_-290990974",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "    public static void notEmpty(@Nullable String string) {",
+      "className": "org.jsoup.helper.Validate",
+      "id": "MethodSignatureBackedByPsiMethod: notEmpty([PsiType:String])_-1890723888",
+      "lines": [
+        {
+          "code": "    if (string \u003d\u003d null || string.length() \u003d\u003d 0)",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        throw new IllegalArgumentException(\"String must not be empty\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "    int indexOfKey(String key) {",
+      "className": "org.jsoup.nodes.Attributes",
+      "id": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_-1178036675",
+      "lines": [
+        {
+          "code": "    Validate.notNull(key);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    for (int i \u003d 0; i \u003c size; i++) {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        if (key.equals(keys[i]))",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            return i;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    return NotFound;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "    public String get(String key) {",
+      "className": "org.jsoup.nodes.Attributes",
+      "id": "MethodSignatureBackedByPsiMethod: get([PsiType:String])_-804250369",
+      "lines": [
+        {
+          "code": "    int i \u003d indexOfKey(key);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    return i \u003d\u003d NotFound ? EmptyString : checkNotNull(vals[i]);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "    int indexOfKey(String key) {",
+      "className": "org.jsoup.nodes.Attributes",
+      "id": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_-1495724874",
+      "lines": [
+        {
+          "code": "    Validate.notNull(key);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    for (int i \u003d 0; i \u003c size; i++) {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        if (key.equals(keys[i]))",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            return i;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    return NotFound;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "    static String checkNotNull(@Nullable String val) {",
+      "className": "org.jsoup.nodes.Attributes",
+      "id": "MethodSignatureBackedByPsiMethod: checkNotNull([PsiType:String])_-1529642364",
+      "lines": [
+        {
+          "code": "    return val \u003d\u003d null ? EmptyString : val;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "getClass",
+      "className": "java.lang.Object",
+      "id": "MethodSignatureBackedByPsiMethod: getClass([])_-1348747541",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "getClass",
+      "className": "java.lang.Object",
+      "id": "MethodSignatureBackedByPsiMethod: getClass([])_1688142134",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "equals",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_678295984",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "equals",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_-271168517",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "    public static void notNull(@Nullable Object obj) {",
+      "className": "org.jsoup.helper.Validate",
+      "id": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-705958360",
+      "lines": [
+        {
+          "code": "    if (obj \u003d\u003d null)",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        throw new IllegalArgumentException(\"Object must not be null\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "trim",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: trim([])_-919249883",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "    public static void notEmpty(@Nullable String string) {",
+      "className": "org.jsoup.helper.Validate",
+      "id": "MethodSignatureBackedByPsiMethod: notEmpty([PsiType:String])_-1857157450",
+      "lines": [
+        {
+          "code": "    if (string \u003d\u003d null || string.length() \u003d\u003d 0)",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        throw new IllegalArgumentException(\"String must not be empty\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "    public static void notNull(@Nullable Object obj) {",
+      "className": "org.jsoup.helper.Validate",
+      "id": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-2145065634",
+      "lines": [
+        {
+          "code": "    if (obj \u003d\u003d null)",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        throw new IllegalArgumentException(\"Object must not be null\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "trim",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: trim([])_876498331",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "    public static void notEmpty(@Nullable String string) {",
+      "className": "org.jsoup.helper.Validate",
+      "id": "MethodSignatureBackedByPsiMethod: notEmpty([PsiType:String])_1198584094",
+      "lines": [
+        {
+          "code": "    if (string \u003d\u003d null || string.length() \u003d\u003d 0)",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        throw new IllegalArgumentException(\"String must not be empty\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "IllegalArgumentException",
+      "className": "java.lang.IllegalArgumentException",
+      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1442666637",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "length",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: length([])_-1901251342",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "IllegalArgumentException",
+      "className": "java.lang.IllegalArgumentException",
+      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_884416264",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "    public static void notNull(@Nullable Object obj) {",
+      "className": "org.jsoup.helper.Validate",
+      "id": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_1376214052",
+      "lines": [
+        {
+          "code": "    if (obj \u003d\u003d null)",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        throw new IllegalArgumentException(\"Object must not be null\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "equals",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_336198972",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "    int indexOfKey(String key) {",
+      "className": "org.jsoup.nodes.Attributes",
+      "id": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_798213257",
+      "lines": [
+        {
+          "code": "    Validate.notNull(key);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    for (int i \u003d 0; i \u003c size; i++) {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        if (key.equals(keys[i]))",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "            return i;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    return NotFound;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "    static String checkNotNull(@Nullable String val) {",
+      "className": "org.jsoup.nodes.Attributes",
+      "id": "MethodSignatureBackedByPsiMethod: checkNotNull([PsiType:String])_-264242257",
+      "lines": [
+        {
+          "code": "    return val \u003d\u003d null ? EmptyString : val;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "    public static void notNull(@Nullable Object obj) {",
+      "className": "org.jsoup.helper.Validate",
+      "id": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_1983047545",
+      "lines": [
+        {
+          "code": "    if (obj \u003d\u003d null)",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        throw new IllegalArgumentException(\"Object must not be null\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "equals",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_1639306261",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "IllegalArgumentException",
+      "className": "java.lang.IllegalArgumentException",
+      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-1079041221",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "length",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: length([])_-808966670",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "IllegalArgumentException",
+      "className": "java.lang.IllegalArgumentException",
+      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1218356853",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "IllegalArgumentException",
+      "className": "java.lang.IllegalArgumentException",
+      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1644720629",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "length",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: length([])_1777020502",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "IllegalArgumentException",
+      "className": "java.lang.IllegalArgumentException",
+      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1678102841",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "IllegalArgumentException",
+      "className": "java.lang.IllegalArgumentException",
+      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-411506280",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "    public static void notNull(@Nullable Object obj) {",
+      "className": "org.jsoup.helper.Validate",
+      "id": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_358909386",
+      "lines": [
+        {
+          "code": "    if (obj \u003d\u003d null)",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        throw new IllegalArgumentException(\"Object must not be null\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "equals",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_-790399598",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "IllegalArgumentException",
+      "className": "java.lang.IllegalArgumentException",
+      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-903248871",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "IllegalArgumentException",
+      "className": "java.lang.IllegalArgumentException",
+      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-1238343709",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    }
+  ],
+  "edges": [
+    {
+      "source": "root",
+      "target": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String])_1189332830",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "root",
+      "target": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String])_942440457",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "root",
+      "target": "MethodSignatureBackedByPsiMethod: setKey([PsiType:String])_-2054696033",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "root",
+      "target": "MethodSignatureBackedByPsiMethod: setValue([PsiType:String])_1148079579",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "root",
+      "target": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_243100176",
+      "sourceAnchor": 5,
+      "targetAnchor": 0
+    },
+    {
+      "source": "root",
+      "target": "MethodSignatureBackedByPsiMethod: assertFalse([PsiType:boolean])_-1163910194",
+      "sourceAnchor": 6,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String])_1189332830",
+      "target": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String, PsiType:Attributes])_-1426743138",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String])_942440457",
+      "target": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String, PsiType:Attributes])_738169197",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: setKey([PsiType:String])_-2054696033",
+      "target": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_1056399492",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: setKey([PsiType:String])_-2054696033",
+      "target": "MethodSignatureBackedByPsiMethod: trim([])_-290990974",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: setKey([PsiType:String])_-2054696033",
+      "target": "MethodSignatureBackedByPsiMethod: notEmpty([PsiType:String])_-1890723888",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: setKey([PsiType:String])_-2054696033",
+      "target": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_-1178036675",
+      "sourceAnchor": 5,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: setValue([PsiType:String])_1148079579",
+      "target": "MethodSignatureBackedByPsiMethod: get([PsiType:String])_-804250369",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: setValue([PsiType:String])_1148079579",
+      "target": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_-1495724874",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: setValue([PsiType:String])_1148079579",
+      "target": "MethodSignatureBackedByPsiMethod: checkNotNull([PsiType:String])_-1529642364",
+      "sourceAnchor": 9,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_243100176",
+      "target": "MethodSignatureBackedByPsiMethod: getClass([])_-1348747541",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_243100176",
+      "target": "MethodSignatureBackedByPsiMethod: getClass([])_1688142134",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_243100176",
+      "target": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_678295984",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_243100176",
+      "target": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_-271168517",
+      "sourceAnchor": 5,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String, PsiType:Attributes])_-1426743138",
+      "target": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-705958360",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String, PsiType:Attributes])_-1426743138",
+      "target": "MethodSignatureBackedByPsiMethod: trim([])_-919249883",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String, PsiType:Attributes])_-1426743138",
+      "target": "MethodSignatureBackedByPsiMethod: notEmpty([PsiType:String])_-1857157450",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String, PsiType:Attributes])_738169197",
+      "target": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-2145065634",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String, PsiType:Attributes])_738169197",
+      "target": "MethodSignatureBackedByPsiMethod: trim([])_876498331",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: Attribute([PsiType:String, PsiType:String, PsiType:Attributes])_738169197",
+      "target": "MethodSignatureBackedByPsiMethod: notEmpty([PsiType:String])_1198584094",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_1056399492",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1442666637",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: notEmpty([PsiType:String])_-1890723888",
+      "target": "MethodSignatureBackedByPsiMethod: length([])_-1901251342",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: notEmpty([PsiType:String])_-1890723888",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_884416264",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_-1178036675",
+      "target": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_1376214052",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_-1178036675",
+      "target": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_336198972",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:String])_-804250369",
+      "target": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_798213257",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:String])_-804250369",
+      "target": "MethodSignatureBackedByPsiMethod: checkNotNull([PsiType:String])_-264242257",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_-1495724874",
+      "target": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_1983047545",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_-1495724874",
+      "target": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_1639306261",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-705958360",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-1079041221",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: notEmpty([PsiType:String])_-1857157450",
+      "target": "MethodSignatureBackedByPsiMethod: length([])_-808966670",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: notEmpty([PsiType:String])_-1857157450",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1218356853",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_-2145065634",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1644720629",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: notEmpty([PsiType:String])_1198584094",
+      "target": "MethodSignatureBackedByPsiMethod: length([])_1777020502",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: notEmpty([PsiType:String])_1198584094",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1678102841",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_1376214052",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-411506280",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_798213257",
+      "target": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_358909386",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: indexOfKey([PsiType:String])_798213257",
+      "target": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_-790399598",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_1983047545",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-903248871",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: notNull([PsiType:Object])_358909386",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-1238343709",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    }
+  ]
+}

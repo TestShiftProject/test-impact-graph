@@ -1,0 +1,3647 @@
+{
+  "nodes": [
+    {
+      "signature": "    public void shouldSupportClassInDefaultPackage_mg11_assSep58() throws Exception {",
+      "className": "ClassNameNoPackageTest",
+      "id": "root",
+      "lines": [
+        {
+          "code": "        List\u003cAnnotationSpec\u003e __DSPOT_annotations_0 \u003d Collections.\u003cAnnotationSpec\u003eemptyList();",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        ClassName className \u003d ClassName.get(ClassNameNoPackageTest.class);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        ClassName o_shouldSupportClassInDefaultPackage_mg11__5 \u003d className.annotated(__DSPOT_annotations_0);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        Truth.assertThat(((ClassName) (o_shouldSupportClassInDefaultPackage_mg11__5)).isAnnotated()).isFalse();",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": true,
+      "nodeLevel": 0
+    },
+    {
+      "signature": "emptyList",
+      "className": "java.util.Collections",
+      "id": "MethodSignatureBackedByPsiMethod: \u003cT\u003eemptyList([])_-569174689",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "  public static ClassName get(Class\u003c?\u003e clazz) {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "lines": [
+        {
+          "code": "    checkNotNull(clazz, \"clazz \u003d\u003d null\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    checkArgument(!clazz.isPrimitive(), \"primitive types cannot be represented as a ClassName\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    checkArgument(!void.class.equals(clazz), \"\u0027void\u0027 type cannot be represented as a ClassName\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    checkArgument(!clazz.isArray(), \"array types cannot be represented as a ClassName\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    String anonymousSuffix \u003d \"\";",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    while (clazz.isAnonymousClass()) {",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      int lastDollar \u003d clazz.getName().lastIndexOf(\u0027$\u0027);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      anonymousSuffix \u003d clazz.getName().substring(lastDollar) + anonymousSuffix;",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      clazz \u003d clazz.getEnclosingClass();",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    String name \u003d clazz.getSimpleName() + anonymousSuffix;",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    if (clazz.getEnclosingClass() \u003d\u003d null) {",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      // Avoid unreliable Class.getPackage(). https://github.com/square/javapoet/issues/295",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      int lastDot \u003d clazz.getName().lastIndexOf(\u0027.\u0027);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      String packageName \u003d (lastDot !\u003d -1) ? clazz.getName().substring(0, lastDot) : NO_PACKAGE;",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      return new ClassName(packageName, null, name);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    return ClassName.get(clazz.getEnclosingClass()).nestedClass(name);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "  @Override public ClassName annotated(List\u003cAnnotationSpec\u003e annotations) {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: annotated([PsiType:List\u003cAnnotationSpec\u003e])_1931080085",
+      "lines": [
+        {
+          "code": "    return new ClassName(packageName, enclosingClassName, simpleName,",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": true
+        },
+        {
+          "code": "        concatAnnotations(annotations));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": true
+        }
+      ],
+      "addCovered": true,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "isFalse",
+      "className": "com.google.common.truth.BooleanSubject",
+      "id": "MethodSignatureBackedByPsiMethod: isFalse([])_-43934092",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "assertThat",
+      "className": "com.google.common.truth.Truth",
+      "id": "MethodSignatureBackedByPsiMethod: assertThat([PsiType:Boolean])_779807742",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "  @Override public boolean isAnnotated() {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: isAnnotated([])_980228183",
+      "lines": [
+        {
+          "code": "    return super.isAnnotated() || (enclosingClassName !\u003d null \u0026\u0026 enclosingClassName.isAnnotated());",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 1
+    },
+    {
+      "signature": "  static \u003cT\u003e T checkNotNull(T reference, String format, Object... args) {",
+      "className": "com.squareup.javapoet.Util",
+      "id": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_-2025111035",
+      "lines": [
+        {
+          "code": "    if (reference \u003d\u003d null) throw new NullPointerException(String.format(format, args));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "    return reference;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "  static void checkArgument(boolean condition, String format, Object... args) {",
+      "className": "com.squareup.javapoet.Util",
+      "id": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-712042664",
+      "lines": [
+        {
+          "code": "    if (!condition) throw new IllegalArgumentException(String.format(format, args));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "isPrimitive",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: isPrimitive([])_1046333943",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "  static void checkArgument(boolean condition, String format, Object... args) {",
+      "className": "com.squareup.javapoet.Util",
+      "id": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-1950080678",
+      "lines": [
+        {
+          "code": "    if (!condition) throw new IllegalArgumentException(String.format(format, args));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "equals",
+      "className": "java.lang.Object",
+      "id": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_1170173623",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "  static void checkArgument(boolean condition, String format, Object... args) {",
+      "className": "com.squareup.javapoet.Util",
+      "id": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_1888953448",
+      "lines": [
+        {
+          "code": "    if (!condition) throw new IllegalArgumentException(String.format(format, args));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "isArray",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: isArray([])_-1181303658",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "isAnonymousClass",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: isAnonymousClass([])_-1463231574",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "lastIndexOf",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: lastIndexOf([PsiType:int])_-1078893231",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "getName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getName([])_571858952",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "substring",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: substring([PsiType:int])_225646406",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "getName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getName([])_-1322938004",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "getEnclosingClass",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_1699742811",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "getSimpleName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getSimpleName([])_-1819238142",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "getEnclosingClass",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_-993063118",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "lastIndexOf",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: lastIndexOf([PsiType:int])_-1950207496",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "getName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getName([])_-1727112817",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "substring",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: substring([PsiType:int, PsiType:int])_-197028490",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "getName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getName([])_1072557357",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "  private ClassName(String packageName, ClassName enclosingClassName, String simpleName) {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_550791155",
+      "lines": [
+        {
+          "code": "    this(packageName, enclosingClassName, simpleName, Collections.emptyList());",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "  public ClassName nestedClass(String name) {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: nestedClass([PsiType:String])_-1899823022",
+      "lines": [
+        {
+          "code": "    return new ClassName(packageName, this, name);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "  public static ClassName get(Class\u003c?\u003e clazz) {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "lines": [
+        {
+          "code": "    checkNotNull(clazz, \"clazz \u003d\u003d null\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    checkArgument(!clazz.isPrimitive(), \"primitive types cannot be represented as a ClassName\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    checkArgument(!void.class.equals(clazz), \"\u0027void\u0027 type cannot be represented as a ClassName\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    checkArgument(!clazz.isArray(), \"array types cannot be represented as a ClassName\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    String anonymousSuffix \u003d \"\";",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    while (clazz.isAnonymousClass()) {",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      int lastDollar \u003d clazz.getName().lastIndexOf(\u0027$\u0027);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      anonymousSuffix \u003d clazz.getName().substring(lastDollar) + anonymousSuffix;",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      clazz \u003d clazz.getEnclosingClass();",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    String name \u003d clazz.getSimpleName() + anonymousSuffix;",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    if (clazz.getEnclosingClass() \u003d\u003d null) {",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      // Avoid unreliable Class.getPackage(). https://github.com/square/javapoet/issues/295",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      int lastDot \u003d clazz.getName().lastIndexOf(\u0027.\u0027);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      String packageName \u003d (lastDot !\u003d -1) ? clazz.getName().substring(0, lastDot) : NO_PACKAGE;",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      return new ClassName(packageName, null, name);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    return ClassName.get(clazz.getEnclosingClass()).nestedClass(name);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "getEnclosingClass",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_-1282868778",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "  private ClassName(String packageName, ClassName enclosingClassName, String simpleName,",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_1150450843",
+      "lines": [
+        {
+          "code": "      List\u003cAnnotationSpec\u003e annotations) {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    super(annotations);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.packageName \u003d Objects.requireNonNull(packageName, \"packageName \u003d\u003d null\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.enclosingClassName \u003d enclosingClassName;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.simpleName \u003d simpleName;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.canonicalName \u003d enclosingClassName !\u003d null",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        ? (enclosingClassName.canonicalName + \u0027.\u0027 + simpleName)",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        : (packageName.isEmpty() ? simpleName : packageName + \u0027.\u0027 + simpleName);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "  protected final List\u003cAnnotationSpec\u003e concatAnnotations(List\u003cAnnotationSpec\u003e annotations) {",
+      "className": "com.squareup.javapoet.TypeName",
+      "id": "MethodSignatureBackedByPsiMethod: concatAnnotations([PsiType:List\u003cAnnotationSpec\u003e])_1535140994",
+      "lines": [
+        {
+          "code": "    List\u003cAnnotationSpec\u003e allAnnotations \u003d new ArrayList\u003c\u003e(this.annotations);",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": true
+        },
+        {
+          "code": "    allAnnotations.addAll(annotations);",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": true
+        },
+        {
+          "code": "    return allAnnotations;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": true
+        }
+      ],
+      "addCovered": true,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "  public boolean isAnnotated() {",
+      "className": "com.squareup.javapoet.TypeName",
+      "id": "MethodSignatureBackedByPsiMethod: isAnnotated([])_1497676407",
+      "lines": [
+        {
+          "code": "    return !annotations.isEmpty();",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "  @Override public boolean isAnnotated() {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: isAnnotated([])_-190937097",
+      "lines": [
+        {
+          "code": "    return super.isAnnotated() || (enclosingClassName !\u003d null \u0026\u0026 enclosingClassName.isAnnotated());",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 2
+    },
+    {
+      "signature": "NullPointerException",
+      "className": "java.lang.NullPointerException",
+      "id": "MethodSignatureBackedByPsiMethod: NullPointerException([PsiType:String])_-840917916",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "format",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_-647500430",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "IllegalArgumentException",
+      "className": "java.lang.IllegalArgumentException",
+      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-840883188",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "format",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_456966445",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "IllegalArgumentException",
+      "className": "java.lang.IllegalArgumentException",
+      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-105557820",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "format",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_1716933938",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "IllegalArgumentException",
+      "className": "java.lang.IllegalArgumentException",
+      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1543461843",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "format",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_-65398578",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "  private ClassName(String packageName, ClassName enclosingClassName, String simpleName,",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_-898940085",
+      "lines": [
+        {
+          "code": "      List\u003cAnnotationSpec\u003e annotations) {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    super(annotations);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.packageName \u003d Objects.requireNonNull(packageName, \"packageName \u003d\u003d null\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.enclosingClassName \u003d enclosingClassName;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.simpleName \u003d simpleName;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.canonicalName \u003d enclosingClassName !\u003d null",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        ? (enclosingClassName.canonicalName + \u0027.\u0027 + simpleName)",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        : (packageName.isEmpty() ? simpleName : packageName + \u0027.\u0027 + simpleName);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "emptyList",
+      "className": "java.util.Collections",
+      "id": "MethodSignatureBackedByPsiMethod: \u003cT\u003eemptyList([])_493334547",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "  private ClassName(String packageName, ClassName enclosingClassName, String simpleName) {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_-377090387",
+      "lines": [
+        {
+          "code": "    this(packageName, enclosingClassName, simpleName, Collections.emptyList());",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "  static \u003cT\u003e T checkNotNull(T reference, String format, Object... args) {",
+      "className": "com.squareup.javapoet.Util",
+      "id": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_-1987606266",
+      "lines": [
+        {
+          "code": "    if (reference \u003d\u003d null) throw new NullPointerException(String.format(format, args));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "    return reference;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "  static void checkArgument(boolean condition, String format, Object... args) {",
+      "className": "com.squareup.javapoet.Util",
+      "id": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-2029806091",
+      "lines": [
+        {
+          "code": "    if (!condition) throw new IllegalArgumentException(String.format(format, args));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "isPrimitive",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: isPrimitive([])_1312155753",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "  static void checkArgument(boolean condition, String format, Object... args) {",
+      "className": "com.squareup.javapoet.Util",
+      "id": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-6104377",
+      "lines": [
+        {
+          "code": "    if (!condition) throw new IllegalArgumentException(String.format(format, args));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "equals",
+      "className": "java.lang.Object",
+      "id": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_1718025795",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "  static void checkArgument(boolean condition, String format, Object... args) {",
+      "className": "com.squareup.javapoet.Util",
+      "id": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_1790811331",
+      "lines": [
+        {
+          "code": "    if (!condition) throw new IllegalArgumentException(String.format(format, args));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "isArray",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: isArray([])_-107171182",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "isAnonymousClass",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: isAnonymousClass([])_1663356247",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "lastIndexOf",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: lastIndexOf([PsiType:int])_194155730",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "getName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getName([])_1587356807",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "substring",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: substring([PsiType:int])_-1627767497",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "getName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getName([])_236226436",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "getEnclosingClass",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_1741130954",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "getSimpleName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getSimpleName([])_-1245482241",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "getEnclosingClass",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_-963370543",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "lastIndexOf",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: lastIndexOf([PsiType:int])_-25870683",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "getName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getName([])_-1779296216",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "substring",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: substring([PsiType:int, PsiType:int])_672807974",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "getName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getName([])_1513904495",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "  private ClassName(String packageName, ClassName enclosingClassName, String simpleName) {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_-988214354",
+      "lines": [
+        {
+          "code": "    this(packageName, enclosingClassName, simpleName, Collections.emptyList());",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "  public ClassName nestedClass(String name) {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: nestedClass([PsiType:String])_1139107643",
+      "lines": [
+        {
+          "code": "    return new ClassName(packageName, this, name);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "  public static ClassName get(Class\u003c?\u003e clazz) {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "lines": [
+        {
+          "code": "    checkNotNull(clazz, \"clazz \u003d\u003d null\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    checkArgument(!clazz.isPrimitive(), \"primitive types cannot be represented as a ClassName\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    checkArgument(!void.class.equals(clazz), \"\u0027void\u0027 type cannot be represented as a ClassName\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    checkArgument(!clazz.isArray(), \"array types cannot be represented as a ClassName\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    String anonymousSuffix \u003d \"\";",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    while (clazz.isAnonymousClass()) {",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      int lastDollar \u003d clazz.getName().lastIndexOf(\u0027$\u0027);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      anonymousSuffix \u003d clazz.getName().substring(lastDollar) + anonymousSuffix;",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      clazz \u003d clazz.getEnclosingClass();",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    String name \u003d clazz.getSimpleName() + anonymousSuffix;",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    if (clazz.getEnclosingClass() \u003d\u003d null) {",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      // Avoid unreliable Class.getPackage(). https://github.com/square/javapoet/issues/295",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      int lastDot \u003d clazz.getName().lastIndexOf(\u0027.\u0027);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      String packageName \u003d (lastDot !\u003d -1) ? clazz.getName().substring(0, lastDot) : NO_PACKAGE;",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      return new ClassName(packageName, null, name);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    return ClassName.get(clazz.getEnclosingClass()).nestedClass(name);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "getEnclosingClass",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_-322291275",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "  TypeName(List\u003cAnnotationSpec\u003e annotations) {",
+      "className": "com.squareup.javapoet.TypeName",
+      "id": "MethodSignatureBackedByPsiMethod: TypeName([PsiType:List\u003cAnnotationSpec\u003e])_1596341734",
+      "lines": [
+        {
+          "code": "    this(null, annotations);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "requireNonNull",
+      "className": "java.util.Objects",
+      "id": "MethodSignatureBackedByPsiMethod: \u003cT\u003erequireNonNull([PsiType:T, PsiType:String])_1851627330",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "isEmpty",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: isEmpty([])_1623190095",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "ArrayList",
+      "className": "java.util.ArrayList",
+      "id": "MethodSignatureBackedByPsiMethod: ArrayList([PsiType:Collection\u003c? extends E\u003e])_-1212695001",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "addAll",
+      "className": "java.util.List",
+      "id": "MethodSignatureBackedByPsiMethod: addAll([PsiType:Collection\u003c? extends E\u003e])_76719325",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "isEmpty",
+      "className": "java.util.List",
+      "id": "MethodSignatureBackedByPsiMethod: isEmpty([])_-723556525",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "  public boolean isAnnotated() {",
+      "className": "com.squareup.javapoet.TypeName",
+      "id": "MethodSignatureBackedByPsiMethod: isAnnotated([])_-2023041042",
+      "lines": [
+        {
+          "code": "    return !annotations.isEmpty();",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "  @Override public boolean isAnnotated() {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: isAnnotated([])_74686887",
+      "lines": [
+        {
+          "code": "    return super.isAnnotated() || (enclosingClassName !\u003d null \u0026\u0026 enclosingClassName.isAnnotated());",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 3
+    },
+    {
+      "signature": "  TypeName(List\u003cAnnotationSpec\u003e annotations) {",
+      "className": "com.squareup.javapoet.TypeName",
+      "id": "MethodSignatureBackedByPsiMethod: TypeName([PsiType:List\u003cAnnotationSpec\u003e])_-1061878371",
+      "lines": [
+        {
+          "code": "    this(null, annotations);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "requireNonNull",
+      "className": "java.util.Objects",
+      "id": "MethodSignatureBackedByPsiMethod: \u003cT\u003erequireNonNull([PsiType:T, PsiType:String])_-1025255555",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "isEmpty",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: isEmpty([])_481315033",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "  private ClassName(String packageName, ClassName enclosingClassName, String simpleName,",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_1627196476",
+      "lines": [
+        {
+          "code": "      List\u003cAnnotationSpec\u003e annotations) {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    super(annotations);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.packageName \u003d Objects.requireNonNull(packageName, \"packageName \u003d\u003d null\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.enclosingClassName \u003d enclosingClassName;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.simpleName \u003d simpleName;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.canonicalName \u003d enclosingClassName !\u003d null",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        ? (enclosingClassName.canonicalName + \u0027.\u0027 + simpleName)",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        : (packageName.isEmpty() ? simpleName : packageName + \u0027.\u0027 + simpleName);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "emptyList",
+      "className": "java.util.Collections",
+      "id": "MethodSignatureBackedByPsiMethod: \u003cT\u003eemptyList([])_-547606753",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "NullPointerException",
+      "className": "java.lang.NullPointerException",
+      "id": "MethodSignatureBackedByPsiMethod: NullPointerException([PsiType:String])_-1308879311",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "format",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_-812359704",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "IllegalArgumentException",
+      "className": "java.lang.IllegalArgumentException",
+      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-580527852",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "format",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_735994368",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "IllegalArgumentException",
+      "className": "java.lang.IllegalArgumentException",
+      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-1401135139",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "format",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_1313946729",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "IllegalArgumentException",
+      "className": "java.lang.IllegalArgumentException",
+      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1579464907",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "format",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_1468727156",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "  private ClassName(String packageName, ClassName enclosingClassName, String simpleName,",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_-268258087",
+      "lines": [
+        {
+          "code": "      List\u003cAnnotationSpec\u003e annotations) {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    super(annotations);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.packageName \u003d Objects.requireNonNull(packageName, \"packageName \u003d\u003d null\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.enclosingClassName \u003d enclosingClassName;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.simpleName \u003d simpleName;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.canonicalName \u003d enclosingClassName !\u003d null",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        ? (enclosingClassName.canonicalName + \u0027.\u0027 + simpleName)",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        : (packageName.isEmpty() ? simpleName : packageName + \u0027.\u0027 + simpleName);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "emptyList",
+      "className": "java.util.Collections",
+      "id": "MethodSignatureBackedByPsiMethod: \u003cT\u003eemptyList([])_-414366668",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "  private ClassName(String packageName, ClassName enclosingClassName, String simpleName) {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_233878509",
+      "lines": [
+        {
+          "code": "    this(packageName, enclosingClassName, simpleName, Collections.emptyList());",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "  static \u003cT\u003e T checkNotNull(T reference, String format, Object... args) {",
+      "className": "com.squareup.javapoet.Util",
+      "id": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_1964225402",
+      "lines": [
+        {
+          "code": "    if (reference \u003d\u003d null) throw new NullPointerException(String.format(format, args));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "    return reference;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "  static void checkArgument(boolean condition, String format, Object... args) {",
+      "className": "com.squareup.javapoet.Util",
+      "id": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-182941306",
+      "lines": [
+        {
+          "code": "    if (!condition) throw new IllegalArgumentException(String.format(format, args));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "isPrimitive",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: isPrimitive([])_-1503429892",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "  static void checkArgument(boolean condition, String format, Object... args) {",
+      "className": "com.squareup.javapoet.Util",
+      "id": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_762565049",
+      "lines": [
+        {
+          "code": "    if (!condition) throw new IllegalArgumentException(String.format(format, args));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "equals",
+      "className": "java.lang.Object",
+      "id": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_-1641968047",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "  static void checkArgument(boolean condition, String format, Object... args) {",
+      "className": "com.squareup.javapoet.Util",
+      "id": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-209922892",
+      "lines": [
+        {
+          "code": "    if (!condition) throw new IllegalArgumentException(String.format(format, args));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "isArray",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: isArray([])_763984616",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "isAnonymousClass",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: isAnonymousClass([])_-272963800",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "lastIndexOf",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: lastIndexOf([PsiType:int])_-1835155158",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "getName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getName([])_462823492",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "substring",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: substring([PsiType:int])_881058401",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "getName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getName([])_203739693",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "getEnclosingClass",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_1702687262",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "getSimpleName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getSimpleName([])_-748519410",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "getEnclosingClass",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_1695763245",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "lastIndexOf",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: lastIndexOf([PsiType:int])_32744765",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "getName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getName([])_1146575714",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "substring",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: substring([PsiType:int, PsiType:int])_976589572",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "getName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getName([])_1829838524",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "  private ClassName(String packageName, ClassName enclosingClassName, String simpleName) {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_1254524689",
+      "lines": [
+        {
+          "code": "    this(packageName, enclosingClassName, simpleName, Collections.emptyList());",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "  public ClassName nestedClass(String name) {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: nestedClass([PsiType:String])_-1257821768",
+      "lines": [
+        {
+          "code": "    return new ClassName(packageName, this, name);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "  public static ClassName get(Class\u003c?\u003e clazz) {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "lines": [
+        {
+          "code": "    checkNotNull(clazz, \"clazz \u003d\u003d null\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    checkArgument(!clazz.isPrimitive(), \"primitive types cannot be represented as a ClassName\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    checkArgument(!void.class.equals(clazz), \"\u0027void\u0027 type cannot be represented as a ClassName\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    checkArgument(!clazz.isArray(), \"array types cannot be represented as a ClassName\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    String anonymousSuffix \u003d \"\";",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    while (clazz.isAnonymousClass()) {",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      int lastDollar \u003d clazz.getName().lastIndexOf(\u0027$\u0027);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      anonymousSuffix \u003d clazz.getName().substring(lastDollar) + anonymousSuffix;",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      clazz \u003d clazz.getEnclosingClass();",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    String name \u003d clazz.getSimpleName() + anonymousSuffix;",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    if (clazz.getEnclosingClass() \u003d\u003d null) {",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      // Avoid unreliable Class.getPackage(). https://github.com/square/javapoet/issues/295",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      int lastDot \u003d clazz.getName().lastIndexOf(\u0027.\u0027);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      String packageName \u003d (lastDot !\u003d -1) ? clazz.getName().substring(0, lastDot) : NO_PACKAGE;",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      return new ClassName(packageName, null, name);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    return ClassName.get(clazz.getEnclosingClass()).nestedClass(name);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "getEnclosingClass",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_1872026562",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "  private TypeName(String keyword, List\u003cAnnotationSpec\u003e annotations) {",
+      "className": "com.squareup.javapoet.TypeName",
+      "id": "MethodSignatureBackedByPsiMethod: TypeName([PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_-2140452183",
+      "lines": [
+        {
+          "code": "    this.keyword \u003d keyword;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.annotations \u003d Util.immutableList(annotations);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "isEmpty",
+      "className": "java.util.List",
+      "id": "MethodSignatureBackedByPsiMethod: isEmpty([])_-1708536280",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "  public boolean isAnnotated() {",
+      "className": "com.squareup.javapoet.TypeName",
+      "id": "MethodSignatureBackedByPsiMethod: isAnnotated([])_-1502235559",
+      "lines": [
+        {
+          "code": "    return !annotations.isEmpty();",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "  @Override public boolean isAnnotated() {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: isAnnotated([])_514826501",
+      "lines": [
+        {
+          "code": "    return super.isAnnotated() || (enclosingClassName !\u003d null \u0026\u0026 enclosingClassName.isAnnotated());",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 4
+    },
+    {
+      "signature": "  private TypeName(String keyword, List\u003cAnnotationSpec\u003e annotations) {",
+      "className": "com.squareup.javapoet.TypeName",
+      "id": "MethodSignatureBackedByPsiMethod: TypeName([PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_-1545403500",
+      "lines": [
+        {
+          "code": "    this.keyword \u003d keyword;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.annotations \u003d Util.immutableList(annotations);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "  TypeName(List\u003cAnnotationSpec\u003e annotations) {",
+      "className": "com.squareup.javapoet.TypeName",
+      "id": "MethodSignatureBackedByPsiMethod: TypeName([PsiType:List\u003cAnnotationSpec\u003e])_871905007",
+      "lines": [
+        {
+          "code": "    this(null, annotations);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "requireNonNull",
+      "className": "java.util.Objects",
+      "id": "MethodSignatureBackedByPsiMethod: \u003cT\u003erequireNonNull([PsiType:T, PsiType:String])_-1078205981",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "isEmpty",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: isEmpty([])_1909789047",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "  TypeName(List\u003cAnnotationSpec\u003e annotations) {",
+      "className": "com.squareup.javapoet.TypeName",
+      "id": "MethodSignatureBackedByPsiMethod: TypeName([PsiType:List\u003cAnnotationSpec\u003e])_-1620764050",
+      "lines": [
+        {
+          "code": "    this(null, annotations);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "requireNonNull",
+      "className": "java.util.Objects",
+      "id": "MethodSignatureBackedByPsiMethod: \u003cT\u003erequireNonNull([PsiType:T, PsiType:String])_-1581964360",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "isEmpty",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: isEmpty([])_1534528248",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "  private ClassName(String packageName, ClassName enclosingClassName, String simpleName,",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_786818439",
+      "lines": [
+        {
+          "code": "      List\u003cAnnotationSpec\u003e annotations) {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    super(annotations);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.packageName \u003d Objects.requireNonNull(packageName, \"packageName \u003d\u003d null\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.enclosingClassName \u003d enclosingClassName;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.simpleName \u003d simpleName;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.canonicalName \u003d enclosingClassName !\u003d null",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        ? (enclosingClassName.canonicalName + \u0027.\u0027 + simpleName)",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        : (packageName.isEmpty() ? simpleName : packageName + \u0027.\u0027 + simpleName);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "emptyList",
+      "className": "java.util.Collections",
+      "id": "MethodSignatureBackedByPsiMethod: \u003cT\u003eemptyList([])_-270490198",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "NullPointerException",
+      "className": "java.lang.NullPointerException",
+      "id": "MethodSignatureBackedByPsiMethod: NullPointerException([PsiType:String])_271583497",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "format",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_-149858838",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "IllegalArgumentException",
+      "className": "java.lang.IllegalArgumentException",
+      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-163463757",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "format",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_1144261265",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "IllegalArgumentException",
+      "className": "java.lang.IllegalArgumentException",
+      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1724790527",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "format",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_-2109164996",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "IllegalArgumentException",
+      "className": "java.lang.IllegalArgumentException",
+      "id": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-1433728415",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "format",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_1028598410",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "  private ClassName(String packageName, ClassName enclosingClassName, String simpleName,",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_2104702782",
+      "lines": [
+        {
+          "code": "      List\u003cAnnotationSpec\u003e annotations) {",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    super(annotations);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.packageName \u003d Objects.requireNonNull(packageName, \"packageName \u003d\u003d null\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.enclosingClassName \u003d enclosingClassName;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.simpleName \u003d simpleName;",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    this.canonicalName \u003d enclosingClassName !\u003d null",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        ? (enclosingClassName.canonicalName + \u0027.\u0027 + simpleName)",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "        : (packageName.isEmpty() ? simpleName : packageName + \u0027.\u0027 + simpleName);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "emptyList",
+      "className": "java.util.Collections",
+      "id": "MethodSignatureBackedByPsiMethod: \u003cT\u003eemptyList([])_1282937224",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "  private ClassName(String packageName, ClassName enclosingClassName, String simpleName) {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_1814109423",
+      "lines": [
+        {
+          "code": "    this(packageName, enclosingClassName, simpleName, Collections.emptyList());",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "  static \u003cT\u003e T checkNotNull(T reference, String format, Object... args) {",
+      "className": "com.squareup.javapoet.Util",
+      "id": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_1123328155",
+      "lines": [
+        {
+          "code": "    if (reference \u003d\u003d null) throw new NullPointerException(String.format(format, args));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        },
+        {
+          "code": "    return reference;",
+          "callsMethod": false,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "  static void checkArgument(boolean condition, String format, Object... args) {",
+      "className": "com.squareup.javapoet.Util",
+      "id": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_2109511202",
+      "lines": [
+        {
+          "code": "    if (!condition) throw new IllegalArgumentException(String.format(format, args));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "isPrimitive",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: isPrimitive([])_-1245656413",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "  static void checkArgument(boolean condition, String format, Object... args) {",
+      "className": "com.squareup.javapoet.Util",
+      "id": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-738085368",
+      "lines": [
+        {
+          "code": "    if (!condition) throw new IllegalArgumentException(String.format(format, args));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "equals",
+      "className": "java.lang.Object",
+      "id": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_1225970479",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "  static void checkArgument(boolean condition, String format, Object... args) {",
+      "className": "com.squareup.javapoet.Util",
+      "id": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_1217694522",
+      "lines": [
+        {
+          "code": "    if (!condition) throw new IllegalArgumentException(String.format(format, args));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "isArray",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: isArray([])_348424958",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "isAnonymousClass",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: isAnonymousClass([])_319071545",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "lastIndexOf",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: lastIndexOf([PsiType:int])_569761305",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "getName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getName([])_-2124270347",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "substring",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: substring([PsiType:int])_-238912946",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "getName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getName([])_1585008067",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "getEnclosingClass",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_-1910531879",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "getSimpleName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getSimpleName([])_559242141",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "getEnclosingClass",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_535852143",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "lastIndexOf",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: lastIndexOf([PsiType:int])_-78175054",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "getName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getName([])_597900572",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "substring",
+      "className": "java.lang.String",
+      "id": "MethodSignatureBackedByPsiMethod: substring([PsiType:int, PsiType:int])_1253502853",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "getName",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getName([])_2014543237",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "  private ClassName(String packageName, ClassName enclosingClassName, String simpleName) {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_-223380434",
+      "lines": [
+        {
+          "code": "    this(packageName, enclosingClassName, simpleName, Collections.emptyList());",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "  public ClassName nestedClass(String name) {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: nestedClass([PsiType:String])_-1464438391",
+      "lines": [
+        {
+          "code": "    return new ClassName(packageName, this, name);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "  public static ClassName get(Class\u003c?\u003e clazz) {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_218543742",
+      "lines": [
+        {
+          "code": "    checkNotNull(clazz, \"clazz \u003d\u003d null\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    checkArgument(!clazz.isPrimitive(), \"primitive types cannot be represented as a ClassName\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    checkArgument(!void.class.equals(clazz), \"\u0027void\u0027 type cannot be represented as a ClassName\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    checkArgument(!clazz.isArray(), \"array types cannot be represented as a ClassName\");",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    String anonymousSuffix \u003d \"\";",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    while (clazz.isAnonymousClass()) {",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      int lastDollar \u003d clazz.getName().lastIndexOf(\u0027$\u0027);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      anonymousSuffix \u003d clazz.getName().substring(lastDollar) + anonymousSuffix;",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      clazz \u003d clazz.getEnclosingClass();",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    String name \u003d clazz.getSimpleName() + anonymousSuffix;",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    if (clazz.getEnclosingClass() \u003d\u003d null) {",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      // Avoid unreliable Class.getPackage(). https://github.com/square/javapoet/issues/295",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      int lastDot \u003d clazz.getName().lastIndexOf(\u0027.\u0027);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      String packageName \u003d (lastDot !\u003d -1) ? clazz.getName().substring(0, lastDot) : NO_PACKAGE;",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "      return new ClassName(packageName, null, name);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    }",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "",
+          "callsMethod": false,
+          "covered": false,
+          "addCovered": false
+        },
+        {
+          "code": "    return ClassName.get(clazz.getEnclosingClass()).nestedClass(name);",
+          "callsMethod": true,
+          "covered": false,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "getEnclosingClass",
+      "className": "java.lang.Class",
+      "id": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_-2115447708",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "  static \u003cT\u003e List\u003cT\u003e immutableList(Collection\u003cT\u003e collection) {",
+      "className": "com.squareup.javapoet.Util",
+      "id": "MethodSignatureBackedByPsiMethod: \u003cT\u003eimmutableList([PsiType:Collection\u003cT\u003e])_1176514576",
+      "lines": [
+        {
+          "code": "    return Collections.unmodifiableList(new ArrayList\u003c\u003e(collection));",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "isEmpty",
+      "className": "java.util.List",
+      "id": "MethodSignatureBackedByPsiMethod: isEmpty([])_-536757062",
+      "lines": [],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "  public boolean isAnnotated() {",
+      "className": "com.squareup.javapoet.TypeName",
+      "id": "MethodSignatureBackedByPsiMethod: isAnnotated([])_708959375",
+      "lines": [
+        {
+          "code": "    return !annotations.isEmpty();",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 5
+    },
+    {
+      "signature": "  @Override public boolean isAnnotated() {",
+      "className": "com.squareup.javapoet.ClassName",
+      "id": "MethodSignatureBackedByPsiMethod: isAnnotated([])_1461929777",
+      "lines": [
+        {
+          "code": "    return super.isAnnotated() || (enclosingClassName !\u003d null \u0026\u0026 enclosingClassName.isAnnotated());",
+          "callsMethod": true,
+          "covered": true,
+          "addCovered": false
+        }
+      ],
+      "addCovered": false,
+      "nodeLevel": 5
+    }
+  ],
+  "edges": [
+    {
+      "source": "root",
+      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003eemptyList([])_-569174689",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "root",
+      "target": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "root",
+      "target": "MethodSignatureBackedByPsiMethod: annotated([PsiType:List\u003cAnnotationSpec\u003e])_1931080085",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "root",
+      "target": "MethodSignatureBackedByPsiMethod: isFalse([])_-43934092",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "root",
+      "target": "MethodSignatureBackedByPsiMethod: assertThat([PsiType:Boolean])_779807742",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "root",
+      "target": "MethodSignatureBackedByPsiMethod: isAnnotated([])_980228183",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_-2025111035",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-712042664",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: isPrimitive([])_1046333943",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-1950080678",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_1170173623",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_1888953448",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: isArray([])_-1181303658",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: isAnonymousClass([])_-1463231574",
+      "sourceAnchor": 7,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: lastIndexOf([PsiType:int])_-1078893231",
+      "sourceAnchor": 8,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: getName([])_571858952",
+      "sourceAnchor": 8,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: substring([PsiType:int])_225646406",
+      "sourceAnchor": 9,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: getName([])_-1322938004",
+      "sourceAnchor": 9,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_1699742811",
+      "sourceAnchor": 10,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: getSimpleName([])_-1819238142",
+      "sourceAnchor": 12,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_-993063118",
+      "sourceAnchor": 14,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: lastIndexOf([PsiType:int])_-1950207496",
+      "sourceAnchor": 16,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: getName([])_-1727112817",
+      "sourceAnchor": 16,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: substring([PsiType:int, PsiType:int])_-197028490",
+      "sourceAnchor": 17,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: getName([])_1072557357",
+      "sourceAnchor": 17,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_550791155",
+      "sourceAnchor": 18,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: nestedClass([PsiType:String])_-1899823022",
+      "sourceAnchor": 21,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "sourceAnchor": 21,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1121747235",
+      "target": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_-1282868778",
+      "sourceAnchor": 21,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: annotated([PsiType:List\u003cAnnotationSpec\u003e])_1931080085",
+      "target": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_1150450843",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: annotated([PsiType:List\u003cAnnotationSpec\u003e])_1931080085",
+      "target": "MethodSignatureBackedByPsiMethod: concatAnnotations([PsiType:List\u003cAnnotationSpec\u003e])_1535140994",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: isAnnotated([])_980228183",
+      "target": "MethodSignatureBackedByPsiMethod: isAnnotated([])_1497676407",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: isAnnotated([])_980228183",
+      "target": "MethodSignatureBackedByPsiMethod: isAnnotated([])_-190937097",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_-2025111035",
+      "target": "MethodSignatureBackedByPsiMethod: NullPointerException([PsiType:String])_-840917916",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_-2025111035",
+      "target": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_-647500430",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-712042664",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-840883188",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-712042664",
+      "target": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_456966445",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-1950080678",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-105557820",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-1950080678",
+      "target": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_1716933938",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_1888953448",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1543461843",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_1888953448",
+      "target": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_-65398578",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_550791155",
+      "target": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_-898940085",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_550791155",
+      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003eemptyList([])_493334547",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: nestedClass([PsiType:String])_-1899823022",
+      "target": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_-377090387",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_-1987606266",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-2029806091",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: isPrimitive([])_1312155753",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-6104377",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_1718025795",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_1790811331",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: isArray([])_-107171182",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: isAnonymousClass([])_1663356247",
+      "sourceAnchor": 7,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: lastIndexOf([PsiType:int])_194155730",
+      "sourceAnchor": 8,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: getName([])_1587356807",
+      "sourceAnchor": 8,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: substring([PsiType:int])_-1627767497",
+      "sourceAnchor": 9,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: getName([])_236226436",
+      "sourceAnchor": 9,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_1741130954",
+      "sourceAnchor": 10,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: getSimpleName([])_-1245482241",
+      "sourceAnchor": 12,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_-963370543",
+      "sourceAnchor": 14,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: lastIndexOf([PsiType:int])_-25870683",
+      "sourceAnchor": 16,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: getName([])_-1779296216",
+      "sourceAnchor": 16,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: substring([PsiType:int, PsiType:int])_672807974",
+      "sourceAnchor": 17,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: getName([])_1513904495",
+      "sourceAnchor": 17,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_-988214354",
+      "sourceAnchor": 18,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: nestedClass([PsiType:String])_1139107643",
+      "sourceAnchor": 21,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "sourceAnchor": 21,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_-1039296241",
+      "target": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_-322291275",
+      "sourceAnchor": 21,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_1150450843",
+      "target": "MethodSignatureBackedByPsiMethod: TypeName([PsiType:List\u003cAnnotationSpec\u003e])_1596341734",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_1150450843",
+      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003erequireNonNull([PsiType:T, PsiType:String])_1851627330",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_1150450843",
+      "target": "MethodSignatureBackedByPsiMethod: isEmpty([])_1623190095",
+      "sourceAnchor": 8,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: concatAnnotations([PsiType:List\u003cAnnotationSpec\u003e])_1535140994",
+      "target": "MethodSignatureBackedByPsiMethod: ArrayList([PsiType:Collection\u003c? extends E\u003e])_-1212695001",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: concatAnnotations([PsiType:List\u003cAnnotationSpec\u003e])_1535140994",
+      "target": "MethodSignatureBackedByPsiMethod: addAll([PsiType:Collection\u003c? extends E\u003e])_76719325",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: isAnnotated([])_1497676407",
+      "target": "MethodSignatureBackedByPsiMethod: isEmpty([])_-723556525",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: isAnnotated([])_-190937097",
+      "target": "MethodSignatureBackedByPsiMethod: isAnnotated([])_-2023041042",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: isAnnotated([])_-190937097",
+      "target": "MethodSignatureBackedByPsiMethod: isAnnotated([])_74686887",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_-898940085",
+      "target": "MethodSignatureBackedByPsiMethod: TypeName([PsiType:List\u003cAnnotationSpec\u003e])_-1061878371",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_-898940085",
+      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003erequireNonNull([PsiType:T, PsiType:String])_-1025255555",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_-898940085",
+      "target": "MethodSignatureBackedByPsiMethod: isEmpty([])_481315033",
+      "sourceAnchor": 8,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_-377090387",
+      "target": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_1627196476",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_-377090387",
+      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003eemptyList([])_-547606753",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_-1987606266",
+      "target": "MethodSignatureBackedByPsiMethod: NullPointerException([PsiType:String])_-1308879311",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_-1987606266",
+      "target": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_-812359704",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-2029806091",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-580527852",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-2029806091",
+      "target": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_735994368",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-6104377",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-1401135139",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-6104377",
+      "target": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_1313946729",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_1790811331",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1579464907",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_1790811331",
+      "target": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_1468727156",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_-988214354",
+      "target": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_-268258087",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_-988214354",
+      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003eemptyList([])_-414366668",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: nestedClass([PsiType:String])_1139107643",
+      "target": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_233878509",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_1964225402",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-182941306",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: isPrimitive([])_-1503429892",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_762565049",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_-1641968047",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-209922892",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: isArray([])_763984616",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: isAnonymousClass([])_-272963800",
+      "sourceAnchor": 7,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: lastIndexOf([PsiType:int])_-1835155158",
+      "sourceAnchor": 8,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: getName([])_462823492",
+      "sourceAnchor": 8,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: substring([PsiType:int])_881058401",
+      "sourceAnchor": 9,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: getName([])_203739693",
+      "sourceAnchor": 9,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_1702687262",
+      "sourceAnchor": 10,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: getSimpleName([])_-748519410",
+      "sourceAnchor": 12,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_1695763245",
+      "sourceAnchor": 14,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: lastIndexOf([PsiType:int])_32744765",
+      "sourceAnchor": 16,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: getName([])_1146575714",
+      "sourceAnchor": 16,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: substring([PsiType:int, PsiType:int])_976589572",
+      "sourceAnchor": 17,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: getName([])_1829838524",
+      "sourceAnchor": 17,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_1254524689",
+      "sourceAnchor": 18,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: nestedClass([PsiType:String])_-1257821768",
+      "sourceAnchor": 21,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "sourceAnchor": 21,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_235063493",
+      "target": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_1872026562",
+      "sourceAnchor": 21,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: TypeName([PsiType:List\u003cAnnotationSpec\u003e])_1596341734",
+      "target": "MethodSignatureBackedByPsiMethod: TypeName([PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_-2140452183",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: isAnnotated([])_-2023041042",
+      "target": "MethodSignatureBackedByPsiMethod: isEmpty([])_-1708536280",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: isAnnotated([])_74686887",
+      "target": "MethodSignatureBackedByPsiMethod: isAnnotated([])_-1502235559",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: isAnnotated([])_74686887",
+      "target": "MethodSignatureBackedByPsiMethod: isAnnotated([])_514826501",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: TypeName([PsiType:List\u003cAnnotationSpec\u003e])_-1061878371",
+      "target": "MethodSignatureBackedByPsiMethod: TypeName([PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_-1545403500",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_1627196476",
+      "target": "MethodSignatureBackedByPsiMethod: TypeName([PsiType:List\u003cAnnotationSpec\u003e])_871905007",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_1627196476",
+      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003erequireNonNull([PsiType:T, PsiType:String])_-1078205981",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_1627196476",
+      "target": "MethodSignatureBackedByPsiMethod: isEmpty([])_1909789047",
+      "sourceAnchor": 8,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_-268258087",
+      "target": "MethodSignatureBackedByPsiMethod: TypeName([PsiType:List\u003cAnnotationSpec\u003e])_-1620764050",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_-268258087",
+      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003erequireNonNull([PsiType:T, PsiType:String])_-1581964360",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_-268258087",
+      "target": "MethodSignatureBackedByPsiMethod: isEmpty([])_1534528248",
+      "sourceAnchor": 8,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_233878509",
+      "target": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_786818439",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_233878509",
+      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003eemptyList([])_-270490198",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_1964225402",
+      "target": "MethodSignatureBackedByPsiMethod: NullPointerException([PsiType:String])_271583497",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_1964225402",
+      "target": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_-149858838",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-182941306",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-163463757",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-182941306",
+      "target": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_1144261265",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_762565049",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_1724790527",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_762565049",
+      "target": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_-2109164996",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-209922892",
+      "target": "MethodSignatureBackedByPsiMethod: IllegalArgumentException([PsiType:String])_-1433728415",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-209922892",
+      "target": "MethodSignatureBackedByPsiMethod: format([PsiType:String, PsiType:Object[]])_1028598410",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_1254524689",
+      "target": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_2104702782",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_1254524689",
+      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003eemptyList([])_1282937224",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: nestedClass([PsiType:String])_-1257821768",
+      "target": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_1814109423",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003echeckNotNull([PsiType:T, PsiType:String, PsiType:Object[]])_1123328155",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_2109511202",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: isPrimitive([])_-1245656413",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_-738085368",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: equals([PsiType:Object])_1225970479",
+      "sourceAnchor": 3,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: checkArgument([PsiType:boolean, PsiType:String, PsiType:Object[]])_1217694522",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: isArray([])_348424958",
+      "sourceAnchor": 4,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: isAnonymousClass([])_319071545",
+      "sourceAnchor": 7,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: lastIndexOf([PsiType:int])_569761305",
+      "sourceAnchor": 8,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: getName([])_-2124270347",
+      "sourceAnchor": 8,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: substring([PsiType:int])_-238912946",
+      "sourceAnchor": 9,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: getName([])_1585008067",
+      "sourceAnchor": 9,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_-1910531879",
+      "sourceAnchor": 10,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: getSimpleName([])_559242141",
+      "sourceAnchor": 12,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_535852143",
+      "sourceAnchor": 14,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: lastIndexOf([PsiType:int])_-78175054",
+      "sourceAnchor": 16,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: getName([])_597900572",
+      "sourceAnchor": 16,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: substring([PsiType:int, PsiType:int])_1253502853",
+      "sourceAnchor": 17,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: getName([])_2014543237",
+      "sourceAnchor": 17,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: ClassName([PsiType:String, PsiType:ClassName, PsiType:String])_-223380434",
+      "sourceAnchor": 18,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: nestedClass([PsiType:String])_-1464438391",
+      "sourceAnchor": 21,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_218543742",
+      "sourceAnchor": 21,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: get([PsiType:Class\u003c?\u003e])_1492316823",
+      "target": "MethodSignatureBackedByPsiMethod: getEnclosingClass([])_-2115447708",
+      "sourceAnchor": 21,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: TypeName([PsiType:String, PsiType:List\u003cAnnotationSpec\u003e])_-2140452183",
+      "target": "MethodSignatureBackedByPsiMethod: \u003cT\u003eimmutableList([PsiType:Collection\u003cT\u003e])_1176514576",
+      "sourceAnchor": 2,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: isAnnotated([])_-1502235559",
+      "target": "MethodSignatureBackedByPsiMethod: isEmpty([])_-536757062",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: isAnnotated([])_514826501",
+      "target": "MethodSignatureBackedByPsiMethod: isAnnotated([])_708959375",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    },
+    {
+      "source": "MethodSignatureBackedByPsiMethod: isAnnotated([])_514826501",
+      "target": "MethodSignatureBackedByPsiMethod: isAnnotated([])_1461929777",
+      "sourceAnchor": 1,
+      "targetAnchor": 0
+    }
+  ]
+}
