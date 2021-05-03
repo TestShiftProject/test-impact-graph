@@ -347,6 +347,7 @@ function defaultView(graph: Graph, data: GraphData | undefined) {
   //   });
   // });
   graph.updateLayout({});
+  graph.fitView(20);
 }
 
 function setMarkerCorrectly(node: TestGraphNode, marker: ShapeOptions) {
@@ -406,6 +407,7 @@ function collapseMarker(node: TestGraphNode, marker: ShapeOptions, graph: Graph)
     marker.attrs.symbol = G6.Marker.expand;
   }
   graph.updateLayout({});
+  graph.fitView(20);
   graph.refresh();
 }
 
@@ -428,18 +430,17 @@ function App() {
       graph = new G6.Graph({
         // @ts-ignore
         container: ReactDOM.findDOMNode(ref.current),
-        width: 1400,
-        height: 1000,
-        fitCenter: true,
+        width: 1800,
+        height: 900,
         fitView: true,
+        fitCenter: true,
         modes: {
           default: ['drag-node', 'drag-canvas', 'zoom-canvas'],
         },
         layout: {
           type: 'dagre',
           rankdir: 'LR',
-          sortByCombo: true,
-          //align: 'UL',
+          align: 'UL',
           nodesepFunc: (node: TestGraphNode) => {
             return 10; //nodeHeight(node)/2;
             //node.getInEdges().map(e => e.getTarget().get)
@@ -447,7 +448,6 @@ function App() {
           ranksepFunc: (node: TestGraphNode) => {
             return 30;
           },
-          workerEnabled: true,
           //direction: 'LR',
           //indent: 600,
           // getHeight: (node) => {

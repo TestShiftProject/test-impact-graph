@@ -12,13 +12,13 @@
           "addCovered": false
         },
         {
-          "code": "        AnnotationSpec o_modifyAnnotations__5 \u003d builder.annotations.remove(1);",
+          "code": "        AnnotationSpec annotationSpec \u003d builder.annotations.remove(1);",
           "callsMethod": true,
           "covered": false,
           "addCovered": false
         },
         {
-          "code": "        Truth.assertThat(((AnnotationSpec) (o_modifyAnnotations__5)).toString()).isEqualTo(\"@java.lang.SuppressWarnings\");",
+          "code": "        Truth.assertThat(((AnnotationSpec) (annotationSpec)).toString()).isEqualTo(\"@java.lang.SuppressWarnings\");",
           "callsMethod": true,
           "covered": false,
           "addCovered": false

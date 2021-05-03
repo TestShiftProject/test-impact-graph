@@ -18,13 +18,13 @@
           "addCovered": false
         },
         {
-          "code": "        ParameterSpec o_modifyAnnotations_mg25__6 \u003d builder.build();",
+          "code": "        ParameterSpec parameterSpec \u003d builder.build();",
           "callsMethod": true,
           "covered": false,
           "addCovered": false
         },
         {
-          "code": "        Truth.assertThat(((ParameterSpec) (o_modifyAnnotations_mg25__6)).toString()).isEqualTo(\"@java.lang.Override int foo\");",
+          "code": "        Truth.assertThat(((ParameterSpec) (parameterSpec)).toString()).isEqualTo(\"@java.lang.Override int foo\");",
           "callsMethod": true,
           "covered": false,
           "addCovered": false

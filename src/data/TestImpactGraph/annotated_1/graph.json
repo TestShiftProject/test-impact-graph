@@ -42,7 +42,7 @@
           "addCovered": false
         },
         {
-          "code": "            Assert.fail(\"annotated_mg37 should have thrown UnsupportedOperationException\");",
+          "code": "            Assert.fail(\"annotated_1 should have thrown UnsupportedOperationException\");",
           "callsMethod": true,
           "covered": false,
           "addCovered": false

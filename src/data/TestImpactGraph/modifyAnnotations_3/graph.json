@@ -6,7 +6,7 @@
       "id": "root",
       "lines": [
         {
-          "code": "        Object __DSPOT_o_3 \u003d new Object();",
+          "code": "        Object object \u003d new Object();",
           "callsMethod": true,
           "covered": false,
           "addCovered": false
@@ -18,19 +18,19 @@
           "addCovered": false
         },
         {
-          "code": "        AnnotationSpec __DSPOT_invoc_5 \u003d builder.annotations.remove(1);",
+          "code": "        AnnotationSpec annotationSpec \u003d builder.annotations.remove(1);",
           "callsMethod": true,
           "covered": false,
           "addCovered": false
         },
         {
-          "code": "        boolean o_modifyAnnotations_rv27__9 \u003d __DSPOT_invoc_5.equals(__DSPOT_o_3);",
+          "code": "        boolean booleanValue \u003d annotationSpec.equals(object);",
           "callsMethod": true,
           "covered": false,
           "addCovered": false
         },
         {
-          "code": "        Truth.assertThat(o_modifyAnnotations_rv27__9).isFalse();",
+          "code": "        Truth.assertThat(booleanValue).isFalse();",
           "callsMethod": true,
           "covered": false,
           "addCovered": false

@@ -6,7 +6,7 @@
       "id": "root",
       "lines": [
         {
-          "code": "        List\u003cAnnotationSpec\u003e __DSPOT_annotations_0 \u003d Collections.\u003cAnnotationSpec\u003eemptyList();",
+          "code": "        List\u003cAnnotationSpec\u003e annotations \u003d Collections.\u003cAnnotationSpec\u003eemptyList();",
           "callsMethod": true,
           "covered": false,
           "addCovered": false
@@ -18,13 +18,13 @@
           "addCovered": false
         },
         {
-          "code": "        ClassName o_shouldSupportClassInDefaultPackage_mg11__5 \u003d className.annotated(__DSPOT_annotations_0);",
+          "code": "        ClassName className2 \u003d className.annotated(annotations);",
           "callsMethod": true,
           "covered": false,
           "addCovered": false
         },
         {
-          "code": "        Truth.assertThat(((ClassName) (o_shouldSupportClassInDefaultPackage_mg11__5)).isAnnotated()).isFalse();",
+          "code": "        Truth.assertThat(((ClassName) (className2)).isAnnotated()).isFalse();",
           "callsMethod": true,
           "covered": false,
           "addCovered": false
