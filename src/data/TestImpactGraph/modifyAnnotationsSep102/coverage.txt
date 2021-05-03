@@ -1,1 +1,0 @@
-Amplified test case 'modifyAnnotations_rv27_assSep102'  Input modifications: 0 Assert statements added: 1  This test case improves the coverage in these classes/methods/lines: (Click on the green links to see these lines within the class) com.squareup.javapoet.AnnotationSpec: equals L. 172 +3 instr. L. 173 +2 instr. L. 174 +7 instr. 

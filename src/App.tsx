@@ -6,14 +6,13 @@ import G6, { Algorithm, ModelConfig, Graph, INode, Marker, Item, Shape, ShapeOpt
 import {getAllChildren} from "./util";
 import {Line, TestGraphNode} from "./data/graphData";
 
-import data0 from './data/TestImpactGraph/annotatedFailAssert/graph.json';
-import data1 from './data/TestImpactGraph/cloneUsageNull0/graph.json';
-import data2 from './data/TestImpactGraph/modifyAnnotationsSep4/graph.json';
-import data3 from './data/TestImpactGraph/modifyAnnotationsSep5/graph.json';
-import data4 from './data/TestImpactGraph/modifyAnnotationsSep97/graph.json';
-import data5 from './data/TestImpactGraph/modifyAnnotationsSep102/graph.json';
-import data6 from './data/TestImpactGraph/shouldSupportClassInDefaultPackage5/graph.json';
-import data7 from './data/TestImpactGraph/shouldSupportClassInDefaultPackage58/graph.json';
+import data0 from './data/TestImpactGraph/annotated_1/graph.json';
+import data2 from './data/TestImpactGraph/modifyAnnotations_5/graph.json';
+import data3 from './data/TestImpactGraph/modifyAnnotations_excluded/graph.json';
+import data4 from './data/TestImpactGraph/modifyAnnotations_4/graph.json';
+import data5 from './data/TestImpactGraph/modifyAnnotations_3/graph.json';
+import data6 from './data/TestImpactGraph/shouldSupportClassInDefaultPackage_excluded/graph.json';
+import data7 from './data/TestImpactGraph/shouldSupportClassInDefaultPackage_2/graph.json';
 import { GraphData } from '@antv/algorithm/lib/types';
 import {findAllInRenderedTree} from "react-dom/test-utils";
 
@@ -43,36 +42,39 @@ function addSelector(container: Element | Text) {
   selector.id = 'selector';
   const selection1 = document.createElement('option');
   selection1.value = 'data0';
-  selection1.innerHTML = 'annotatedFailAssert';
-  const selection2 = document.createElement('option');
-  selection2.value = 'data1';
-  selection2.innerHTML = 'cloneUsageNull0';
-  const selection3 = document.createElement('option');
-  selection3.value = 'data2';
-  selection3.innerHTML = 'modifyAnnotationsSep4';
-  const selection4 = document.createElement('option');
-  selection4.value = 'data3';
-  selection4.innerHTML = 'modifyAnnotationsSep5';
-  const selection5 = document.createElement('option');
-  selection5.value = 'data4';
-  selection5.innerHTML = 'modifyAnnotationsSep97';
-  const selection6 = document.createElement('option');
-  selection6.value = 'data5';
-  selection6.innerHTML = 'modifyAnnotationsSe102';
-  const selection7 = document.createElement('option');
-  selection7.value = 'data6';
-  selection7.innerHTML = 'shouldSupportClassInDefaultPackage5';
+  selection1.innerHTML = 'annotated_1';
+  selector.appendChild(selection1);
+
   const selection8 = document.createElement('option');
   selection8.value = 'data7';
-  selection8.innerHTML = 'shouldSupportClassInDefaultPackage58';
-  selector.appendChild(selection1);
-  selector.appendChild(selection2);
-  selector.appendChild(selection3);
-  selector.appendChild(selection4);
-  selector.appendChild(selection5);
-  selector.appendChild(selection6);
-  selector.appendChild(selection7);
+  selection8.innerHTML = 'shouldSupportClassInDefaultPackage_2';
   selector.appendChild(selection8);
+
+  const selection6 = document.createElement('option');
+  selection6.value = 'data5';
+  selection6.innerHTML = 'modifyAnnotations_3';
+  selector.appendChild(selection6);
+
+  const selection5 = document.createElement('option');
+  selection5.value = 'data4';
+  selection5.innerHTML = 'modifyAnnotations_4';
+  selector.appendChild(selection5);
+
+  const selection3 = document.createElement('option');
+  selection3.value = 'data2';
+  selection3.innerHTML = 'modifyAnnotations_5';
+  selector.appendChild(selection3);
+
+  const selection4 = document.createElement('option');
+  selection4.value = 'data3';
+  selection4.innerHTML = 'modifyAnnotations_excluded';
+  selector.appendChild(selection4);
+
+  const selection7 = document.createElement('option');
+  selection7.value = 'data6';
+  selection7.innerHTML = 'shouldSupportClassInDefaultPackage_excluded';
+  selector.appendChild(selection7);
+
   container.appendChild(selector);
   return selector;
 }
@@ -495,9 +497,6 @@ function App() {
       switch (value) {
         case 'data0':
           dataToUse = data0;
-          break;
-        case 'data1':
-          dataToUse = data1;
           break;
         case 'data2':
           dataToUse = data2;

@@ -1,7 +1,7 @@
 {
   "nodes": [
     {
-      "signature": "    public void modifyAnnotations_assSep4() throws Exception {",
+      "signature": "    public void modifyAnnotations_5() throws Exception {",
       "className": "com.squareup.javapoet.ParameterSpecTest",
       "id": "root",
       "lines": [

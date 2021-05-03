@@ -1,7 +1,7 @@
 {
   "nodes": [
     {
-      "signature": "    public void shouldSupportClassInDefaultPackage_assSep5() throws Exception {",
+      "signature": "    public void shouldSupportClassInDefaultPackage_excluded() throws Exception {",
       "className": "ClassNameNoPackageTest",
       "id": "root",
       "lines": [

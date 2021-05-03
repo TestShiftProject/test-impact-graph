@@ -1,7 +1,7 @@
 {
   "nodes": [
     {
-      "signature": "    public void shouldSupportClassInDefaultPackage_mg11_assSep58() throws Exception {",
+      "signature": "    public void shouldSupportClassInDefaultPackage_2() throws Exception {",
       "className": "ClassNameNoPackageTest",
       "id": "root",
       "lines": [

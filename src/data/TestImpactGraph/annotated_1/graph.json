@@ -1,7 +1,7 @@
 {
   "nodes": [
     {
-      "signature": "    public void annotated_mg37_failAssert0() throws Exception {",
+      "signature": "    public void annotated_1() throws Exception {",
       "className": "com.squareup.javapoet.AnnotatedTypeNameTest",
       "id": "root",
       "lines": [
