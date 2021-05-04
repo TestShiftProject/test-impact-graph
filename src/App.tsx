@@ -40,15 +40,15 @@ function addSelector(container: Element | Text) {
   // Add a selector to DOM
   const selector = document.createElement('select');
   selector.id = 'selector';
-  const selection1 = document.createElement('option');
-  selection1.value = 'data0';
-  selection1.innerHTML = 'annotated_1';
-  selector.appendChild(selection1);
-
-  const selection8 = document.createElement('option');
-  selection8.value = 'data7';
-  selection8.innerHTML = 'shouldSupportClassInDefaultPackage_2';
-  selector.appendChild(selection8);
+  // const selection1 = document.createElement('option');
+  // selection1.value = 'data0';
+  // selection1.innerHTML = 'annotated_1';
+  // selector.appendChild(selection1);
+  //
+  // const selection8 = document.createElement('option');
+  // selection8.value = 'data7';
+  // selection8.innerHTML = 'shouldSupportClassInDefaultPackage_2';
+  // selector.appendChild(selection8);
 
   const selection6 = document.createElement('option');
   selection6.value = 'data5';
@@ -65,15 +65,15 @@ function addSelector(container: Element | Text) {
   selection3.innerHTML = 'modifyAnnotations_5';
   selector.appendChild(selection3);
 
-  const selection4 = document.createElement('option');
-  selection4.value = 'data3';
-  selection4.innerHTML = 'modifyAnnotations_excluded';
-  selector.appendChild(selection4);
-
-  const selection7 = document.createElement('option');
-  selection7.value = 'data6';
-  selection7.innerHTML = 'shouldSupportClassInDefaultPackage_excluded';
-  selector.appendChild(selection7);
+  // const selection4 = document.createElement('option');
+  // selection4.value = 'data3';
+  // selection4.innerHTML = 'modifyAnnotations_excluded';
+  // selector.appendChild(selection4);
+  //
+  // const selection7 = document.createElement('option');
+  // selection7.value = 'data6';
+  // selection7.innerHTML = 'shouldSupportClassInDefaultPackage_excluded';
+  // selector.appendChild(selection7);
 
   container.appendChild(selector);
   return selector;
@@ -96,7 +96,7 @@ function nodeHeight(node: TestGraphNode) {
   return 2 * lineHeight + node.lines.length * lineHeight;
 }
 
-function determineWidth(node: TestGraphNode) {
+function nodeWidth(node: TestGraphNode) {
   const lines = [node.className, node.signature].concat(node.lines.map(line => line.code));
   const maxLength = lines.map(line => line.length)
       .reduce((previousValue, currentValue) => Math.max(previousValue, currentValue));
@@ -116,9 +116,9 @@ function setupG6() {
             throw new Error("group is undefined in drawShape");
           }
 
-          const width = cfg.width ? cfg.width : determineWidth(cfg);
+          const width = cfg.width ? cfg.width : nodeWidth(cfg);
 
-          cfg.size = [determineWidth(cfg), nodeHeight(cfg)]
+          cfg.size = [nodeWidth(cfg), nodeHeight(cfg)]
 
           const shape = group.addShape('rect', {
             attrs: {
@@ -350,6 +350,41 @@ function defaultView(graph: Graph, data: GraphData | undefined) {
   graph.fitView(20);
 }
 
+function setDefaultView(value: string, graph: Graph) {
+  let dataToUse;
+  // change the behavior mode
+  switch (value) {
+    case 'data0':
+      dataToUse = data0;
+      break;
+    case 'data2':
+      dataToUse = data2;
+      break;
+    case 'data3':
+      dataToUse = data3;
+      break;
+    case 'data4':
+      dataToUse = data4;
+      break;
+    case 'data5':
+      dataToUse = data5;
+      break;
+    case 'data6':
+      dataToUse = data6;
+      break;
+    case 'data7':
+      dataToUse = data7;
+      break;
+    default:
+      console.log("no data for selection " + value + " found");
+      dataToUse = data;
+  }
+
+  graph.data(dataToUse);
+  graph.render();
+  defaultView(graph, dataToUse);
+}
+
 function setMarkerCorrectly(node: TestGraphNode, marker: ShapeOptions) {
   const outgoing = node.getOutEdges()
       .filter((edge: IEdge) => edge.get('model').sourceAnchor - 1 == marker.get('index'));
@@ -407,7 +442,7 @@ function collapseMarker(node: TestGraphNode, marker: ShapeOptions, graph: Graph)
     marker.attrs.symbol = G6.Marker.expand;
   }
   graph.updateLayout({});
-  graph.fitView(20);
+  // graph.fitView(20);
   graph.refresh();
 }
 
@@ -426,6 +461,13 @@ function App() {
 
     const selector = addSelector(container);
 
+    const defaultViewButton = document.createElement('button');
+    defaultViewButton.innerHTML = "Default View";
+    defaultViewButton.addEventListener("click",  function () {
+      setDefaultView(selector.value, graph);
+    });
+    container.appendChild(defaultViewButton);
+
     if (!graph) {
       graph = new G6.Graph({
         // @ts-ignore
@@ -440,13 +482,13 @@ function App() {
         layout: {
           type: 'dagre',
           rankdir: 'LR',
-          align: 'UL',
+          //align: 'UL',
           nodesepFunc: (node: TestGraphNode) => {
-            return 10; //nodeHeight(node)/2;
+            return 30; //nodeHeight(node)/2;
             //node.getInEdges().map(e => e.getTarget().get)
           },
           ranksepFunc: (node: TestGraphNode) => {
-            return 30;
+            return nodeWidth(node)/4;
           },
           //direction: 'LR',
           //indent: 600,
@@ -460,6 +502,11 @@ function App() {
         defaultEdge: {
           type: 'polyline',
           style: {
+            endArrow: {
+              path: G6.Arrow.triangle(10, 10, 0),
+              d: 0,
+              fill: '#3c3f41',
+            },
             stroke: '#3c3f41',
             lineWidth: 2,
           },
@@ -484,47 +531,12 @@ function App() {
     // Click to expand / collapse branch
     graph.on('collapse-branch-icon:click', (ev) => {
       collapseMarker(ev.item as TestGraphNode, ev.target,  graph);
-      graph.layout();
     });
 
     // Listen to the selector, change the mode when the selector is changed
     selector.addEventListener('change', (e) => {
       // @ts-ignore
-      const value = e.target.value;
-
-      let dataToUse;
-      // change the behavior mode
-      switch (value) {
-        case 'data0':
-          dataToUse = data0;
-          break;
-        case 'data2':
-          dataToUse = data2;
-          break;
-        case 'data3':
-          dataToUse = data3;
-          break;
-        case 'data4':
-          dataToUse = data4;
-          break;
-        case 'data5':
-          dataToUse = data5;
-          break;
-        case 'data6':
-          dataToUse = data6;
-          break;
-        case 'data7':
-          dataToUse = data7;
-          break;
-        default:
-          console.log("no data for selection " + value + " found");
-          dataToUse = data;
-      }
-
-      graph.data(dataToUse);
-      graph.render();
-      defaultView(graph, dataToUse);
-      graph.fitView(20);
+      setDefaultView(e.target.value, graph);
     });
 
     // if (typeof window !== 'undefined')
@@ -534,14 +546,22 @@ function App() {
     //     graph.changeSize(container.scrollWidth, container.scrollHeight - 30);
     // };
 
-    graph.data(data0);
+    graph.data(data5);
     graph.render();
-    defaultView(graph, data0);
-    graph.fitView(20);
+    defaultView(graph, data5);
+    // graph.fitView(20);
   }, []);
 
 
-  return <div ref={ref}> </div>;
+  return (
+  <div>
+    <text style={{padding: 2, margin: 5}}> Welcome to the TestImpactGraph! 😊 Please wait a bit for the rendering 🙂 </text>
+    <br/>
+    <text style={{backgroundColor: additionallyCoveredColor, padding: 2, margin: 5}}> Additionally covered code </text>
+    <text style={{backgroundColor: coveredColor, padding: 2, margin: 5}}> Code already covered by other tests </text>
+    <div ref={ref}> </div>
+  </div>
+  );
 }
 
 
