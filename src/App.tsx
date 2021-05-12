@@ -476,6 +476,7 @@ function App() {
         height: 900,
         fitView: true,
         fitCenter: true,
+        groupByTypes: false,
         modes: {
           default: ['drag-node', 'drag-canvas', 'zoom-canvas'],
         },

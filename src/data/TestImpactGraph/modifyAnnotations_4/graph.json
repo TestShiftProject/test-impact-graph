@@ -2,7 +2,7 @@
   "nodes": [
     {
       "signature": "    public void modifyAnnotations_4() throws Exception {",
-      "className": "com.squareup.javapoet.ParameterSpecTest",
+      "className": "Test",
       "id": "root",
       "lines": [
         {

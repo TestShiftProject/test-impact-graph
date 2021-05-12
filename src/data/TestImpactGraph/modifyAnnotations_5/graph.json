@@ -2,7 +2,7 @@
   "nodes": [
     {
       "signature": "    public void modifyAnnotations_5() throws Exception {",
-      "className": "com.squareup.javapoet.ParameterSpecTest",
+      "className": "Test",
       "id": "root",
       "lines": [
         {
@@ -7398,21 +7398,6 @@
         }
       ],
       "addCovered": false,
-      "nodeLevel": 5
-    },
-    {
-      "signature": "  public String simpleName() {",
-      "className": "com.squareup.javapoet.ClassName",
-      "id": "MethodSignatureBackedByPsiMethod: simpleName([])_-1974207773",
-      "lines": [
-        {
-          "code": "    return simpleName;",
-          "callsMethod": false,
-          "covered": true,
-          "addCovered": true
-        }
-      ],
-      "addCovered": true,
       "nodeLevel": 5
     },
     {
