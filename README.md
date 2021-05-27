@@ -21,7 +21,7 @@ There you can select which of the three example test cases you would like to ins
 Please wait a bit after selecting a new one, as the layouting of a completely new graph takes quite a while 🙂.
 
 ## Generating and Inspecting an amplified test case from TestCube
-Follow the instructions at [TODO]() to generate an amplified test case and let TestCube create the `.json` file acting as the input for the TestImpactGraph.
+Follow the [instructions at the corresponding release of TestCube](https://github.com/TestShiftProject/test-cube/blob/v1.0.3-tig/test-impact-graph.md) to generate an amplified test case and let TestCube create the `.json` file acting as the input for the TestImpactGraph.
 Then, copy over the content of `test-cube/target/explorerJson.json` over to new file in this repository, best located in `scr/data`.
 Modify (the first lines of) `src/App.tsx` to import your new json:
 ```
