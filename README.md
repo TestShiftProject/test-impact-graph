@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# The TestImpactGraph
 
+Welcome to our prototype implementation of the TestImpactGraph.
+It visualizes the methods which are tested by a developer test, as well as the instructions it additionally covers in comparison to the rest of the test suite.
+
+At this moment, this tool requires a `.json` file similar to those in the [`src/data`](src/data) folder.
+You can use the test-explorer functionality of the [TestCube IntelliJ plugin](https://github.com/TestShiftProject/test-cube/tree/test-explorer) to generate these.
+
+## How to run the TestImpactGraph
+```
+npm start
+```
+Then [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+
+## Inspecting the test cases from our think-aloud study
+To replicate our think-aloud study, you only require this repository 🙂.
+
+Start the tool as described above. Then you can find a drop-down menu at the top of the page.
+There you can select which of the three example test cases you would like to inspect.
+Please wait a bit after selecting a new one, as the layouting of a completely new graph takes quite a while 🙂.
+
+## Generating and Inspecting an amplified test case from TestCube
+Follow the instructions at [TODO]() to generate an amplified test case and let TestCube create the `.json` file acting as the input for the TestImpactGraph.
+Then, copy over the content of `test-cube/target/explorerJson.json` over to new file in this repository, best located in `scr/data`.
+Modify (the first lines of) `src/App.tsx` to import your new json:
+```
+import yourData from './data/<your filename>.json';
+```
+Then, all the way at the end of `src/App.tsx`, add your new variable to the following calls:
+```
+    graph.data(yourData);
+    graph.render();
+    defaultView(graph, yourData);
+```
+
+Reload the webpage & inspect your developer test! 😊
+
+## Built with:
+
+The TestImpactGraph is built with the [G6 graph library from antv](https://g6.antv.vision/en).
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

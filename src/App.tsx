@@ -6,13 +6,9 @@ import G6, { Algorithm, ModelConfig, Graph, INode, Marker, Item, Shape, ShapeOpt
 import {getAllChildren} from "./util";
 import {Line, TestGraphNode} from "./data/graphData";
 
-import data0 from './data/TestImpactGraph/annotated_1/graph.json';
-import data2 from './data/TestImpactGraph/modifyAnnotations_5/graph.json';
-import data3 from './data/TestImpactGraph/modifyAnnotations_excluded/graph.json';
-import data4 from './data/TestImpactGraph/modifyAnnotations_4/graph.json';
-import data5 from './data/TestImpactGraph/modifyAnnotations_3/graph.json';
-import data6 from './data/TestImpactGraph/shouldSupportClassInDefaultPackage_excluded/graph.json';
-import data7 from './data/TestImpactGraph/shouldSupportClassInDefaultPackage_2/graph.json';
+import data2 from './data/think-aloud-evaluation/modifyAnnotations_5/graph.json';
+import data4 from './data/think-aloud-evaluation/modifyAnnotations_4/graph.json';
+import data5 from './data/think-aloud-evaluation/modifyAnnotations_3/graph.json';
 import { GraphData } from '@antv/algorithm/lib/types';
 import {findAllInRenderedTree} from "react-dom/test-utils";
 
@@ -40,15 +36,6 @@ function addSelector(container: Element | Text) {
   // Add a selector to DOM
   const selector = document.createElement('select');
   selector.id = 'selector';
-  // const selection1 = document.createElement('option');
-  // selection1.value = 'data0';
-  // selection1.innerHTML = 'annotated_1';
-  // selector.appendChild(selection1);
-  //
-  // const selection8 = document.createElement('option');
-  // selection8.value = 'data7';
-  // selection8.innerHTML = 'shouldSupportClassInDefaultPackage_2';
-  // selector.appendChild(selection8);
 
   const selection6 = document.createElement('option');
   selection6.value = 'data5';
@@ -64,16 +51,6 @@ function addSelector(container: Element | Text) {
   selection3.value = 'data2';
   selection3.innerHTML = 'modifyAnnotations_5';
   selector.appendChild(selection3);
-
-  // const selection4 = document.createElement('option');
-  // selection4.value = 'data3';
-  // selection4.innerHTML = 'modifyAnnotations_excluded';
-  // selector.appendChild(selection4);
-  //
-  // const selection7 = document.createElement('option');
-  // selection7.value = 'data6';
-  // selection7.innerHTML = 'shouldSupportClassInDefaultPackage_excluded';
-  // selector.appendChild(selection7);
 
   container.appendChild(selector);
   return selector;
@@ -354,26 +331,14 @@ function setDefaultView(value: string, graph: Graph) {
   let dataToUse;
   // change the behavior mode
   switch (value) {
-    case 'data0':
-      dataToUse = data0;
-      break;
     case 'data2':
       dataToUse = data2;
-      break;
-    case 'data3':
-      dataToUse = data3;
       break;
     case 'data4':
       dataToUse = data4;
       break;
     case 'data5':
       dataToUse = data5;
-      break;
-    case 'data6':
-      dataToUse = data6;
-      break;
-    case 'data7':
-      dataToUse = data7;
       break;
     default:
       console.log("no data for selection " + value + " found");
