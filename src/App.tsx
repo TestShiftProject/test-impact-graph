@@ -433,6 +433,13 @@ function App() {
     });
     container.appendChild(defaultViewButton);
 
+    const saveImage = document.createElement('button');
+    saveImage.innerHTML = "Save SVG";
+    saveImage.addEventListener("click",  function () {
+      graph.downloadImage('graph');
+    });
+    container.appendChild(saveImage);
+
     if (!graph) {
       graph = new G6.Graph({
         // @ts-ignore
@@ -442,6 +449,7 @@ function App() {
         fitView: true,
         fitCenter: true,
         groupByTypes: false,
+        renderer: 'svg',
         modes: {
           default: ['drag-node', 'drag-canvas', 'zoom-canvas'],
         },
