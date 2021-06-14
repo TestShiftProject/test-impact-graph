@@ -449,7 +449,7 @@ function App() {
         fitView: true,
         fitCenter: true,
         groupByTypes: false,
-        renderer: 'svg',
+        //renderer: 'svg',
         modes: {
           default: ['drag-node', 'drag-canvas', 'zoom-canvas'],
         },
