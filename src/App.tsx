@@ -26,9 +26,9 @@ const EXPAND_PARTIAL_ICON = function EXPAND_PARTIAL_ICON(x: number, y: number, r
     ['M', x - r, y],
     ['a', r, r, 0, 1, 0, r * 2, 0],
     ['a', r, r, 0, 1, 0, -r * 2, 0],
-    ['M', x - r + 4, y],
-    ['a', r / 4, r / 4, 0, 0, 0, r + 2, 0],
-    ['a', r / 4, r / 4, 0, 0, 0, -r + 2, 0],
+    ['M', x - r + 3, y],
+    ['a', r / 8, r / 8, 0, 0, 0, r, 0],
+    ['a', r / 8, r / 8, 0, 0, 0, -r, 0],
   ];
 };
 
@@ -449,7 +449,7 @@ function App() {
         fitView: true,
         fitCenter: true,
         groupByTypes: false,
-        //renderer: 'svg',
+        renderer: 'svg',
         modes: {
           default: ['drag-node', 'drag-canvas', 'zoom-canvas'],
         },
