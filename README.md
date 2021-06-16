@@ -3,6 +3,9 @@
 Welcome to our prototype implementation of the TestImpactGraph.
 It visualizes the methods which are tested by a developer test, as well as the instructions it additionally covers in comparison to the rest of the test suite.
 
+
+**You're currently on the `svg-rendering` branch! It contains a lot of hacky fixes to make it possible to save svg images of the TestImpactGraph. Rendering takes much longer, is buggy and it fails to save an svg if your graph has too many (even hidden) nodes!**
+
 At this moment, this tool requires a `.json` file similar to those in the [`src/data`](src/data) folder.
 You can use the test-explorer functionality of the [TestCube IntelliJ plugin](https://github.com/TestShiftProject/test-cube/tree/test-explorer) to generate these.
 
