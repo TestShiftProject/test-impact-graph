@@ -7,11 +7,17 @@ At this moment, this tool requires a `.json` file similar to those in the [`src/
 You can use the test-explorer functionality of the [TestCube IntelliJ plugin](https://github.com/TestShiftProject/test-cube/tree/test-explorer) to generate these.
 
 ## How to run the TestImpactGraph
+Before you run the TestImpactGraph the first time, make sure you have npm installed (we tested on version `7.11.2`).
+Then you will need to install all dependencies with
+```
+npm install
+```
+
+Then run the TestImpactGraph with
 ```
 npm start
 ```
 Then [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
 
 ## Inspecting the test cases from our think-aloud study
 To replicate our think-aloud study, you only require this repository 🙂.
